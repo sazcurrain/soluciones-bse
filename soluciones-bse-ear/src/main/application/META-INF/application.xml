@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd" version="7">
+  <display-name>soluciones-bse-ear</display-name>
+  <module>
+    <ejb>soluciones-bse-ejb-0.0.1-SNAPSHOT.jar</ejb>
+  </module>
+  <module>
+    <web>
+      <web-uri>soluciones-bse-front-0.0.1-SNAPSHOT.war</web-uri>
+      <context-root>/soluciones</context-root>
+    </web>
+  </module>
+  <module>
+    <web>
+      <web-uri>soluciones-bse-back-0.0.1-SNAPSHOT.war</web-uri>
+      <context-root>/soluciones/admin</context-root>
+    </web>
+  </module>
+  <library-directory>lib</library-directory>
+</application>
