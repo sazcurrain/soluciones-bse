@@ -76,11 +76,11 @@ public class Ambiente extends BaseEntity<Long> {
 		this.entorno = entorno;
 	}
 
-	public String getURL() {
+	public String getUrl() {
 		return url;
 	}
 
-	public void setURL(String url) {
+	public void setUrl(String url) {
 		this.url = url;
 	}
 
