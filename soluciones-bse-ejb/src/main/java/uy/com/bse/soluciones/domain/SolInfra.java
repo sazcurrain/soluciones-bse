@@ -25,7 +25,7 @@ public abstract class SolInfra extends BaseEntity<Long> {
 	private String sistema_operativo;
 	private String version;
 	private Entorno entorno;
-	private Set<Ambiente> ambiente= new HashSet<Ambiente>();
+	private Set<Ambiente> ambientes= new HashSet<Ambiente>();
 	
 	@Id @GeneratedValue @Override
 	public Long getId() {
@@ -55,8 +55,8 @@ public abstract class SolInfra extends BaseEntity<Long> {
 	}
 	
 	@OneToMany(mappedBy = "solInfra")
-	public Set<Ambiente> getAmbiente() {
-		return ambiente;
+	public Set<Ambiente> getAmbientes() {
+		return ambientes;
 	}
 
 	public SolInfra() {
@@ -64,8 +64,8 @@ public abstract class SolInfra extends BaseEntity<Long> {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void setAmbientes(Set<Ambiente> ambiente) {
-		this.ambiente = ambiente;
+	public void setAmbientes(Set<Ambiente> ambientes) {
+		this.ambientes = ambientes;
 	}
 
 	@Enumerated
