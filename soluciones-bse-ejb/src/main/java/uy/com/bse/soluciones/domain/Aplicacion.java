@@ -17,6 +17,7 @@ public class Aplicacion extends ComponenteSoftware {
 	private static final long serialVersionUID = 1L;
 	private Set<Interface> provee = new HashSet<Interface>();
 	private Set<Interface> consume = new HashSet<Interface>();
+	private Set<Ambiente> ambiente= new HashSet<Ambiente>();
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "aplicacion", orphanRemoval = true)
 	public Set<Interface> getProvee() {
@@ -38,6 +39,17 @@ public class Aplicacion extends ComponenteSoftware {
 
 	public Aplicacion() {
 		super();
+	}
+
+	
+	//TODO ++AEM++ revisar mapeo con Sergio.
+	@OneToMany//(mappedBy = "aplicacion")
+	public Set<Ambiente> getAmbiente() {
+		return ambiente;
+	}
+
+	public void setAmbiente(Set<Ambiente> ambiente) {
+		this.ambiente = ambiente;
 	}
 
 }
