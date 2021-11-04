@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 public abstract class SolInfra extends BaseEntity<Long> {
 
 	/**
-	 * hola mundo
+	 * hola mundo.
 	 */
 	private static final long serialVersionUID = 1L;
 	
