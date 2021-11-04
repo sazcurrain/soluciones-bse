@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.PositiveOrZero;
 
 @Entity
@@ -19,6 +20,26 @@ public class Ambiente extends BaseEntity<Long> {
 	private int puerto;
 	private String url;
 	private String directorio;
+	private Aplicacion aplicacion;
+	private SolInfra solInfra;
+
+	@ManyToOne
+	public Aplicacion getAplicacion() {
+		return aplicacion;
+	}
+
+	public void setAplicacion(Aplicacion aplicacion) {
+		this.aplicacion = aplicacion;
+	}
+
+	@ManyToOne
+	public SolInfra getSolInfra() {
+		return solInfra;
+	}
+
+	public void setSolInfra(SolInfra solInfra) {
+		this.solInfra = solInfra;
+	}
 
 	public Ambiente() {
 		// TODO Auto-generated constructor stub

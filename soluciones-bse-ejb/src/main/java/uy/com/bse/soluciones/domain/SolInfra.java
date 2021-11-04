@@ -54,8 +54,7 @@ public abstract class SolInfra extends BaseEntity<Long> {
 		this.version = version;
 	}
 	
-	//TODO ++AEM++ revisar mapeo con Sergio.
-	@OneToMany//(mappedBy = "solInfra")
+	@OneToMany(mappedBy = "solInfra")
 	public Set<Ambiente> getAmbiente() {
 		return ambiente;
 	}

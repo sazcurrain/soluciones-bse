@@ -42,8 +42,7 @@ public class Aplicacion extends ComponenteSoftware {
 	}
 
 	
-	//TODO ++AEM++ revisar mapeo con Sergio.
-	@OneToMany//(mappedBy = "aplicacion")
+	@OneToMany(mappedBy = "aplicacion")
 	public Set<Ambiente> getAmbiente() {
 		return ambiente;
 	}
