@@ -6,7 +6,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import uy.com.bse.soluciones.domain.Persona;
 import uy.com.bse.soluciones.domain.Stakeholder;
 
 /**

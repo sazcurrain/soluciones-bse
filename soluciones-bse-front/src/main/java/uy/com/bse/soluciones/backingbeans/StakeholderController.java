@@ -8,13 +8,9 @@ import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import uy.com.bse.soluciones.domain.Persona;
-import uy.com.bse.soluciones.domain.Profesion;
-import uy.com.bse.soluciones.domain.Sexo;
+
 import uy.com.bse.soluciones.domain.Stakeholder;
 import uy.com.bse.soluciones.domain.StakeholderType;
-import uy.com.bse.soluciones.ejbs.PersonaService;
-import uy.com.bse.soluciones.ejbs.ProfesionService;
 import uy.com.bse.soluciones.ejbs.StakeholderService;
 
 /**

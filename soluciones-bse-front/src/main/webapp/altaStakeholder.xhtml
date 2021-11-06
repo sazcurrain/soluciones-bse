@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{stakeholderController.stakeholder.id}" />
+		<f:viewAction action="#{stakeholderController.findStakeholderById}" />
+	</f:metadata>
+
+	<ui:define name="title">#{labels['stakeholder.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+		<p:outputPanel>
+			<h:form id="form" prependId="false">
+
+				<div class="p-field p-grid" jsf:id="divId" jsf:rendered="#{stakeholderController.isManaged(stakeholderController.stakeholder.id)}">
+					<h:outputLabel value="#{labels['stakeholder.id']}:*"
+						for="inputId" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputId"
+							value="#{stakeholderController.stakeholder.id}" required="true"
+							size="40" disabled="#{stakeholderController.isManaged(stakeholderController.stakeholder.id)}">
+						</p:inputText>
+					</div>
+				</div>
+					
+				<div class="p-field p-grid" jsf:id="divNombre">
+					<h:outputLabel value="#{labels['stakeholder.nombre']}:*"
+						for="inputNombre" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputNombre"
+							value="#{stakeholderController.stakeholder.nombre}" required="true"
+							size="40">
+							<p:ajax event="blur" process="@this" update="msgNombre" />
+						</p:inputText>
+						<h:message id="msgNombre" for="inputNombre" errorClass="err"
+							warnClass="warn" infoClass="info" />
+					</div>
+				</div>
+				<div class="p-field p-grid" jsf:id="divMail">
+					<h:outputLabel value="#{labels['stakeholder.mail']}:*"
+						for="inputMail" class="p-col-fixed" style="width: 250px" />
+					<div class="p-col">
+						<p:inputText id="inputMail"
+							value="#{stakeholderController.stakeholder.mail}" required="true"
+							size="120">
+							<p:ajax event="blur" process="@this" update="msgMail" />
+						</p:inputText>
+						<h:message id="msgMail" for="inputMail" errorClass="err"
+							warnClass="warn" infoClass="info" />
+					</div>
+				</div>
+
+				<div class="p-field p-grid" jsf:id="divTelefono">
+					<h:outputLabel value="#{labels['stakeholder.telefono']}:*"
+						for="inputDocumento" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputNroDocumento"
+							value="#{stakeholderController.stakeholder.telefono}" required="true"
+							size="40">
+							<p:ajax event="blur" process="@this" update="msgTelefono" />
+						</p:inputText>
+						<h:message id="msgTelefono" for="inputTelefono"
+							errorClass="err" warnClass="warn" infoClass="info" />
+
+					</div>
+				</div>
+
+				<div class="p-field p-grid" jsf:id="divTipo">
+					<h:outputLabel value="#{labels['stakeholder.tipo']}:*" for="inputTipo"
+						class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:selectOneMenu id="selectTipo"
+							value="#{stakeholderController.stakeholder.tipo}" required="true">
+							<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+							<f:selectItems value="#{stakeholderController.stakeholderTypes}" var="tipo"
+								itemValue="#{tipo}" itemLabel="#{tipo}"
+								noSelectionValue="Seleccionar" />
+							<p:ajax event="change" process="@this"
+								update="msgTipo divTipo" />
+						</p:selectOneMenu>
+						<h:message id="msgTipo" for="selectTipo" errorClass="err"
+							warnClass="warn" infoClass="info" />
+
+					</div>
+				</div>
+				<br />
+
+				<p:commandButton action="#{stakeholderController.crearStakeholder}"
+					value="Confirmar">
+					<f:ajax event="click" execute="@form" render="@form" />
+				</p:commandButton>
+
+				<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
+
+				<h:link outcome="stakeholders.xhtml" value="volver" />
+			</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+
