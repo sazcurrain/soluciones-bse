@@ -21,12 +21,18 @@ public class UsuarioModel implements Serializable {
 		Usuario u3 = new Usuario("usuario2", "usuario2");
 		Usuario u4 = new Usuario("usuario3", "usuario3");
 		Usuario u5 = new Usuario("usuario4", "usuario4");
+		Usuario u6 = new Usuario("sergio", "sergio");
+		Usuario u7 = new Usuario("aem", "aem");
+		Usuario u8 = new Usuario("paty", "paty");
 		
 		usuarios.add(u1);
 		usuarios.add(u2);
 		usuarios.add(u3);
 		usuarios.add(u4);
 		usuarios.add(u5);
+		usuarios.add(u6);
+		usuarios.add(u7);
+		usuarios.add(u8);
 	}
 	
 	

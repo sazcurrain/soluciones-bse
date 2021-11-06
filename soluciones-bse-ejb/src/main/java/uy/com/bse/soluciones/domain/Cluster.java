@@ -1,5 +1,6 @@
 package uy.com.bse.soluciones.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
@@ -35,7 +36,7 @@ public class Cluster extends SolInfra {
 		this.ips = ips;
 	}
 
-	@NotNull
+	@NotNull @Column(unique=true)
 	public String getNombre() {
 		return nombre;
 	}

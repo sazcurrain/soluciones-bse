@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<ui:define name="title">Lista de servidores</ui:define>
+
+
+	<ui:define name="body">
+
+
+		<p:linkButton outcome="altaServidor.xhtml" icon="pi pi-plus"
+			value="Nuevo Servidor" style="margin-right:20px;" />
+		<br />
+		<br />
+
+
+		<div jsf:id="divGlobal">
+
+			<h:messages id="globalMessage" globalOnly="true" errorClass="err"
+				warnClass="warn" infoClass="info" />
+
+
+			<h:form>
+
+				<div class="card">
+					<p:dataTable var="servidor"
+						value="#{servidorController.listaServidores}">
+
+						<p:column headerText="">
+							<h:link outcome="altaServidor.xhtml?id=#{servidor.id}">
+								<h:graphicImage value="/resources/images/edit.png" height="20px"
+									width="20px" title="Editar" style="border: none" />
+							</h:link>
+
+							<p:commandLink action="#{servidorController.eliminar(servidor)}"
+								update="divGlobal" styleClass="ui-button-danger"
+								icon="pi pi-times">
+								<h:graphicImage value="/resources/images/delete.png"
+									height="24px" width="24px" title="Eliminar"
+									style="border: none" />
+								<p:confirm header="Atencion"
+									message="Esta seguro que quiere eliminar?"
+									icon="pi pi-info-circle" />
+							</p:commandLink>
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade" responsive="true" width="350">
+								<p:commandButton value="No" type="button"
+									styleClass="ui-confirmdialog-no ui-button-flat" />
+								<p:commandButton value="Si" type="button"
+									styleClass="ui-confirmdialog-yes" />
+							</p:confirmDialog>
+
+						</p:column>
+
+						<p:column headerText="#{labels['servidor.nombre']}">
+							<h:outputText value="#{servidor.nombre}" />
+						</p:column>
+
+						<p:column headerText="#{labels['servidor.IPs']}">
+							<h:outputText value="#{servidor.IP}" />
+						</p:column>
+
+						<p:column headerText="#{labels['servidor.modeloCPU']}">
+							<h:outputText value="#{servidor.modeloCPU}" />
+						</p:column>
+
+						<p:column headerText="#{labels['servidor.virtual']}">
+							<h:outputText value="#{servidor.virtual}" />
+						</p:column>
+						<p:column headerText="#{labels['servidor.memoriaRamGB']}">
+							<h:outputText value="#{servidor.memoriaRamGB}" />
+						</p:column>
+						<p:column headerText="#{labels['servidor.almacenamientoGB']}">
+							<h:outputText value="#{servidor.almacenamientoGB}" />
+						</p:column>
+						<p:column headerText="#{labels['servidor.numeroCPU']}">
+							<h:outputText value="#{servidor.numeroCPU}" />
+						</p:column>
+
+						<p:column headerText="#{labels['servidor.sistema_operativo']}">
+							<h:outputText value="#{servidor.sistema_operativo}" />
+						</p:column>
+
+						<p:column headerText="#{labels['servidor.version']}">
+							<h:outputText value="#{servidor.version}" />
+						</p:column>
+
+						<p:column headerText="#{labels['servidor.entorno']}">
+							<h:outputText value="#{servidor.entorno}" />
+						</p:column>
+					</p:dataTable>
+				</div>
+			</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+</html>
+

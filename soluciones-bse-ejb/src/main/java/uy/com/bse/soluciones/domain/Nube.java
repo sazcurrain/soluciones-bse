@@ -1,5 +1,6 @@
 package uy.com.bse.soluciones.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
@@ -18,7 +19,7 @@ public class Nube extends SolInfra {
 		super();
 	}
 
-	@NotNull
+	@NotNull @Column(unique=true)
 	public String getNombre() {
 		return nombre;
 	}

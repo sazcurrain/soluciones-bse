@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{clusterController.cluster.id}" />
+		<f:viewAction action="#{clusterController.findClusterById}" />
+	</f:metadata>
+
+	<ui:define name="title">#{labels['cluster.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<p:outputPanel>
+				<h:form id="form" prependId="false">
+
+					<div class="p-field p-grid" jsf:id="divId"
+						jsf:rendered="#{clusterController.isManaged(clusterController.cluster.id)}">
+						<h:outputLabel value="#{labels['cluster.id']}:*" for="inputId"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputId" value="#{clusterController.cluster.id}"
+								required="true" size="40"
+								disabled="#{clusterController.isManaged(clusterController.cluster.id)}">
+							</p:inputText>
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divNombre">
+						<h:outputLabel value="#{labels['cluster.nombre']}:*"
+							for="inputNombre" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputNombre"
+								value="#{clusterController.cluster.nombre}" required="true"
+								size="60">
+								<p:ajax event="blur" process="@this" update="msgNombre" />
+							</p:inputText>
+							<h:message id="msgNombre" for="inputNombre" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divIps">
+						<h:outputLabel value="#{labels['cluster.IPs']}:*" for="inputIps"
+							class="p-col-fixed" style="width: 450px" />
+						<div class="p-col">
+							<p:inputText id="inputIps"
+								value="#{clusterController.cluster.IPs}" required="true"
+								size="500">
+								<p:ajax event="blur" process="@this" update="msgIps" />
+							</p:inputText>
+							<h:message id="msgIps" for="inputIps" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divCantidadNodos">
+						<h:outputLabel value="#{labels['cluster.cantNodos']}:*"
+							for="inputCantNodos" class="p-col-fixed" style="width: 350px" />
+						<div class="p-col">
+							<p:inputText id="inputCantidadNodos"
+								value="#{clusterController.cluster.cantNodos}" required="true"
+								size="40">
+								<p:ajax event="blur" process="@this" update="msgCantidadNodos" />
+							</p:inputText>
+							<h:message id="msgCantidadNodos" for="inputCantidadNodos"
+								errorClass="err" warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divVirtual">
+						<h:outputLabel value="#{labels['cluster.virtual']}:*"
+							for="inputVirtual" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:selectOneMenu id="selectVirtual"
+								value="#{clusterController.cluster.virtual}" required="true">
+								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+								<f:selectItem itemLabel="True" itemValue="true" />
+								<f:selectItem itemLabel="False" itemValue="false" />
+							</p:selectOneMenu>
+							<h:message id="msgVirtual" for="selectVirtual" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divTotalMemoriaRamGB">
+						<h:outputLabel value="#{labels['cluster.totalMemoriaRamGB']}:*"
+							for="inputTotalMemoriaRamGB" class="p-col-fixed"
+							style="width: 100px" />
+						<div class="p-col">
+							<p:inputText id="inputTotalMemoriaRamGB"
+								value="#{clusterController.cluster.totalMemoriaRamGB}"
+								required="true" size="10">
+								<p:ajax event="blur" process="@this"
+									update="msgTotalMemoriaRamGB" />
+							</p:inputText>
+							<h:message id="msgTotalMemoriaRamGB" for="inputTotalMemoriaRamGB"
+								errorClass="err" warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divTotalAlmacenamientoGB">
+						<h:outputLabel
+							value="#{labels['cluster.totalAlmacenamientoGB']}:*"
+							for="inputTotalAlmacenamientoGB" class="p-col-fixed"
+							style="width: 100px" />
+						<div class="p-col">
+							<p:inputText id="inputTotalAlmacenamientoGB"
+								value="#{clusterController.cluster.totalAlmacenamientoGB}"
+								required="true" size="10">
+								<p:ajax event="blur" process="@this"
+									update="msgTotalAlmacenamientoGB" />
+							</p:inputText>
+							<h:message id="msgTotalAlmacenamientoGB"
+								for="inputTotalAlmacenamientoGB" errorClass="err"
+								warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+					<div class="p-field p-grid" jsf:id="divTotalNumeroCPU">
+						<h:outputLabel value="#{labels['cluster.totalNumeroCPU']}:*"
+							for="inputTotalNumeroCPU" class="p-col-fixed"
+							style="width: 100px" />
+						<div class="p-col">
+							<p:inputText id="inputTotalNumeroCPU"
+								value="#{clusterController.cluster.totalNumeroCPU}"
+								required="true" size="10">
+								<p:ajax event="blur" process="@this" update="msgTotalNumeroCPU" />
+							</p:inputText>
+							<h:message id="msgTotalNumeroCPU" for="inputTotalNumeroCPU"
+								errorClass="err" warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divSistemaOperativo">
+						<h:outputLabel value="#{labels['cluster.sistema_operativo']}:*"
+							for="inputSistemaOperativo" class="p-col-fixed"
+							style="width: 350px" />
+						<div class="p-col">
+							<p:inputText id="inputSistemaOperativo"
+								value="#{clusterController.cluster.sistema_operativo}"
+								required="true" size="40">
+								<p:ajax event="blur" process="@this"
+									update="msgSistemaOperativo" />
+							</p:inputText>
+							<h:message id="msgSistemaOperativo" for="inputSistemaOperativo"
+								errorClass="err" warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divVersion">
+						<h:outputLabel value="#{labels['cluster.version']}:*"
+							for="inputVersion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputVersion"
+								value="#{clusterController.cluster.version}" required="true"
+								size="40">
+								<p:ajax event="blur" process="@this" update="msgVersion" />
+							</p:inputText>
+							<h:message id="msgVersion" for="inputVersion" errorClass="err"
+								warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divEntorno">
+						<h:outputLabel value="#{labels['cluster.entorno']}:*"
+							for="inputEntorno" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:selectOneMenu id="selectEntorno"
+								value="#{clusterController.cluster.entorno}" required="true">
+								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+								<f:selectItems value="#{clusterController.entornoValues}"
+									var="entorno" itemValue="#{entorno}" itemLabel="#{entorno}"
+									noSelectionValue="Seleccionar" />
+							</p:selectOneMenu>
+							<h:message id="msgEntorno" for="selectEntorno" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<br />
+
+					<p:commandButton action="#{clusterController.crearCluster}"
+						value="Confirmar">
+						<f:ajax event="click" execute="@form" render="@form" />
+					</p:commandButton>
+
+					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
+
+					<h:link outcome="clusters.xhtml" value="volver" />
+				</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+

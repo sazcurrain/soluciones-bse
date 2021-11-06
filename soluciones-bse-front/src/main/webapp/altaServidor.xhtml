@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{servidorController.servidor.id}" />
+		<f:viewAction action="#{servidorController.findServidorById}" />
+	</f:metadata>
+
+	<ui:define name="title">#{labels['servidor.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<p:outputPanel>
+				<h:form id="form" prependId="false">
+
+					<div class="p-field p-grid" jsf:id="divId"
+						jsf:rendered="#{servidorController.isManaged(servidorController.servidor.id)}">
+						<h:outputLabel value="#{labels['servidor.id']}:*" for="inputId"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputId"
+								value="#{servidorController.servidor.id}" required="true"
+								size="40"
+								disabled="#{servidorController.isManaged(servidorController.servidor.id)}">
+							</p:inputText>
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divNombre">
+						<h:outputLabel value="#{labels['servidor.nombre']}:*"
+							for="inputNombre" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputNombre"
+								value="#{servidorController.servidor.nombre}" required="true"
+								size="60">
+								<p:ajax event="blur" process="@this" update="msgNombre" />
+							</p:inputText>
+							<h:message id="msgNombre" for="inputNombre" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divIp">
+						<h:outputLabel value="#{labels['servidor.IP']}:*" for="inputIps"
+							class="p-col-fixed" style="width: 450px" />
+						<div class="p-col">
+							<p:inputText id="inputIp"
+								value="#{servidorController.servidor.IP}" required="true"
+								size="500">
+								<p:ajax event="blur" process="@this" update="msgIp" />
+							</p:inputText>
+							<h:message id="msgIp" for="inputIp" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divModeloCPU">
+						<h:outputLabel value="#{labels['servidor.modeloCPU']}:*"
+							for="inputModeloCPU" class="p-col-fixed" style="width: 350px" />
+						<div class="p-col">
+							<p:inputText id="inputModeloCPU"
+								value="#{servidorController.servidor.modeloCPU}" required="true"
+								size="40">
+								<p:ajax event="blur" process="@this" update="msgModeloCPU" />
+							</p:inputText>
+							<h:message id="msgModeloCPU" for="inputModeloCPU"
+								errorClass="err" warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divVirtual">
+						<h:outputLabel value="#{labels['servidor.virtual']}:*"
+							for="inputVirtual" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:selectOneMenu id="selectVirtual"
+								value="#{servidorController.servidor.virtual}" required="true">
+								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+								<f:selectItem itemLabel="True" itemValue="true" />
+								<f:selectItem itemLabel="False" itemValue="false" />
+							</p:selectOneMenu>
+							<h:message id="msgVirtual" for="selectVirtual" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divMemoriaRamGB">
+						<h:outputLabel value="#{labels['servidor.memoriaRamGB']}:*"
+							for="inputMemoriaRamGB" class="p-col-fixed" style="width: 100px" />
+						<div class="p-col">
+							<p:inputText id="inputMemoriaRamGB"
+								value="#{servidorController.servidor.memoriaRamGB}"
+								required="true" size="10">
+								<p:ajax event="blur" process="@this" update="msgMemoriaRamGB" />
+							</p:inputText>
+							<h:message id="msgMemoriaRamGB" for="inputMemoriaRamGB"
+								errorClass="err" warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divAlmacenamientoGB">
+						<h:outputLabel value="#{labels['servidor.almacenamientoGB']}:*"
+							for="inputAlmacenamientoGB" class="p-col-fixed"
+							style="width: 100px" />
+						<div class="p-col">
+							<p:inputText id="inputAlmacenamientoGB"
+								value="#{servidorController.servidor.almacenamientoGB}"
+								required="true" size="10">
+								<p:ajax event="blur" process="@this"
+									update="msgAlmacenamientoGB" />
+							</p:inputText>
+							<h:message id="msgAlmacenamientoGB" for="inputAlmacenamientoGB"
+								errorClass="err" warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+					<div class="p-field p-grid" jsf:id="divNumeroCPU">
+						<h:outputLabel value="#{labels['servidor.numeroCPU']}:*"
+							for="inputNumeroCPU" class="p-col-fixed" style="width: 100px" />
+						<div class="p-col">
+							<p:inputText id="inputNumeroCPU"
+								value="#{servidorController.servidor.numeroCPU}" required="true"
+								size="10">
+								<p:ajax event="blur" process="@this" update="msgNumeroCPU" />
+							</p:inputText>
+							<h:message id="msgNumeroCPU" for="inputNumeroCPU"
+								errorClass="err" warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divSistemaOperativo">
+						<h:outputLabel value="#{labels['servidor.sistema_operativo']}:*"
+							for="inputSistemaOperativo" class="p-col-fixed"
+							style="width: 350px" />
+						<div class="p-col">
+							<p:inputText id="inputSistemaOperativo"
+								value="#{servidorController.servidor.sistema_operativo}"
+								required="true" size="40">
+								<p:ajax event="blur" process="@this"
+									update="msgSistemaOperativo" />
+							</p:inputText>
+							<h:message id="msgSistemaOperativo" for="inputSistemaOperativo"
+								errorClass="err" warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divVersion">
+						<h:outputLabel value="#{labels['servidor.version']}:*"
+							for="inputVersion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputVersion"
+								value="#{servidorController.servidor.version}" required="true"
+								size="40">
+								<p:ajax event="blur" process="@this" update="msgVersion" />
+							</p:inputText>
+							<h:message id="msgVersion" for="inputVersion" errorClass="err"
+								warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divEntorno">
+						<h:outputLabel value="#{labels['servidor.entorno']}:*"
+							for="inputEntorno" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:selectOneMenu id="selectEntorno"
+								value="#{servidorController.servidor.entorno}" required="true">
+								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+								<f:selectItems value="#{servidorController.entornoValues}"
+									var="entorno" itemValue="#{entorno}" itemLabel="#{entorno}"
+									noSelectionValue="Seleccionar" />
+							</p:selectOneMenu>
+							<h:message id="msgEntorno" for="selectEntorno" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<br />
+
+					<p:commandButton action="#{servidorController.crearServidor}"
+						value="Confirmar">
+						<f:ajax event="click" execute="@form" render="@form" />
+					</p:commandButton>
+
+					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
+
+					<h:link outcome="servidores.xhtml" value="volver" />
+				</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+
