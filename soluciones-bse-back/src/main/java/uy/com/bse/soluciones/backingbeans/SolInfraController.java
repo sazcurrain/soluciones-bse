@@ -1,20 +1,12 @@
 package uy.com.bse.soluciones.backingbeans;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import uy.com.bse.soluciones.domain.Cluster;
-import uy.com.bse.soluciones.domain.Nube;
-import uy.com.bse.soluciones.domain.Servidor;
 import uy.com.bse.soluciones.domain.SolInfra;
-import uy.com.bse.soluciones.domain.Tienda;
 import uy.com.bse.soluciones.ejbs.SolInfraService;
 
 /**
@@ -31,6 +23,8 @@ public class SolInfraController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private SolInfra solInfra = null;
+	
+	private List<SolInfra> filteredSolInfra;
 	
 
 	@EJB
@@ -58,27 +52,16 @@ public class SolInfraController implements Serializable {
 
 	}
 	
-	public String getTipo(SolInfra solInfra) {
-		String tipo = "";
-		if(Servidor.class.isInstance(solInfra)) {
-			tipo = "Servidor";
-		} else if (Cluster.class.isInstance(solInfra)) {
-			tipo = "Cluster";
-		} else if (Nube.class.isInstance(solInfra)) {
-			tipo = "Nube";
-		} else if (Tienda.class.isInstance(solInfra)) {
-			tipo = "Tienda";
-		}
-		
-		return tipo;//"alta"+tipo+".xhtml?id="+solInfra.getId();
+	public List<String> getTipos(){
+		return solInfraService.getTipos();
 	}
 	
 	public String getFormUrl(SolInfra solInfra) {
-		return "alta"+this.getTipo(solInfra)+".xhtml?id="+solInfra.getId();
+		return "alta"+solInfra.getTipo()+".xhtml?id="+solInfra.getId();
 	}
 	
 	public String getViewUrl(SolInfra solInfra) {
-		return "view"+this.getTipo(solInfra)+".xhtml?id="+solInfra.getId();
+		return "view"+solInfra.getTipo()+".xhtml?id="+solInfra.getId();
 	}
 	
 	/**
@@ -88,5 +71,13 @@ public class SolInfraController implements Serializable {
 	 */
 	public void eliminar(SolInfra si) {
 		solInfraService.delete(si);
+	}
+
+	public List<SolInfra> getFilteredSolInfra() {
+		return filteredSolInfra;
+	}
+
+	public void setFilteredSolInfra(List<SolInfra> filteredSolInfra) {
+		this.filteredSolInfra = filteredSolInfra;
 	}
 }
