@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{tiendaController.tienda.id}" />
+		<f:viewAction action="#{tiendaController.findTiendaById}" />
+	</f:metadata>
+
+	<ui:define name="title">#{labels['tienda.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<p:outputPanel>
+				<h:form id="form" prependId="false">
+
+					<div class="p-field p-grid" jsf:id="divId"
+						jsf:rendered="#{tiendaController.isManaged(tiendaController.tienda.id)}">
+						<h:outputLabel value="#{labels['tienda.id']}:*" for="inputId"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputId" value="#{tiendaController.tienda.id}"
+								required="true" size="40"
+								disabled="#{tiendaController.isManaged(tiendaController.tienda.id)}">
+							</p:inputText>
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divNombre">
+						<h:outputLabel value="#{labels['tienda.nombre']}:*"
+							for="inputNombre" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputNombre"
+								value="#{tiendaController.tienda.nombre}" required="true"
+								size="60">
+								<p:ajax event="blur" process="@this" update="msgNombre" />
+							</p:inputText>
+							<h:message id="msgNombre" for="inputNombre" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divUrl">
+						<h:outputLabel value="#{labels['tienda.url']}:*" for="inputURL"
+							class="p-col-fixed" style="width: 450px" />
+						<div class="p-col">
+							<p:inputText id="inputUrl" value="#{tiendaController.tienda.url}"
+								required="true" size="500">
+								<p:ajax event="blur" process="@this" update="msgUrl" />
+							</p:inputText>
+							<h:message id="msgUrl" for="inputUrl" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divSistemaOperativo">
+						<h:outputLabel value="#{labels['tienda.sistema_operativo']}:*"
+							for="inputSistemaOperativo" class="p-col-fixed"
+							style="width: 350px" />
+						<div class="p-col">
+							<p:inputText id="inputSistemaOperativo"
+								value="#{tiendaController.tienda.sistema_operativo}"
+								required="true" size="40">
+								<p:ajax event="blur" process="@this"
+									update="msgSistemaOperativo" />
+							</p:inputText>
+							<h:message id="msgSistemaOperativo" for="inputSistemaOperativo"
+								errorClass="err" warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divVersion">
+						<h:outputLabel value="#{labels['tienda.version']}:*"
+							for="inputVersion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputVersion"
+								value="#{tiendaController.tienda.version}" required="true"
+								size="40">
+								<p:ajax event="blur" process="@this" update="msgVersion" />
+							</p:inputText>
+							<h:message id="msgVersion" for="inputVersion" errorClass="err"
+								warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divEntorno">
+						<h:outputLabel value="#{labels['tienda.entorno']}:*"
+							for="inputEntorno" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:selectOneMenu id="selectEntorno"
+								value="#{tiendaController.tienda.entorno}" required="true">
+								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+								<f:selectItems value="#{tiendaController.entornoValues}"
+									var="entorno" itemValue="#{entorno}" itemLabel="#{entorno}"
+									noSelectionValue="Seleccionar" />
+							</p:selectOneMenu>
+							<h:message id="msgEntorno" for="selectEntorno" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<br />
+
+					<p:commandButton action="#{tiendaController.crearTienda}"
+						value="Confirmar">
+						<f:ajax event="click" execute="@form" render="@form" />
+					</p:commandButton>
+
+					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
+
+					<h:link outcome="solsInfra.xhtml" value="volver" />
+				</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+
