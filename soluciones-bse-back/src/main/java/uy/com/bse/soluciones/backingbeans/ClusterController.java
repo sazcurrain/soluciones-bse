@@ -58,7 +58,7 @@ public class ClusterController implements Serializable {
 	 */
 	public String crearCluster() {
 		clusterService.update(cluster);
-		return "clusters.xhtml?faces-redirect=true";
+		return "solsInfra.xhtml?faces-redirect=true";
 	}
 
 	/**

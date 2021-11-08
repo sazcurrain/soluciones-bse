@@ -11,21 +11,11 @@ public class Tienda extends SolInfra {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String nombre;
 	private String url;
 	
 	public Tienda() {
 		// TODO Auto-generated constructor stub
 		super();
-	}
-
-	@NotNull @Column(unique=true)
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	@NotNull

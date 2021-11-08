@@ -3,6 +3,7 @@ package uy.com.bse.soluciones.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ public abstract class SolInfra extends BaseEntity<Long> {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	private String nombre;
 	private String sistema_operativo;
 	private String version;
 	private Entorno entorno;
@@ -77,5 +79,14 @@ public abstract class SolInfra extends BaseEntity<Long> {
 
 	public void setEntorno(Entorno entorno) {
 		this.entorno = entorno;
+	}
+	
+	@NotNull @Column(unique=true)
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 }

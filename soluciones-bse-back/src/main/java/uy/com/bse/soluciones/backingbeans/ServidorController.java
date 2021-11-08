@@ -61,7 +61,7 @@ public class ServidorController implements Serializable {
 	public String crearServidor() {
 		try {
 			servidorService.update(servidor);
-			return "servidores.xhtml?faces-redirect=true";
+			return "solsInfra.xhtml?faces-redirect=true";
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ocurió un error.", null));

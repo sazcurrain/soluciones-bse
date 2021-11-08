@@ -58,7 +58,7 @@ public class TiendaController implements Serializable {
 	 */
 	public String crearTienda() {
 		tiendaService.update(tienda);
-		return "tiendas.xhtml?faces-redirect=true";
+		return "solsInfra.xhtml?faces-redirect=true";
 	}
 
 	/**

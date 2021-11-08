@@ -15,7 +15,6 @@ public class Cluster extends SolInfra {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String ips;
-	private String nombre;
 	private int cantNodos;
 	private Boolean virtual;
 	private int totalMemoriaRamGB;
@@ -34,15 +33,6 @@ public class Cluster extends SolInfra {
 
 	public void setIPs(String ips) {
 		this.ips = ips;
-	}
-
-	@NotNull @Column(unique=true)
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	@PositiveOrZero

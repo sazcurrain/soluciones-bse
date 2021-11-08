@@ -58,7 +58,7 @@ public class NubeController implements Serializable {
 	 */
 	public String crearNube() {
 		nubeService.update(nube);
-		return "nubes.xhtml?faces-redirect=true";
+		return "solsInfra.xhtml?faces-redirect=true";
 	}
 
 	/**

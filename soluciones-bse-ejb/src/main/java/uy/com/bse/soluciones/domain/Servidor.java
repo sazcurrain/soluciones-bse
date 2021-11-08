@@ -15,7 +15,6 @@ public class Servidor extends SolInfra {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String ip;
-	private String nombre;
 	private Boolean virtual;
 	private int memoriaRamGB;
 	private int almacenamientoGB;
@@ -35,15 +34,6 @@ public class Servidor extends SolInfra {
 
 	public void setIP(String ip) {
 		this.ip = ip;
-	}
-
-	@NotNull @Column(unique=true)
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	@NotNull @BooleanFlag

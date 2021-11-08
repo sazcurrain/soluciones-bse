@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<ui:define name="title">Lista de Soluciones de Infraestructura</ui:define>
+
+
+	<ui:define name="body">
+
+
+		<!-- <p:linkButton outcome="altaServidor.xhtml" icon="pi pi-plus"
+			value="Nuevo Servidor" style="margin-right:20px;" />
+		<br />
+		<br /> -->
+
+
+		<div jsf:id="divGlobal">
+
+			<h:messages id="globalMessage" globalOnly="true" errorClass="err"
+				warnClass="warn" infoClass="info" />
+
+
+			<h:form>
+				<p:menubar>
+
+					<p:submenu label="Nuevo" icon="pi pi-fw pi-plus">
+
+						<p:menuitem value="Cluster" icon="pi pi-fw pi-plus"
+							action="altaCluster.xhtml" />
+
+						<p:menuitem value="Nube" icon="pi pi-fw pi-plus"
+							action="altaNube.xhtml" />
+
+						<p:menuitem value="Servidores" icon="pi pi-fw pi-plus"
+							action="altaServidor.xhtml" />
+
+						<p:menuitem value="Tienda" icon="pi pi-fw pi-plus"
+							action="altaTienda.xhtml" />
+
+					</p:submenu>
+				</p:menubar>
+
+				<div class="card">
+					<p:dataTable var="solInfra"
+						value="#{solInfraController.listaSolInfra}">
+
+						<p:column headerText="">
+							<h:link outcome="#{solInfraController.getViewUrl(solInfra)}" value=""
+								title="Ver">
+								<span class="pi pi-eye"></span>
+							</h:link>
+							<h:link outcome="#{solInfraController.getFormUrl(solInfra)}">
+								<h:graphicImage value="/resources/images/edit.png" height="20px"
+									width="20px" title="Editar" style="border: none" />
+							</h:link>
+
+							<p:commandLink action="#{solInfraController.eliminar(solInfra)}"
+								update="divGlobal" styleClass="ui-button-danger"
+								icon="pi pi-times">
+								<h:graphicImage value="/resources/images/delete.png"
+									height="24px" width="24px" title="Eliminar"
+									style="border: none" />
+								<p:confirm header="Atencion"
+									message="Esta seguro que quiere eliminar?"
+									icon="pi pi-info-circle" />
+							</p:commandLink>
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade" responsive="true" width="350">
+								<p:commandButton value="No" type="button"
+									styleClass="ui-confirmdialog-no ui-button-flat" />
+								<p:commandButton value="Si" type="button"
+									styleClass="ui-confirmdialog-yes" />
+							</p:confirmDialog>
+
+						</p:column>
+
+						<p:column headerText="#{labels['solInfra.nombre']}">
+							<h:outputText value="#{solInfra.nombre}" />
+						</p:column>
+
+						<p:column headerText="#{labels['solInfra.tipo']}">
+							<h:outputText value="#{solInfraController.getTipo(solInfra)}" />
+						</p:column>
+
+						<p:column headerText="#{labels['solInfra.sistema_operativo']}">
+							<h:outputText value="#{solInfra.sistema_operativo}" />
+						</p:column>
+
+						<p:column headerText="#{labels['solInfra.version']}">
+							<h:outputText value="#{solInfra.version}" />
+						</p:column>
+
+						<p:column headerText="#{labels['solInfra.entorno']}">
+							<h:outputText value="#{solInfra.entorno}" />
+						</p:column>
+					</p:dataTable>
+				</div>
+			</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+</html>
+
