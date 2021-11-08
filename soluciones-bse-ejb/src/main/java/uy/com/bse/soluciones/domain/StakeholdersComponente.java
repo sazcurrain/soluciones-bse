@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import uy.com.bse.soluciones.domain.Enumeradores.Rol;
+
 @Entity
 public class StakeholdersComponente extends BaseEntity<Long> {
 

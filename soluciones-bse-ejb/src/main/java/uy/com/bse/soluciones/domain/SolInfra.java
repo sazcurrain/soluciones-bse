@@ -12,6 +12,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import uy.com.bse.soluciones.domain.Enumeradores.Entorno;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class SolInfra extends BaseEntity<Long> {

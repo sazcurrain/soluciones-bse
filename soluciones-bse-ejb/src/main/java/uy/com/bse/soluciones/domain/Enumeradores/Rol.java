@@ -1,4 +1,4 @@
-package uy.com.bse.soluciones.domain;
+package uy.com.bse.soluciones.domain.Enumeradores;
 
 public enum Rol {
 	USUARIO_PRIMARIO,

@@ -8,7 +8,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import uy.com.bse.soluciones.domain.Nube;
-import uy.com.bse.soluciones.domain.Entorno;
+import uy.com.bse.soluciones.domain.Enumeradores.Entorno;
 import uy.com.bse.soluciones.ejbs.NubeService;
 
 /**
@@ -18,7 +18,7 @@ import uy.com.bse.soluciones.ejbs.NubeService;
  *
  */
 //TODO: Falta incorporar el manejo de excepciones y mostrarlas correctamente en JSF
-@Named("NubeController")
+@Named("nubeController")
 @ViewScoped
 public class NubeController implements Serializable {
 

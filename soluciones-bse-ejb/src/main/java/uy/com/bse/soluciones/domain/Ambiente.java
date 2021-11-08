@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.PositiveOrZero;
 
+import uy.com.bse.soluciones.domain.Enumeradores.Entorno;
+
 @Entity
 public class Ambiente extends BaseEntity<Long> {
 

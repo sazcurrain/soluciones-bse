@@ -8,7 +8,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import uy.com.bse.soluciones.domain.Tienda;
-import uy.com.bse.soluciones.domain.Entorno;
+import uy.com.bse.soluciones.domain.Enumeradores.Entorno;
 import uy.com.bse.soluciones.ejbs.TiendaService;
 
 /**
@@ -18,7 +18,7 @@ import uy.com.bse.soluciones.ejbs.TiendaService;
  *
  */
 //TODO: Falta incorporar el manejo de excepciones y mostrarlas correctamente en JSF
-@Named("TiendaController")
+@Named("tiendaController")
 @ViewScoped
 public class TiendaController implements Serializable {
 

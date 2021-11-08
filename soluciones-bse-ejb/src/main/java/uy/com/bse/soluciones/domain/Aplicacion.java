@@ -15,25 +15,25 @@ public class Aplicacion extends ComponenteSoftware {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Set<Interface> provee = new HashSet<Interface>();
-	private Set<Interface> consume = new HashSet<Interface>();
+	private Set<Interfaz> provee = new HashSet<Interfaz>();
+	private Set<Interfaz> consume = new HashSet<Interfaz>();
 	private Set<Ambiente> ambientes= new HashSet<Ambiente>();
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "aplicacion", orphanRemoval = true)
-	public Set<Interface> getProvee() {
+	public Set<Interfaz> getProvee() {
 		return provee;
 	}
 
-	public void setProvee(Set<Interface> provee) {
+	public void setProvee(Set<Interfaz> provee) {
 		this.provee = provee;
 	}
 	
 	@ManyToMany
-	public Set<Interface> getConsume() {
+	public Set<Interfaz> getConsume() {
 		return consume;
 	}
 
-	public void setConsume(Set<Interface> consume) {
+	public void setConsume(Set<Interfaz> consume) {
 		this.consume = consume;
 	}
 

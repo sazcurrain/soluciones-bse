@@ -10,7 +10,7 @@ import javax.inject.Named;
 
 import uy.com.bse.soluciones.domain.Persona;
 import uy.com.bse.soluciones.domain.Profesion;
-import uy.com.bse.soluciones.domain.Sexo;
+import uy.com.bse.soluciones.domain.Enumeradores.Sexo;
 import uy.com.bse.soluciones.ejbs.PersonaService;
 import uy.com.bse.soluciones.ejbs.ProfesionService;
 

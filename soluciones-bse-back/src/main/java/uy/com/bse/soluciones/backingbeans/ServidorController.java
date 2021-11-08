@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import uy.com.bse.soluciones.domain.Servidor;
-import uy.com.bse.soluciones.domain.Entorno;
+import uy.com.bse.soluciones.domain.Enumeradores.Entorno;
 import uy.com.bse.soluciones.ejbs.ServidorService;
 
 /**
@@ -18,7 +20,7 @@ import uy.com.bse.soluciones.ejbs.ServidorService;
  *
  */
 //TODO: Falta incorporar el manejo de excepciones y mostrarlas correctamente en JSF
-@Named("ServidorController")
+@Named("servidorController")
 @ViewScoped
 public class ServidorController implements Serializable {
 
@@ -57,8 +59,14 @@ public class ServidorController implements Serializable {
 	 * @return String con la regla de navegacion
 	 */
 	public String crearServidor() {
-		servidorService.update(servidor);
-		return "servidors.xhtml?faces-redirect=true";
+		try {
+			servidorService.update(servidor);
+			return "servidores.xhtml?faces-redirect=true";
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ocurió un error.", null));
+			return "";
+		}
 	}
 
 	/**

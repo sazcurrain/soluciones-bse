@@ -10,7 +10,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import uy.com.bse.soluciones.domain.Servidor;
-import uy.com.bse.soluciones.domain.Entorno;
+import uy.com.bse.soluciones.domain.Enumeradores.Entorno;
 import uy.com.bse.soluciones.ejbs.ServidorService;
 
 /**

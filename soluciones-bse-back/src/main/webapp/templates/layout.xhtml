@@ -72,15 +72,39 @@ footer {
 			<p:submenu label="Consultas" icon="pi pi-fw pi-file">
 
 				<p:menuitem value="Ver personas" icon="pi pi-fw pi-external-link"
-					action="personas.xhtml" />
+					action="/soluciones/home.xhtml" />
 			</p:submenu>
 			<p:submenu label="Admin" icon="pi pi-fw pi-file">
 
 				<p:menuitem value="Opciones Admin" icon="pi pi-fw pi-external-link"
-					action="http://0.0.0.0:8080/soluciones/admin/login.xhtml?faces-redirect=true" />
+					action="index.xhtml" />
 			</p:submenu>
 
-			
+			<p:submenu label="Infraestructura" icon="pi pi-fw pi-file">
+
+				<p:menuitem value="Ver personas" icon="pi pi-fw pi-external-link"
+					action="personas.xhtml" />
+
+				<p:menuitem value="Ver clusters" icon="pi pi-fw pi-external-link"
+					action="clusters.xhtml" />
+
+				<p:menuitem value="Ver nubes" icon="pi pi-fw pi-external-link"
+					action="nubes.xhtml" />
+
+				<p:menuitem value="Ver servidores" icon="pi pi-fw pi-external-link"
+					action="servidores.xhtml" />
+
+				<p:menuitem value="Ver tiendas" icon="pi pi-fw pi-external-link"
+					action="tiendas.xhtml" />
+
+			</p:submenu>
+			<p:submenu label="Otros" icon="pi pi-fw pi-file">
+				<p:menuitem value="Ver Interesados" icon="pi pi-fw pi-external-link"
+					action="stakeholders.xhtml" />
+			</p:submenu>
+
+			<p:divider layout="vertical" />
+
 			<p:menuitem value="Home" icon="pi pi-fw pi-power-off"
 				action="home.xhtml?faces-redirect=true" />
 
