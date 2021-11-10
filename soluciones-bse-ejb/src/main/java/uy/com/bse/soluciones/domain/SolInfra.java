@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import uy.com.bse.soluciones.domain.Enumeradores.Entorno;
@@ -88,5 +89,10 @@ public abstract class SolInfra extends BaseEntity<Long> {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	@Transient
+	public String getTipo() {
+		return this.getClass().getSimpleName();
 	}
 }

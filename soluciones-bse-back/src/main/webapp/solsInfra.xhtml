@@ -39,7 +39,7 @@
 						<p:menuitem value="Nube" icon="pi pi-fw pi-plus"
 							action="altaNube.xhtml" />
 
-						<p:menuitem value="Servidores" icon="pi pi-fw pi-plus"
+						<p:menuitem value="Servidor" icon="pi pi-fw pi-plus"
 							action="altaServidor.xhtml" />
 
 						<p:menuitem value="Tienda" icon="pi pi-fw pi-plus"
@@ -50,14 +50,23 @@
 
 				<div class="card">
 					<p:dataTable var="solInfra"
-						value="#{solInfraController.listaSolInfra}">
+						value="#{solInfraController.listaSolInfra}"
+						emptyMessage="No infra found with given criteria"
+						filteredValue="#{solInfraController.filteredSolInfra}"
+						globalFilterOnly="false"
+						widgetVar="solInfraTable">
 
 						<p:column headerText="">
-							<p:linkButton outcome="#{solInfraController.getViewUrl(solInfra)}"  icon="pi pi-eye" style="margin-right:20px;" title="Ver">
-						    </p:linkButton>
-						    <p:linkButton outcome="#{solInfraController.getFormUrl(solInfra)}"  icon="pi pi-pencil" style="margin-right:20px;" title="Editar">
-						    </p:linkButton>
-							<p:commandButton action="#{solInfraController.eliminar(solInfra)}"
+							<p:linkButton
+								outcome="#{solInfraController.getViewUrl(solInfra)}"
+								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+							</p:linkButton>
+							<p:linkButton
+								outcome="#{solInfraController.getFormUrl(solInfra)}"
+								icon="pi pi-pencil" style="margin-right:20px;" title="Editar">
+							</p:linkButton>
+							<p:commandButton
+								action="#{solInfraController.eliminar(solInfra)}"
 								update="divGlobal" styleClass="ui-button-danger"
 								icon="pi pi-trash" title="Eliminar">
 								<!-- <h:graphicImage value="/resources/images/delete.png"
@@ -79,12 +88,26 @@
 
 						</p:column>
 
-						<p:column headerText="#{labels['solInfra.nombre']}">
+						<p:column headerText="#{labels['solInfra.nombre']}" 
+							sortBy="#{solInfra.nombre}"
+							filterBy="#{solInfra.nombre}"
+							filterMatchMode="contains">
 							<h:outputText value="#{solInfra.nombre}" />
 						</p:column>
 
-						<p:column headerText="#{labels['solInfra.tipo']}">
-							<h:outputText value="#{solInfraController.getTipo(solInfra)}" />
+						<p:column headerText="#{labels['solInfra.tipo']}"
+							sortBy="#{solInfra.tipo}"
+							filterBy="#{solInfra.tipo}"
+							filterMatchMode="exact">
+							<f:facet name="filter">
+								<p:selectOneMenu onchange="PF('solInfraTable').filter()"
+									styleClass="custom-filter">
+									<f:selectItem itemLabel="All" itemValue="#{null}"
+										noSelectionOption="true" />
+									<f:selectItems value="#{solInfraController.tipos}" />
+								</p:selectOneMenu>
+							</f:facet>
+							<h:outputText value="#{solInfra.tipo}" />
 						</p:column>
 
 						<p:column headerText="#{labels['solInfra.sistema_operativo']}">

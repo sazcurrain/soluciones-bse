@@ -1,5 +1,6 @@
 package uy.com.bse.soluciones.ejbs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -27,6 +28,15 @@ public class SolInfraService extends AbstractService<SolInfra, Long> {
 	@Override
 	protected EntityManager getEntityManager() {
 		return em;
+	}
+	
+	public List<String> getTipos() {
+		List<String> tipos = new ArrayList<String>();
+		tipos.add("Servidor");
+		tipos.add("Cluster");
+		tipos.add("Nube");
+		tipos.add("Tienda");
+		return tipos;
 	}
 
 }
