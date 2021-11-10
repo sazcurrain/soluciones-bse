@@ -87,6 +87,10 @@
 						id="proveeTable">
 
 						<p:column headerText="">
+							
+							<p:commandButton icon="pi pi-pencil" action="#{aplicacionController.editInterProvee(interfaz)}" styleClass="ui-button-info" >
+								<p:ajax event="dialogReturn" listener="#{aplicacionController.onEditProvee}" update="proveeTable"/>
+							</p:commandButton>
 							<p:commandButton
 								action="#{aplicacionController.eliminarProvee(interfaz)}"
 								update="proveeTable" styleClass="ui-button-danger"

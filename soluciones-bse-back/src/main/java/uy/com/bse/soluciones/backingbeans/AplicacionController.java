@@ -2,6 +2,7 @@ package uy.com.bse.soluciones.backingbeans;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -125,9 +126,20 @@ public class AplicacionController implements Serializable {
         PrimeFaces.current().dialog().openDynamic("altaInterProveeDialog", options, null);
 	}
 	
-	public void onAddProvee(SelectEvent<Interfaz> event) {
-		Interfaz nueva = event.getObject();
-		nueva.setAplicacion(aplicacion);
-		aplicacion.addProvee(nueva);
+	public void editInterProvee(Interfaz i) {
+		Map<String, Object> options = new HashMap<>();
+        options.put("resizable", false);
+        
+        Map<String, List<String>> param = new HashMap<String, List<String>>();
+        List<String> parmId = new ArrayList<String>();
+        parmId.add(i.getId().toString());
+        param.put("id", parmId);
+        PrimeFaces.current().dialog().openDynamic("altaInterProveeDialog", options, param);
+	}
+	
+	public void onEditProvee(SelectEvent<Interfaz> event) {
+		Interfaz edit = event.getObject();
+		aplicacion.removeProvee(edit);
+		aplicacion.addProvee(edit);
 	}
 }

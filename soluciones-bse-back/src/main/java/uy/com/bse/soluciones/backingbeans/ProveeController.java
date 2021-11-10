@@ -2,9 +2,6 @@ package uy.com.bse.soluciones.backingbeans;
 
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -14,9 +11,7 @@ import javax.transaction.Transactional;
 import org.primefaces.PrimeFaces;
 
 import uy.com.bse.soluciones.domain.Interfaz;
-import uy.com.bse.soluciones.domain.Stakeholder;
-import uy.com.bse.soluciones.domain.StakeholderType;
-import uy.com.bse.soluciones.ejbs.StakeholderService;
+import uy.com.bse.soluciones.ejbs.InterfazService;
 
 /**
  * Backing Bean de las pantallas de Persona
@@ -28,7 +23,8 @@ import uy.com.bse.soluciones.ejbs.StakeholderService;
 @ViewScoped
 @Transactional
 public class ProveeController implements Serializable {
-	
+	@EJB
+	InterfazService interfazService;
 
 	private static final long serialVersionUID = 1L;
 	
@@ -50,22 +46,19 @@ public class ProveeController implements Serializable {
 	public void addProvee() {
 		PrimeFaces.current().dialog().closeDynamic(interfaz);
 	}
-
+	
 	/**
 	 * Busca a una interfaz por el ID
 	 * Si la interfaz existe en la BD retorna esa interfaz
 	 * En caso contrario crea una nueva
 	 */
 	public void findInterfazById() {
-		/*if (interfaz.getId() != null) {
+		if (interfaz.getId() != null) {
 			interfaz = interfazService.find(interfaz.getId());
-			for (Interfaz p : interfaz.getProvee()) {
-				System.out.println(p.getNombre());
-			}
 			if (interfaz == null) {
 				interfaz = new Interfaz();
 			}
-		}*/
+		}
 	}
 	
 	public boolean isManaged(Long id) {
