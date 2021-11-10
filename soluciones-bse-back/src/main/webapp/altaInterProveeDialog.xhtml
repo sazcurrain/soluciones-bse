@@ -8,14 +8,14 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="templates/layout.xhtml">
+<ui:composition template="templates/dialogLayout.xhtml">
 
 	<f:metadata>
-		<f:viewParam name="id" value="#{aplicacionController.aplicacion.id}" />
-		<f:viewAction action="#{aplicacionController.findAplicacionById}" />
+		<f:viewParam name="id" value="#{proveeController.interfaz.id}" />
+		<f:viewAction action="#{proveeController.findInterfazById}" />
 	</f:metadata>
 
-	<ui:define name="title">#{labels['aplicacion.alta.title']}</ui:define>
+	<ui:define name="title">#{labels['interfaz.alta.title']}</ui:define>
 
 	<ui:define name="body">
 
@@ -24,24 +24,24 @@
 				<h:form id="form" prependId="false">
 					<p:growl globalOnly="true" id="mensajesGlobales" />
 					<div class="p-field p-grid" jsf:id="divId"
-						jsf:rendered="#{aplicacionController.isManaged(aplicacionController.aplicacion.id)}">
-						<h:outputLabel value="#{labels['aplicacion.id']}:*" for="inputId"
+						jsf:rendered="#{proveeController.isManaged(proveeController.interfaz.id)}">
+						<h:outputLabel value="#{labels['interfaz.id']}:*" for="inputId"
 							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputId"
-								value="#{aplicacionController.aplicacion.id}" required="true"
+								value="#{proveeController.interfaz.id}" required="true"
 								size="40"
-								disabled="#{aplicacionController.isManaged(aplicacionController.aplicacion.id)}">
+								disabled="#{proveeController.isManaged(proveeController.interfaz.id)}">
 							</p:inputText>
 						</div>
 					</div>
 
 					<div class="p-field p-grid" jsf:id="divNombre">
-						<h:outputLabel value="#{labels['aplicacion.nombre']}:*"
+						<h:outputLabel value="#{labels['interfaz.nombre']}:*"
 							for="inputNombre" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputNombre"
-								value="#{aplicacionController.aplicacion.nombre}"
+								value="#{proveeController.interfaz.nombre}"
 								required="true" size="40">
 								<p:ajax event="blur" process="@this" update="msgNombre" />
 							</p:inputText>
@@ -50,11 +50,11 @@
 						</div>
 					</div>
 					<div class="p-field p-grid" jsf:id="divVersion">
-						<h:outputLabel value="#{labels['aplicacion.version']}:*"
+						<h:outputLabel value="#{labels['interfaz.version']}:*"
 							for="inputVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputVersion"
-								value="#{aplicacionController.aplicacion.version}"
+								value="#{proveeController.interfaz.version}"
 								required="true" size="30">
 								<p:ajax event="blur" process="@this" update="msgVersion" />
 							</p:inputText>
@@ -64,11 +64,11 @@
 					</div>
 
 					<div class="p-field p-grid" jsf:id="divFechaVersion">
-						<h:outputLabel value="#{labels['aplicacion.fechaVersion']}:*"
+						<h:outputLabel value="#{labels['interfaz.fechaVersion']}:*"
 							for="inputFechaNac" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:datePicker id="inputFechaVersion"
-								value="#{aplicacionController.aplicacion.fechaVersion}"
+								value="#{proveeController.interfaz.fechaVersion}"
 								required="true" pattern="dd/MM/yyyy" monthNavigator="true"
 								yearNavigator="true">
 								<p:ajax event="blur" process="@this" update="fechaVersion" />
@@ -77,46 +77,11 @@
 								errorClass="err" warnClass="warn" infoClass="info" />
 						</div>
 					</div>
-					<br />
-					<h2>Interfaces provistas</h2>
-					<p:commandButton value="Nueva" icon="pi pi-plus" action="#{aplicacionController.addInterProvee}" styleClass="p-mr-2" >
-						<p:ajax event="dialogReturn" listener="#{aplicacionController.onAddProvee}" update="proveeTable"/>
-					</p:commandButton>
-					<p:dataTable var="interfaz"
-						value="#{aplicacionController.provee}"
-						id="proveeTable">
 
-						<p:column headerText="">
-
-						</p:column>
-
-						<p:column headerText="#{labels['aplicacion.interfaz.nombre']}">
-							<h:outputText value="#{interfaz.nombre}" />
-						</p:column>
-
-						<p:column headerText="#{labels['aplicacion.interfaz.version']}">
-							<h:outputText value="#{interfaz.version}" />
-						</p:column>
-
-						<p:column headerText="#{labels['aplicacion.interfaz.fechaVersion']}">
-							<h:outputText value="#{interfaz.fechaVersion}">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:outputText>
-						</p:column>
-						
-						<p:column headerText="#{labels['aplicacion.interfaz.tipo']}">
-							<h:outputText value="#{interfaz.tipo}" />
-						</p:column> 
-					</p:dataTable>
-
-					<h:commandButton action="#{aplicacionController.crearAplicacion}"
+					<h:commandButton action="#{proveeController.addProvee}"
 						value="Confirmar">
 						<f:ajax event="click" execute="@form" render="@form" />
 					</h:commandButton>
-
-					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
-
-					<h:link outcome="aplicaciones.xhtml" value="volver" />
 				</h:form>
 			</p:outputPanel>
 		</div>

@@ -2,14 +2,19 @@ package uy.com.bse.soluciones.backingbeans;
 
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.transaction.Transactional;
+
+import org.primefaces.PrimeFaces;
+import org.primefaces.event.SelectEvent;
 
 import uy.com.bse.soluciones.domain.Aplicacion;
 import uy.com.bse.soluciones.domain.Interfaz;
@@ -108,5 +113,17 @@ public class AplicacionController implements Serializable {
 	
 	public boolean isManaged(Long id) {
 		return id != null;
+	}
+	
+	public void addInterProvee() {
+		Map<String, Object> options = new HashMap<>();
+        options.put("resizable", false);
+        PrimeFaces.current().dialog().openDynamic("altaInterProveeDialog", options, null);
+	}
+	
+	public void onAddProvee(SelectEvent<Interfaz> event) {
+		Interfaz nueva = event.getObject();
+		nueva.setAplicacion(aplicacion);
+		aplicacion.addProvee(nueva);
 	}
 }

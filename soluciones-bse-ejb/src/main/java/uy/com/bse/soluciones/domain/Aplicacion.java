@@ -22,7 +22,7 @@ public class Aplicacion extends ComponenteSoftware {
 	//private Set<Interfaz> consume = new HashSet<Interfaz>();
 	//private Set<Ambiente> ambientes= new HashSet<Ambiente>();
 	
-	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "aplicacion")
+	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "aplicacion", cascade = CascadeType.ALL)
 	public Set<Interfaz> getProvee() {
 		return provee;
 	}

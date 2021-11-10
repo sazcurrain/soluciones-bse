@@ -24,7 +24,7 @@ public class Interfaz extends ComponenteSoftware {
 		super();
 	}
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	public Aplicacion getAplicacion() {
 		return aplicacion;
 	}
