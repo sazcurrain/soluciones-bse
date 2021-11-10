@@ -111,6 +111,10 @@ public class AplicacionController implements Serializable {
 		aplicacionService.delete(a);
 	}
 	
+	public void eliminarProvee(Interfaz i) {
+		aplicacion.removeProvee(i);
+	}
+	
 	public boolean isManaged(Long id) {
 		return id != null;
 	}
