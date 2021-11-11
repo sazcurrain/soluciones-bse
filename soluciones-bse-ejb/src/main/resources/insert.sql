@@ -21,3 +21,8 @@ INSERT INTO Servidor(IP, almacenamientoGB, memoriaRamGB, modeloCPU, numeroCPU, v
 
 INSERT INTO Cluster(IPs,  cantNodos   , totalAlmacenamientoGB  , totalMemoriaRamGB  , totalNumeroCPU, virtual, id) VALUES ('10.80.15.13',4,2097152,32768,24,0,6);
 
+INSERT INTO ComponenteSoftware(id,fechaVersioN, nombre, version) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '2021-10-11', 'sissan', '2021_R1');
+INSERT INTO Aplicacion(id) VALUES(7);
+INSERT INTO ComponenteSoftware(id,fechaVersioN, nombre, version) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '2021-10-11', 'sissan_rest', '2021_R1_R1');
+INSERT INTO Interfaz(implementacion, tipo , id, aplicacion_id) values (1, 1, 8, 7);
+

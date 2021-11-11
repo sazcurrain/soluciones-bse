@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/dialogLayout.xhtml">
+
+	<ui:define name="title">#{labels['interfaz.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<p:outputPanel>
+				<h:form id="form" prependId="false">
+					<p:messages globalOnly="true" id="mensajesGlobales" />
+					<div class="p-field p-grid" jsf:id="divId"
+						jsf:rendered="#{proveeController.isManaged(proveeController.interfaz.id)}">
+						<h:outputLabel value="#{labels['interfaz.id']}:*" for="inputId"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputId" value="#{proveeController.interfaz.id}"
+								required="true" size="40"
+								disabled="#{proveeController.isManaged(proveeController.interfaz.id)}">
+							</p:inputText>
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divNombre">
+						<h:outputLabel value="#{labels['interfaz.nombre']}:*"
+							for="inputNombre" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputNombre"
+								value="#{proveeController.interfaz.nombre}" required="true"
+								size="40">
+								<p:ajax event="blur" process="@this" update="msgNombre" />
+							</p:inputText>
+							<p:message id="msgNombre" for="inputNombre" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+					<div class="p-field p-grid" jsf:id="divVersion">
+						<h:outputLabel value="#{labels['interfaz.version']}:*"
+							for="inputVersion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputVersion"
+								value="#{proveeController.interfaz.version}" required="true"
+								size="30">
+								<p:ajax event="blur" process="@this" update="msgVersion" />
+							</p:inputText>
+							<p:message id="msgVersion" for="inputVersion" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divFechaVersion">
+						<h:outputLabel value="#{labels['interfaz.fechaVersion']}:*"
+							for="inputFechaNac" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:datePicker id="inputFechaVersion"
+								value="#{proveeController.interfaz.fechaVersion}"
+								required="true" pattern="dd/MM/yyyy" monthNavigator="true"
+								yearNavigator="true">
+								<p:ajax event="blur" process="@this" update="fechaVersion" />
+							</p:datePicker>
+							<p:message id="fechaVersion" for="inputFechaVersion"
+								errorClass="err" warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divTipo">
+						<h:outputLabel value="#{labels['interfaz.tipo']}:*"
+							for="inputTipo" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:selectOneMenu id="inputTipo"
+								value="#{proveeController.interfaz.tipo}" required="true">
+								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+								<f:selectItems value="#{proveeController.tipoInterfazValues}"
+									var="tipo" itemValue="#{tipo}" itemLabel="#{tipo}"
+									noSelectionValue="Seleccionar" />
+								<p:ajax event="change" process="@this"
+									update="msgTipo" />
+							</p:selectOneMenu>
+							<p:message id="msgTipo" for="inputTipo" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<p:commandButton action="#{proveeController.addProvee}"
+						value="Confirmar" process=":form" update=":form" />
+				</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+

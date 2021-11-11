@@ -23,6 +23,7 @@
 			<p:outputPanel>
 				<h:form id="form" prependId="false">
 
+					<p:growl globalOnly="true" id="mesnajesGlobales" />
 					<div class="p-field p-grid" jsf:id="divId"
 						jsf:rendered="#{servidorController.isManaged(servidorController.servidor.id)}">
 						<h:outputLabel value="#{labels['servidor.id']}:*" for="inputId"
@@ -52,11 +53,11 @@
 
 					<div class="p-field p-grid" jsf:id="divIp">
 						<h:outputLabel value="#{labels['servidor.IP']}:*" for="inputIps"
-							class="p-col-fixed" style="width: 450px" />
+							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputIp"
 								value="#{servidorController.servidor.IP}" required="true"
-								size="500">
+								size="20">
 								<p:ajax event="blur" process="@this" update="msgIp" />
 							</p:inputText>
 							<h:message id="msgIp" for="inputIp" errorClass="err"
@@ -66,7 +67,7 @@
 
 					<div class="p-field p-grid" jsf:id="divModeloCPU">
 						<h:outputLabel value="#{labels['servidor.modeloCPU']}:*"
-							for="inputModeloCPU" class="p-col-fixed" style="width: 350px" />
+							for="inputModeloCPU" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputModeloCPU"
 								value="#{servidorController.servidor.modeloCPU}" required="true"
@@ -96,7 +97,7 @@
 
 					<div class="p-field p-grid" jsf:id="divMemoriaRamGB">
 						<h:outputLabel value="#{labels['servidor.memoriaRamGB']}:*"
-							for="inputMemoriaRamGB" class="p-col-fixed" style="width: 100px" />
+							for="inputMemoriaRamGB" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputMemoriaRamGB"
 								value="#{servidorController.servidor.memoriaRamGB}"
@@ -112,7 +113,7 @@
 					<div class="p-field p-grid" jsf:id="divAlmacenamientoGB">
 						<h:outputLabel value="#{labels['servidor.almacenamientoGB']}:*"
 							for="inputAlmacenamientoGB" class="p-col-fixed"
-							style="width: 100px" />
+							style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputAlmacenamientoGB"
 								value="#{servidorController.servidor.almacenamientoGB}"
@@ -127,7 +128,7 @@
 					</div>
 					<div class="p-field p-grid" jsf:id="divNumeroCPU">
 						<h:outputLabel value="#{labels['servidor.numeroCPU']}:*"
-							for="inputNumeroCPU" class="p-col-fixed" style="width: 100px" />
+							for="inputNumeroCPU" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputNumeroCPU"
 								value="#{servidorController.servidor.numeroCPU}" required="true"
@@ -142,7 +143,7 @@
 					<div class="p-field p-grid" jsf:id="divSistemaOperativo">
 						<h:outputLabel value="#{labels['servidor.sistema_operativo']}:*"
 							for="inputSistemaOperativo" class="p-col-fixed"
-							style="width: 350px" />
+							style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputSistemaOperativo"
 								value="#{servidorController.servidor.sistema_operativo}"
@@ -190,9 +191,7 @@
 					<br />
 
 					<p:commandButton action="#{servidorController.crearServidor}"
-						value="Confirmar">
-						<f:ajax event="click" execute="@form" render="@form" />
-					</p:commandButton>
+						value="Confirmar" process=":form" update=":form"/>
 
 					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
 

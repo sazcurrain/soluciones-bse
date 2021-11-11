@@ -51,11 +51,11 @@
 
 					<div class="p-field p-grid" jsf:id="divIps">
 						<h:outputLabel value="#{labels['cluster.IPs']}:*" for="inputIps"
-							class="p-col-fixed" style="width: 450px" />
+							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputIps"
 								value="#{clusterController.cluster.IPs}" required="true"
-								size="500">
+								size="100">
 								<p:ajax event="blur" process="@this" update="msgIps" />
 							</p:inputText>
 							<h:message id="msgIps" for="inputIps" errorClass="err"
@@ -65,7 +65,7 @@
 
 					<div class="p-field p-grid" jsf:id="divCantidadNodos">
 						<h:outputLabel value="#{labels['cluster.cantNodos']}:*"
-							for="inputCantNodos" class="p-col-fixed" style="width: 350px" />
+							for="inputCantNodos" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputCantidadNodos"
 								value="#{clusterController.cluster.cantNodos}" required="true"
@@ -96,7 +96,7 @@
 					<div class="p-field p-grid" jsf:id="divTotalMemoriaRamGB">
 						<h:outputLabel value="#{labels['cluster.totalMemoriaRamGB']}:*"
 							for="inputTotalMemoriaRamGB" class="p-col-fixed"
-							style="width: 100px" />
+							style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputTotalMemoriaRamGB"
 								value="#{clusterController.cluster.totalMemoriaRamGB}"
@@ -114,7 +114,7 @@
 						<h:outputLabel
 							value="#{labels['cluster.totalAlmacenamientoGB']}:*"
 							for="inputTotalAlmacenamientoGB" class="p-col-fixed"
-							style="width: 100px" />
+							style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputTotalAlmacenamientoGB"
 								value="#{clusterController.cluster.totalAlmacenamientoGB}"
@@ -131,7 +131,7 @@
 					<div class="p-field p-grid" jsf:id="divTotalNumeroCPU">
 						<h:outputLabel value="#{labels['cluster.totalNumeroCPU']}:*"
 							for="inputTotalNumeroCPU" class="p-col-fixed"
-							style="width: 100px" />
+							style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputTotalNumeroCPU"
 								value="#{clusterController.cluster.totalNumeroCPU}"
@@ -146,7 +146,7 @@
 					<div class="p-field p-grid" jsf:id="divSistemaOperativo">
 						<h:outputLabel value="#{labels['cluster.sistema_operativo']}:*"
 							for="inputSistemaOperativo" class="p-col-fixed"
-							style="width: 350px" />
+							style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputSistemaOperativo"
 								value="#{clusterController.cluster.sistema_operativo}"

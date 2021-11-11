@@ -51,10 +51,10 @@
 
 					<div class="p-field p-grid" jsf:id="divUrl">
 						<h:outputLabel value="#{labels['tienda.url']}:*" for="inputURL"
-							class="p-col-fixed" style="width: 450px" />
+							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputUrl" value="#{tiendaController.tienda.url}"
-								required="true" size="500">
+								required="true" size="100">
 								<p:ajax event="blur" process="@this" update="msgUrl" />
 							</p:inputText>
 							<h:message id="msgUrl" for="inputUrl" errorClass="err"
@@ -65,7 +65,7 @@
 					<div class="p-field p-grid" jsf:id="divSistemaOperativo">
 						<h:outputLabel value="#{labels['tienda.sistema_operativo']}:*"
 							for="inputSistemaOperativo" class="p-col-fixed"
-							style="width: 350px" />
+							style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputSistemaOperativo"
 								value="#{tiendaController.tienda.sistema_operativo}"
