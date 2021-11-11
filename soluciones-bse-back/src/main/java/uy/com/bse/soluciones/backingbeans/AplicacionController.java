@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -91,18 +93,18 @@ public class AplicacionController implements Serializable {
 	public void findAplicacionById() {
 		if (aplicacion.getId() != null) {
 			aplicacion = aplicacionService.find(aplicacion.getId());
-			for (Interfaz p : aplicacion.getProvee()) {
-				System.out.println(p.getNombre());
-			}
+			//Esto lo hacemos para que recorra las interfaces provistas y las instancie, ya que están con fetch lazy, porque si trata de traerlas en el 
+			//xhtml, que no es transaccional, da un error.
+			aplicacion.getProvee().toArray();
 			if (aplicacion == null) {
 				aplicacion = new Aplicacion();
 			}
 		}
 	}
 	
-	public Set<Interfaz> getProvee() {
+	/*public Set<Interfaz> getProvee() {
 		return aplicacion.getProvee();
-	}
+	}*/
 	
 	/**
 	 * Elimina una aplicacion de la BD
@@ -122,24 +124,41 @@ public class AplicacionController implements Serializable {
 	
 	public void addInterProvee() {
 		Map<String, Object> options = new HashMap<>();
-        options.put("resizable", false);
+		options.put("modal", true);
+        options.put("width", 640);
+        options.put("height", 440);
+        options.put("contentWidth", "150%");
+        options.put("contentHeight", "100%");
+        options.put("headerElement", "customheader");
+
+		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        sessionMap.put("interfaz", new Interfaz());
         PrimeFaces.current().dialog().openDynamic("altaInterProveeDialog", options, null);
 	}
 	
 	public void editInterProvee(Interfaz i) {
 		Map<String, Object> options = new HashMap<>();
-        options.put("resizable", false);
+		options.put("modal", true);
+        options.put("width", 640);
+        options.put("height", 440);
+        options.put("contentWidth", "100%");
+        options.put("contentHeight", "100%");
+        options.put("headerElement", "customheader");
         
-        Map<String, List<String>> param = new HashMap<String, List<String>>();
-        List<String> parmId = new ArrayList<String>();
-        parmId.add(i.getId().toString());
-        param.put("id", parmId);
-        PrimeFaces.current().dialog().openDynamic("altaInterProveeDialog", options, param);
+		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        sessionMap.put("interfaz", i);
+        PrimeFaces.current().dialog().openDynamic("altaInterProveeDialog", options, null);
+	}
+	
+	public void onAddProvee(SelectEvent<Interfaz> event) {
+		Interfaz nueva = event.getObject();
+		nueva.setAplicacion(aplicacion);
+		aplicacion.addProvee(nueva);
 	}
 	
 	public void onEditProvee(SelectEvent<Interfaz> event) {
-		Interfaz edit = event.getObject();
+		/*Interfaz edit = event.getObject();
 		aplicacion.removeProvee(edit);
-		aplicacion.addProvee(edit);
+		aplicacion.addProvee(edit);*/
 	}
 }

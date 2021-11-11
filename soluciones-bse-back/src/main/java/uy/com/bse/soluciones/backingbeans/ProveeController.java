@@ -2,8 +2,11 @@ package uy.com.bse.soluciones.backingbeans;
 
 
 import java.io.Serializable;
+import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -11,6 +14,8 @@ import javax.transaction.Transactional;
 import org.primefaces.PrimeFaces;
 
 import uy.com.bse.soluciones.domain.Interfaz;
+import uy.com.bse.soluciones.domain.Enumeradores.Sexo;
+import uy.com.bse.soluciones.domain.Enumeradores.TipoInterfaz;
 import uy.com.bse.soluciones.ejbs.InterfazService;
 
 /**
@@ -34,6 +39,12 @@ public class ProveeController implements Serializable {
 	public ProveeController() {
 		
 	}
+	
+	@PostConstruct
+	public void init() {
+		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        interfaz = (Interfaz) sessionMap.get("interfaz");
+	}
 
 	public Interfaz getInterfaz() {
 		return interfaz;
@@ -48,17 +59,11 @@ public class ProveeController implements Serializable {
 	}
 	
 	/**
-	 * Busca a una interfaz por el ID
-	 * Si la interfaz existe en la BD retorna esa interfaz
-	 * En caso contrario crea una nueva
+	 * Retorna areglo con los valores del ENUM
+	 * @return
 	 */
-	public void findInterfazById() {
-		if (interfaz.getId() != null) {
-			interfaz = interfazService.find(interfaz.getId());
-			if (interfaz == null) {
-				interfaz = new Interfaz();
-			}
-		}
+	public TipoInterfaz[] getTipoInterfazValues() {
+	   return  TipoInterfaz.values();
 	}
 	
 	public boolean isManaged(Long id) {

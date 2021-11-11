@@ -45,7 +45,7 @@
 								required="true" size="40">
 								<p:ajax event="blur" process="@this" update="msgNombre" />
 							</p:inputText>
-							<h:message id="msgNombre" for="inputNombre" errorClass="err"
+							<p:message id="msgNombre" for="inputNombre" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
@@ -58,7 +58,7 @@
 								required="true" size="30">
 								<p:ajax event="blur" process="@this" update="msgVersion" />
 							</p:inputText>
-							<h:message id="msgVersion" for="inputVersion" errorClass="err"
+							<p:message id="msgVersion" for="inputVersion" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
@@ -73,30 +73,39 @@
 								yearNavigator="true">
 								<p:ajax event="blur" process="@this" update="fechaVersion" />
 							</p:datePicker>
-							<h:message id="fechaVersion" for="inputFechaVersion"
+							<p:message id="fechaVersion" for="inputFechaVersion"
 								errorClass="err" warnClass="warn" infoClass="info" />
 						</div>
 					</div>
 					<br />
 					<h2>Interfaces provistas</h2>
-					<p:commandButton value="Nueva" icon="pi pi-plus" action="#{aplicacionController.addInterProvee}" styleClass="p-mr-2" >
-						<p:ajax event="dialogReturn" listener="#{aplicacionController.onAddProvee}" update="proveeTable"/>
+					<p:commandButton value="Nueva" icon="pi pi-plus"
+						action="#{aplicacionController.addInterProvee}"
+						styleClass="p-mr-2" immediate="true">
+						<p:ajax event="dialogReturn"
+							listener="#{aplicacionController.onAddProvee}"
+							update="proveeTable" />
 					</p:commandButton>
 					<p:dataTable var="interfaz"
-						value="#{aplicacionController.provee}"
-						id="proveeTable">
+						value="#{aplicacionController.aplicacion.provee}" id="proveeTable"
+						emptyMessage="Esta aplicación no provee interfaces.">
 
 						<p:column headerText="">
-							
-							<p:commandButton icon="pi pi-pencil" action="#{aplicacionController.editInterProvee(interfaz)}" styleClass="ui-button-info" >
-								<p:ajax event="dialogReturn" listener="#{aplicacionController.onEditProvee}" update="proveeTable"/>
+
+							<p:commandButton icon="pi pi-pencil"
+								action="#{aplicacionController.editInterProvee(interfaz)}"
+								styleClass="ui-button-info" style="margin-right: 10px;"
+								immediate="true">
+								<p:ajax event="dialogReturn"
+									listener="#{aplicacionController.onEditProvee}"
+									update="proveeTable" />
 							</p:commandButton>
 							<p:commandButton
 								action="#{aplicacionController.eliminarProvee(interfaz)}"
 								update="proveeTable" styleClass="ui-button-danger"
-								icon="pi pi-trash" title="Eliminar">
+								icon="pi pi-trash" title="Eliminar" immediate="true">
 								<p:confirm header="Atencion"
-									message="Esta seguro que quiere eliminar la interfaz?"
+									message="Esta seguro que quiere eliminar la interfaz '#{interfaz.nombre}'?"
 									icon="pi pi-info-circle" />
 							</p:commandButton>
 
@@ -117,21 +126,20 @@
 							<h:outputText value="#{interfaz.version}" />
 						</p:column>
 
-						<p:column headerText="#{labels['aplicacion.interfaz.fechaVersion']}">
+						<p:column
+							headerText="#{labels['aplicacion.interfaz.fechaVersion']}">
 							<h:outputText value="#{interfaz.fechaVersion}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
-						
+
 						<p:column headerText="#{labels['aplicacion.interfaz.tipo']}">
 							<h:outputText value="#{interfaz.tipo}" />
-						</p:column> 
+						</p:column>
 					</p:dataTable>
 
-					<h:commandButton action="#{aplicacionController.crearAplicacion}"
-						value="Confirmar">
-						<f:ajax event="click" execute="@form" render="@form" />
-					</h:commandButton>
+					<p:commandButton action="#{aplicacionController.crearAplicacion}"
+						value="Confirmar" process=":form" update=":form" />
 
 					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
 

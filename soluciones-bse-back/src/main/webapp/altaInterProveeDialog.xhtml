@@ -10,11 +10,6 @@
 
 <ui:composition template="templates/dialogLayout.xhtml">
 
-	<f:metadata>
-		<f:viewParam name="id" value="#{proveeController.interfaz.id}" />
-		<f:viewAction action="#{proveeController.findInterfazById}" />
-	</f:metadata>
-
 	<ui:define name="title">#{labels['interfaz.alta.title']}</ui:define>
 
 	<ui:define name="body">
@@ -22,15 +17,14 @@
 		<div class="card">
 			<p:outputPanel>
 				<h:form id="form" prependId="false">
-					<p:growl globalOnly="true" id="mensajesGlobales" />
+					<p:messages globalOnly="true" id="mensajesGlobales" />
 					<div class="p-field p-grid" jsf:id="divId"
 						jsf:rendered="#{proveeController.isManaged(proveeController.interfaz.id)}">
 						<h:outputLabel value="#{labels['interfaz.id']}:*" for="inputId"
 							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputId"
-								value="#{proveeController.interfaz.id}" required="true"
-								size="40"
+							<p:inputText id="inputId" value="#{proveeController.interfaz.id}"
+								required="true" size="40"
 								disabled="#{proveeController.isManaged(proveeController.interfaz.id)}">
 							</p:inputText>
 						</div>
@@ -41,11 +35,11 @@
 							for="inputNombre" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputNombre"
-								value="#{proveeController.interfaz.nombre}"
-								required="true" size="40">
+								value="#{proveeController.interfaz.nombre}" required="true"
+								size="40">
 								<p:ajax event="blur" process="@this" update="msgNombre" />
 							</p:inputText>
-							<h:message id="msgNombre" for="inputNombre" errorClass="err"
+							<p:message id="msgNombre" for="inputNombre" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
@@ -54,11 +48,11 @@
 							for="inputVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputVersion"
-								value="#{proveeController.interfaz.version}"
-								required="true" size="30">
+								value="#{proveeController.interfaz.version}" required="true"
+								size="30">
 								<p:ajax event="blur" process="@this" update="msgVersion" />
 							</p:inputText>
-							<h:message id="msgVersion" for="inputVersion" errorClass="err"
+							<p:message id="msgVersion" for="inputVersion" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
@@ -73,15 +67,31 @@
 								yearNavigator="true">
 								<p:ajax event="blur" process="@this" update="fechaVersion" />
 							</p:datePicker>
-							<h:message id="fechaVersion" for="inputFechaVersion"
+							<p:message id="fechaVersion" for="inputFechaVersion"
 								errorClass="err" warnClass="warn" infoClass="info" />
 						</div>
 					</div>
 
-					<h:commandButton action="#{proveeController.addProvee}"
-						value="Confirmar">
-						<f:ajax event="click" execute="@form" render="@form" />
-					</h:commandButton>
+					<div class="p-field p-grid" jsf:id="divTipo">
+						<h:outputLabel value="#{labels['interfaz.tipo']}:*"
+							for="inputTipo" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:selectOneMenu id="inputTipo"
+								value="#{proveeController.interfaz.tipo}" required="true">
+								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+								<f:selectItems value="#{proveeController.tipoInterfazValues}"
+									var="tipo" itemValue="#{tipo}" itemLabel="#{tipo}"
+									noSelectionValue="Seleccionar" />
+								<p:ajax event="change" process="@this"
+									update="msgTipo" />
+							</p:selectOneMenu>
+							<p:message id="msgTipo" for="inputTipo" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<p:commandButton action="#{proveeController.addProvee}"
+						value="Confirmar" process=":form" update=":form" />
 				</h:form>
 			</p:outputPanel>
 		</div>

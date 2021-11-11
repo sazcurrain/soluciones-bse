@@ -190,10 +190,8 @@
 
 					<br />
 
-					<h:commandButton action="#{servidorController.crearServidor}"
-						value="Confirmar">
-						<f:ajax event="click" execute="@form" render="@form" />
-					</h:commandButton>
+					<p:commandButton action="#{servidorController.crearServidor}"
+						value="Confirmar" process=":form" update=":form"/>
 
 					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
 
