@@ -86,14 +86,14 @@
 							listener="#{aplicacionController.onAddProvee}"
 							update="proveeTable" />
 					</p:commandButton>
-					<p:dataTable var="interfaz"
+					<p:dataTable var="interfazP"
 						value="#{aplicacionController.aplicacion.provee}" id="proveeTable"
 						emptyMessage="Esta aplicación no provee interfaces.">
 
 						<p:column headerText="">
 
 							<p:commandButton icon="pi pi-pencil"
-								action="#{aplicacionController.editInterProvee(interfaz)}"
+								action="#{aplicacionController.editInterProvee(interfazP)}"
 								styleClass="ui-button-info" style="margin-right: 10px;"
 								immediate="true">
 								<p:ajax event="dialogReturn"
@@ -101,11 +101,11 @@
 									update="proveeTable" />
 							</p:commandButton>
 							<p:commandButton
-								action="#{aplicacionController.eliminarProvee(interfaz)}"
+								action="#{aplicacionController.eliminarProvee(interfazP)}"
 								update="proveeTable" styleClass="ui-button-danger"
 								icon="pi pi-trash" title="Eliminar" immediate="true">
 								<p:confirm header="Atencion"
-									message="Esta seguro que quiere eliminar la interfaz '#{interfaz.nombre}'?"
+									message="Esta seguro que quiere eliminar la interfaz '#{interfazP.nombre}'?"
 									icon="pi pi-info-circle" />
 							</p:commandButton>
 
@@ -119,22 +119,75 @@
 						</p:column>
 
 						<p:column headerText="#{labels['aplicacion.interfaz.nombre']}">
-							<h:outputText value="#{interfaz.nombre}" />
+							<h:outputText value="#{interfazP.nombre}" />
 						</p:column>
 
 						<p:column headerText="#{labels['aplicacion.interfaz.version']}">
-							<h:outputText value="#{interfaz.version}" />
+							<h:outputText value="#{interfazP.version}" />
 						</p:column>
 
 						<p:column
 							headerText="#{labels['aplicacion.interfaz.fechaVersion']}">
-							<h:outputText value="#{interfaz.fechaVersion}">
+							<h:outputText value="#{interfazP.fechaVersion}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
 
 						<p:column headerText="#{labels['aplicacion.interfaz.tipo']}">
-							<h:outputText value="#{interfaz.tipo}" />
+							<h:outputText value="#{interfazP.tipo}" />
+						</p:column>
+					</p:dataTable>
+
+					<h2>Interfaces Consumidas</h2>
+					<p:commandButton value="Nueva" icon="pi pi-plus"
+						action="#{aplicacionController.addInterConsume}"
+						styleClass="p-mr-2" immediate="true">
+						<p:ajax event="dialogReturn"
+							listener="#{aplicacionController.onAddConsume}"
+							update="consumeTable" />
+					</p:commandButton>
+					<p:dataTable var="interfazC"
+						value="#{aplicacionController.aplicacion.consume}"
+						id="consumeTable"
+						emptyMessage="Esta aplicación no Consume interfaces.">
+
+						<p:column headerText="">
+
+							<p:commandButton
+								action="#{aplicacionController.eliminarConsume(interfazC)}"
+								update="consumeTable" styleClass="ui-button-danger"
+								icon="pi pi-trash" title="Eliminar" immediate="true">
+								<p:confirm header="Atencion"
+									message="Esta seguro que quiere eliminar la interfaz '#{interfazC.nombre}'?"
+									icon="pi pi-info-circle" />
+							</p:commandButton>
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade" responsive="true" width="350">
+								<p:commandButton value="No" type="button"
+									styleClass="ui-confirmdialog-no ui-button-flat" />
+								<p:commandButton value="Si" type="button"
+									styleClass="ui-confirmdialog-yes" />
+							</p:confirmDialog>
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.interfaz.nombre']}">
+							<h:outputText value="#{interfazC.nombre}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.interfaz.version']}">
+							<h:outputText value="#{interfazC.version}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['aplicacion.interfaz.fechaVersion']}">
+							<h:outputText value="#{interfazC.fechaVersion}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.interfaz.tipo']}">
+							<h:outputText value="#{interfazC.tipo}" />
 						</p:column>
 					</p:dataTable>
 

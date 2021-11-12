@@ -2,15 +2,13 @@ package uy.com.bse.soluciones.backingbeans;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -24,6 +22,7 @@ import uy.com.bse.soluciones.domain.Interfaz;
 import uy.com.bse.soluciones.domain.Stakeholder;
 import uy.com.bse.soluciones.domain.StakeholderType;
 import uy.com.bse.soluciones.ejbs.AplicacionService;
+import uy.com.bse.soluciones.ejbs.InterfazService;
 import uy.com.bse.soluciones.ejbs.StakeholderService;
 
 /**
@@ -45,6 +44,9 @@ public class AplicacionController implements Serializable {
 	
 	@EJB
 	AplicacionService aplicacionService;
+	
+	@EJB
+	InterfazService interfazService;
 	
 	
 	public AplicacionController() {
@@ -78,7 +80,10 @@ public class AplicacionController implements Serializable {
 	}
 	
 	/**
-	 * Retorna areglo con los valores del ENUM
+	 * Retorna are
+	 * 
+	 * 
+	 * glo con los valores del ENUM
 	 * @return
 	 */
 //	public StakeholderType[] getStakeholderTypes() {
@@ -96,6 +101,7 @@ public class AplicacionController implements Serializable {
 			//Esto lo hacemos para que recorra las interfaces provistas y las instancie, ya que están con fetch lazy, porque si trata de traerlas en el 
 			//xhtml, que no es transaccional, da un error.
 			aplicacion.getProvee().toArray();
+			aplicacion.getConsume().toArray();
 			if (aplicacion == null) {
 				aplicacion = new Aplicacion();
 			}
@@ -118,8 +124,28 @@ public class AplicacionController implements Serializable {
 		aplicacion.removeProvee(i);
 	}
 	
+	public void eliminarConsume(Interfaz i) {
+		aplicacion.removeConsume(i);
+	}
+	
 	public boolean isManaged(Long id) {
 		return id != null;
+	}
+	
+	//TODO aem -- hacer para consume
+	public void addInterConsume() {
+		Map<String, Object> options = new HashMap<>();
+        options.put("modal", true);
+        options.put("width", 640);
+        options.put("height", 340);
+        options.put("contentWidth", "100%");
+        options.put("contentHeight", "100%");
+        options.put("headerElement", "customheader");
+     // TODO REVISAR CON SERGIO ESTOS 3 RENGLONES
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		/* sessionMap.entrySet("interfaz", interfazService.getSetInterfaces()); */
+        sessionMap.put("interfaz", new Interfaz());
+        PrimeFaces.current().dialog().openDynamic("altaInterConsumeDialog", options, null);
 	}
 	
 	public void addInterProvee() {
@@ -136,6 +162,7 @@ public class AplicacionController implements Serializable {
         PrimeFaces.current().dialog().openDynamic("altaInterProveeDialog", options, null);
 	}
 	
+
 	public void editInterProvee(Interfaz i) {
 		Map<String, Object> options = new HashMap<>();
 		options.put("modal", true);
@@ -154,6 +181,16 @@ public class AplicacionController implements Serializable {
 		Interfaz nueva = event.getObject();
 		nueva.setAplicacion(aplicacion);
 		aplicacion.addProvee(nueva);
+	}
+	
+	public void onAddConsume(SelectEvent<Interfaz> event) {
+		Interfaz nueva = event.getObject();
+		nueva.setAplicacion(aplicacion);
+		aplicacion.addConsume(nueva);
+	}
+	
+	public void onEditConsume(SelectEvent<Interfaz> event) {
+		
 	}
 	
 	public void onEditProvee(SelectEvent<Interfaz> event) {

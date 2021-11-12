@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/dialogLayout.xhtml">
+
+	<ui:define name="title">#{labels['interfaz.alta.consume.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<h:form>
+
+				<p:dataTable var="interfazC"
+					value="#{consumeController.listaInterfaces}" id="consumeTable"
+					emptyMessage="Esta aplicación no Consume interfaces.">
+
+					<p:column headerText="#{labels['aplicacion.interfaz.nombre']}">
+						<h:outputText value="#{interfazC.nombre}" />
+					</p:column>
+
+					<p:column headerText="#{labels['aplicacion.interfaz.version']}">
+						<h:outputText value="#{interfazC.version}" />
+					</p:column>
+
+					<p:column
+						headerText="#{labels['aplicacion.interfaz.fechaVersion']}">
+						<h:outputText value="#{interfazC.fechaVersion}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="#{labels['aplicacion.interfaz.tipo']}">
+						<h:outputText value="#{interfazC.tipo}" />
+					</p:column>
+					<p:column >
+						<p:growl id="form" showDetail="true" />
+						<p:commandButton  icon="pi pi-search" style="margin-right:20px;" title="Seleccionar"
+							action="#{consumeController.seleccionaInterfaz}">
+							<p:ajax event="dialogReturn"
+								listener="#{consumeController.onSeleccionarInterfaz}"
+								update="form" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+
+			</h:form>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+</html>
+
