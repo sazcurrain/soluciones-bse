@@ -2,18 +2,23 @@ package uy.com.bse.soluciones.backingbeans;
 
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import org.primefaces.PrimeFaces;
+import org.primefaces.event.SelectEvent;
 
 import uy.com.bse.soluciones.domain.Interfaz;
+import uy.com.bse.soluciones.domain.Enumeradores.Sexo;
 import uy.com.bse.soluciones.domain.Enumeradores.TipoInterfaz;
 import uy.com.bse.soluciones.ejbs.InterfazService;
 
@@ -23,20 +28,20 @@ import uy.com.bse.soluciones.ejbs.InterfazService;
  *
  */
 //TODO: Falta incorporar el manejo de excepciones y mostrarlas correctamente en JSF
-@Named("proveeController")
+@Named("consumeController")
 @ViewScoped
 @Transactional
-public class ProveeController implements Serializable {
-	
+public class ConsumeController implements Serializable {
 	@EJB
 	InterfazService interfazService;
+	
 
 	private static final long serialVersionUID = 1L;
 	
 	private Interfaz interfaz = new Interfaz();
 	
 	
-	public ProveeController() {
+	public ConsumeController() {
 		
 	}
 	
@@ -46,6 +51,12 @@ public class ProveeController implements Serializable {
         interfaz = (Interfaz) sessionMap.get("interfaz");
 	}
 
+	
+	public List<Interfaz> getListaInterfaces(){
+		return interfazService.getInterfaces();
+		
+	}
+	
 	public Interfaz getInterfaz() {
 		return interfaz;
 	}
@@ -54,10 +65,24 @@ public class ProveeController implements Serializable {
 		this.interfaz = interfaz;
 	}
 	
-	public void addProvee() {
+	public void addConsume() {
 		PrimeFaces.current().dialog().closeDynamic(interfaz);
 	}
 	
+	public void seleccionaInterfaz() {
+		Map<String, Object> options = new HashMap<>();
+        options.put("resizable", false);
+        options.put("draggable", false);
+        options.put("modal", true);
+        PrimeFaces.current().dialog().openDynamic("interfaz", options, null);
+	}
+	
+	public void onSeleccionarInterfaz(SelectEvent event) {
+        Interfaz interfaz = (Interfaz) event.getObject();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Interfaz seleccionada ", "Name:" + interfaz.getNombre());
+
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 	/**
 	 * Retorna areglo con los valores del ENUM
 	 * @return

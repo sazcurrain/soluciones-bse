@@ -24,5 +24,11 @@ INSERT INTO Cluster(IPs,  cantNodos   , totalAlmacenamientoGB  , totalMemoriaRam
 INSERT INTO ComponenteSoftware(id,fechaVersioN, nombre, version) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '2021-10-11', 'sissan', '2021_R1');
 INSERT INTO Aplicacion(id) VALUES(7);
 INSERT INTO ComponenteSoftware(id,fechaVersioN, nombre, version) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '2021-10-11', 'sissan_rest', '2021_R1_R1');
-INSERT INTO Interfaz(implementacion, tipo , id, aplicacion_id) values (1, 1, 8, 7);
+INSERT INTO Interfaz(implementacion, tipo , id, aplicacion_id) values (0, 1, 8, 7);
+
+INSERT INTO ComponenteSoftware(id,fechaVersioN, nombre, version) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '2019-05-11', 'Magik', '2021_V9');
+INSERT INTO Aplicacion(id) VALUES(9);
+INSERT INTO ComponenteSoftware(id,fechaVersioN, nombre, version) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '2021-10-11', 'Magik_Personas_rest', '2021_R1_R1');
+INSERT INTO Interfaz(implementacion, tipo , id, aplicacion_id) values (0, 1, 10, 9);
+INSERT INTO app_consume_inter (app_fk, inter_fk) values (7,10);
 

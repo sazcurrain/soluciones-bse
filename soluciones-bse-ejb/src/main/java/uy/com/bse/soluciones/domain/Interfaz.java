@@ -1,9 +1,12 @@
 package uy.com.bse.soluciones.domain;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import uy.com.bse.soluciones.domain.Enumeradores.Aplicacion_Implementacion;
@@ -18,10 +21,20 @@ public class Interfaz extends ComponenteSoftware {
 	private static final long serialVersionUID = 1L;
 	private TipoInterfaz tipo;
 	private Aplicacion aplicacion;
+	private Set<Aplicacion>  consumidaPor;
 	private Aplicacion_Implementacion Implementacion;
 
 	public Interfaz() {
 		super();
+	}
+	
+	@ManyToMany(mappedBy = "consume")
+	public Set<Aplicacion> getConsumidaPor() {
+		return consumidaPor;
+	}
+
+	public void setConsumidaPor(Set<Aplicacion> consumidaPor) {
+		this.consumidaPor = consumidaPor;
 	}
 	
 	@ManyToOne

@@ -1,6 +1,7 @@
 package uy.com.bse.soluciones.ejbs;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -30,7 +31,6 @@ public class InterfazService extends AbstractService<Interfaz, Long>{
 		return em.createQuery("select i from Interfaz i order by i.nombre").getResultList();
 	}
 		
-	
 	@Override
 	public EntityManager getEntityManager() {
 		return em;
