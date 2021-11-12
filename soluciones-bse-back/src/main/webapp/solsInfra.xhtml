@@ -29,10 +29,8 @@
 
 
 			<h:form>
-				<p:menubar>
-
-					<p:submenu label="Nuevo" icon="pi pi-fw pi-plus">
-
+				<p:toolbarGroup align="right">
+					<p:menuButton value="Nuevo">
 						<p:menuitem value="Cluster" icon="pi pi-fw pi-plus"
 							action="altaCluster.xhtml" />
 
@@ -44,17 +42,15 @@
 
 						<p:menuitem value="Tienda" icon="pi pi-fw pi-plus"
 							action="altaTienda.xhtml" />
-
-					</p:submenu>
-				</p:menubar>
+					</p:menuButton>
+				</p:toolbarGroup>
 
 				<div class="card">
 					<p:dataTable var="solInfra"
 						value="#{solInfraController.listaSolInfra}"
 						emptyMessage="No infra found with given criteria"
 						filteredValue="#{solInfraController.filteredSolInfra}"
-						globalFilterOnly="false"
-						widgetVar="solInfraTable">
+						globalFilterOnly="false" widgetVar="solInfraTable">
 
 						<p:column headerText="">
 							<p:linkButton
@@ -88,16 +84,14 @@
 
 						</p:column>
 
-						<p:column headerText="#{labels['solInfra.nombre']}" 
-							sortBy="#{solInfra.nombre}"
-							filterBy="#{solInfra.nombre}"
+						<p:column headerText="#{labels['solInfra.nombre']}"
+							sortBy="#{solInfra.nombre}" filterBy="#{solInfra.nombre}"
 							filterMatchMode="contains">
 							<h:outputText value="#{solInfra.nombre}" />
 						</p:column>
 
 						<p:column headerText="#{labels['solInfra.tipo']}"
-							sortBy="#{solInfra.tipo}"
-							filterBy="#{solInfra.tipo}"
+							sortBy="#{solInfra.tipo}" filterBy="#{solInfra.tipo}"
 							filterMatchMode="exact">
 							<f:facet name="filter">
 								<p:selectOneMenu onchange="PF('solInfraTable').filter()"

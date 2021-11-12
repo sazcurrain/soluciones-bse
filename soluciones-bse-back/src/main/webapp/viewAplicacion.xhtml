@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{aplicacionController.aplicacion.id}" />
+		<f:viewAction action="#{aplicacionController.findAplicacionById}" />
+	</f:metadata>
+
+	<ui:define name="title">Aplicación: #{aplicacionController.aplicacion.nombre}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<p:outputPanel>
+				<h:form id="form" prependId="false">
+					<div class="p-field p-grid" jsf:id="divId">
+						<h:outputLabel value="#{labels['aplicacion.id']}:*" for="inputId"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputId"
+								value="#{aplicacionController.aplicacion.id}"/>
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divNombre">
+						<h:outputLabel value="#{labels['aplicacion.nombre']}:*"
+							for="inputNombre" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputNombre"
+								value="#{aplicacionController.aplicacion.nombre}"/>
+						</div>
+					</div>
+					<div class="p-field p-grid" jsf:id="divVersion">
+						<h:outputLabel value="#{labels['aplicacion.version']}:*"
+							for="inputVersion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputVersion"
+								value="#{aplicacionController.aplicacion.version}"/>
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divFechaVersion">
+						<h:outputLabel value="#{labels['aplicacion.fechaVersion']}:*"
+							for="inputFechaNac" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputFechaVersion"
+								value="#{aplicacionController.aplicacion.fechaVersion}"/>
+						</div>
+					</div>
+					<br />
+					<h2>Interfaces provistas</h2>
+					<p:dataTable var="interfaz"
+						value="#{aplicacionController.aplicacion.provee}" id="proveeTable"
+						emptyMessage="Esta aplicación no provee interfaces.">
+						<p:column headerText="#{labels['aplicacion.interfaz.nombre']}">
+							<h:outputText value="#{interfaz.nombre}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.interfaz.version']}">
+							<h:outputText value="#{interfaz.version}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['aplicacion.interfaz.fechaVersion']}">
+							<h:outputText value="#{interfaz.fechaVersion}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.interfaz.tipo']}">
+							<h:outputText value="#{interfaz.tipo}" />
+						</p:column>
+					</p:dataTable>
+
+					<h:link outcome="aplicaciones.xhtml" value="volver" />
+				</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+
