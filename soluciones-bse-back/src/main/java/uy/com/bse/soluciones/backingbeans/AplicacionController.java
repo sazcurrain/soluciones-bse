@@ -33,7 +33,6 @@ import uy.com.bse.soluciones.ejbs.StakeholderService;
 //TODO: Falta incorporar el manejo de excepciones y mostrarlas correctamente en JSF
 @Named("aplicacionController")
 @ViewScoped
-@Transactional
 public class AplicacionController implements Serializable {
 	
 
@@ -95,13 +94,15 @@ public class AplicacionController implements Serializable {
 	 * Si la aplicacion existe en la BD retorna esa aplicacion
 	 * En caso contrario crea una nueva
 	 */
+
+	@Transactional
 	public void findAplicacionById() {
 		if (aplicacion.getId() != null) {
 			aplicacion = aplicacionService.find(aplicacion.getId());
 			//Esto lo hacemos para que recorra las interfaces provistas y las instancie, ya que están con fetch lazy, porque si trata de traerlas en el 
 			//xhtml, que no es transaccional, da un error.
-			aplicacion.getProvee().toArray();
-			aplicacion.getConsume().toArray();
+			aplicacion.getProvee().size();
+			aplicacion.getConsume().size();
 			if (aplicacion == null) {
 				aplicacion = new Aplicacion();
 			}

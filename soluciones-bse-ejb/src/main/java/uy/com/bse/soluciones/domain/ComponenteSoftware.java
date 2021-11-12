@@ -11,6 +11,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -72,5 +73,10 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 
 	public void setStakeholders(Set<StakeholdersComponente> stakeholders) {
 		this.stakeholders = stakeholders;
+	}
+	
+	@Transient
+	public String getClase() {
+		return this.getClass().getSimpleName();
 	}
 }

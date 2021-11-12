@@ -38,35 +38,14 @@ public class ConsumeController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Interfaz interfaz = new Interfaz();
-	
 	
 	public ConsumeController() {
 		
 	}
 	
-	@PostConstruct
-	public void init() {
-		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        interfaz = (Interfaz) sessionMap.get("interfaz");
-	}
-
-	
 	public List<Interfaz> getListaInterfaces(){
 		return interfazService.getInterfaces();
 		
-	}
-	
-	public Interfaz getInterfaz() {
-		return interfaz;
-	}
-
-	public void setInterfaz(Interfaz interfaz) {
-		this.interfaz = interfaz;
-	}
-	
-	public void addConsume() {
-		PrimeFaces.current().dialog().closeDynamic(interfaz);
 	}
 	
 	public void seleccionaInterfaz(Interfaz selected) {

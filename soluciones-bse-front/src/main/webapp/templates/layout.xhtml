@@ -70,7 +70,8 @@ footer {
 	<h:form id="form_menu">
 		<p:menubar>
 			<p:submenu label="Consultas" icon="pi pi-fw pi-file">
-
+				<p:menuitem value="Simple" icon="pi pi-fw pi-external-link"
+					action="consultaSimple.xhtml" />
 				<p:menuitem value="Ver personas" icon="pi pi-fw pi-external-link"
 					action="personas.xhtml" />
 			</p:submenu>
@@ -83,11 +84,6 @@ footer {
 			
 			<p:menuitem value="Home" icon="pi pi-fw pi-power-off"
 				action="home.xhtml?faces-redirect=true" />
-
-			<f:facet name="options">
-				<p:commandButton value="Logout" icon="pi pi-fw pi-sign-out"
-					styleClass="ui-button-info" action="#{loginController.logout()}" />
-			</f:facet>
 		</p:menubar>
 	</h:form>
 
