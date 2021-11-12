@@ -39,13 +39,13 @@
 					<p:column headerText="#{labels['aplicacion.interfaz.tipo']}">
 						<h:outputText value="#{interfazC.tipo}" />
 					</p:column>
+					<p:column headerText="#{labels['aplicacion.interfaz.nombreApp']}">
+						<h:outputText value="#{interfazC.aplicacion.nombre}" />
+					</p:column>
 					<p:column >
 						<p:growl id="form" showDetail="true" />
-						<p:commandButton  icon="pi pi-search" style="margin-right:20px;" title="Seleccionar"
-							action="#{consumeController.seleccionaInterfaz}">
-							<p:ajax event="dialogReturn"
-								listener="#{consumeController.onSeleccionarInterfaz}"
-								update="form" />
+						<p:commandButton  icon="pi pi-check" style="margin-right:20px;" title="Seleccionar"
+							action="#{consumeController.seleccionaInterfaz(interfazC)}">
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>

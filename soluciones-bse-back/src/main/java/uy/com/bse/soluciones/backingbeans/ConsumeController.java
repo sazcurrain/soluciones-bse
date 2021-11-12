@@ -69,19 +69,8 @@ public class ConsumeController implements Serializable {
 		PrimeFaces.current().dialog().closeDynamic(interfaz);
 	}
 	
-	public void seleccionaInterfaz() {
-		Map<String, Object> options = new HashMap<>();
-        options.put("resizable", false);
-        options.put("draggable", false);
-        options.put("modal", true);
-        PrimeFaces.current().dialog().openDynamic("interfaz", options, null);
-	}
-	
-	public void onSeleccionarInterfaz(SelectEvent event) {
-        Interfaz interfaz = (Interfaz) event.getObject();
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Interfaz seleccionada ", "Name:" + interfaz.getNombre());
-
-        FacesContext.getCurrentInstance().addMessage(null, message);
+	public void seleccionaInterfaz(Interfaz selected) {
+		PrimeFaces.current().dialog().closeDynamic(selected);
     }
 	/**
 	 * Retorna areglo con los valores del ENUM

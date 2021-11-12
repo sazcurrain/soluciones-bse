@@ -189,6 +189,9 @@
 						<p:column headerText="#{labels['aplicacion.interfaz.tipo']}">
 							<h:outputText value="#{interfazC.tipo}" />
 						</p:column>
+						<p:column headerText="#{labels['aplicacion.interfaz.nombreApp']}">
+							<h:outputText value="#{interfazC.aplicacion.nombre}" />
+						</p:column>
 					</p:dataTable>
 
 					<p:commandButton action="#{aplicacionController.crearAplicacion}"

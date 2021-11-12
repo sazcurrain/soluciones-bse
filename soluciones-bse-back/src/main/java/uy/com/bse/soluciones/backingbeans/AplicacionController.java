@@ -185,7 +185,7 @@ public class AplicacionController implements Serializable {
 	
 	public void onAddConsume(SelectEvent<Interfaz> event) {
 		Interfaz nueva = event.getObject();
-		nueva.setAplicacion(aplicacion);
+		//nueva.setAplicacion(aplicacion);
 		aplicacion.addConsume(nueva);
 	}
 	
