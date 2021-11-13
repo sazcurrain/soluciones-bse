@@ -2,28 +2,14 @@ package uy.com.bse.soluciones.backingbeans;
 
 
 import java.io.Serializable;
-import java.util.HashMap;
-
 import java.util.List;
-import java.util.Map;
-
-
 import javax.ejb.EJB;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
-import org.primefaces.PrimeFaces;
-import org.primefaces.event.SelectEvent;
-
 import uy.com.bse.soluciones.domain.Aplicacion;
-import uy.com.bse.soluciones.domain.Interfaz;
-import uy.com.bse.soluciones.domain.Stakeholder;
-import uy.com.bse.soluciones.domain.StakeholderType;
 import uy.com.bse.soluciones.ejbs.AplicacionService;
-import uy.com.bse.soluciones.ejbs.InterfazService;
-import uy.com.bse.soluciones.ejbs.StakeholderService;
 
 /**
  * Backing Bean de las pantallas de Persona
@@ -44,8 +30,8 @@ public class AplicacionController implements Serializable {
 	@EJB
 	AplicacionService aplicacionService;
 	
-	@EJB
-	InterfazService interfazService;
+	//@EJB
+	//InterfazService interfazService;
 	
 	
 	public AplicacionController() {

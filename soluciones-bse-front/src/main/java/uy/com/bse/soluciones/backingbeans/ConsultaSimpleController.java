@@ -7,9 +7,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import uy.com.bse.soluciones.domain.ComponenteSoftware;
-import uy.com.bse.soluciones.domain.SolInfra;
 import uy.com.bse.soluciones.ejbs.ComponenteSoftwareService;
-import uy.com.bse.soluciones.ejbs.SolInfraService;
 
 /**
  * Backing Bean de las pantallas de Servidor

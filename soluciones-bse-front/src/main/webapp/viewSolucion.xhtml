@@ -11,11 +11,11 @@
 <ui:composition template="templates/layout.xhtml">
 
 	<f:metadata>
-		<f:viewParam name="id" value="#{aplicacionController.aplicacion.id}" />
-		<f:viewAction action="#{aplicacionController.findAplicacionById}" />
+		<f:viewParam name="id" value="#{solucionController.solucion.id}" />
+		<f:viewAction action="#{solucionController.findSolucionById}" />
 	</f:metadata>
 
-	<ui:define name="title">Aplicación: #{aplicacionController.aplicacion.nombre}</ui:define>
+	<ui:define name="title">Solución: #{solucionController.solucion.nombre}</ui:define>
 
 	<ui:define name="body">
 
@@ -23,65 +23,65 @@
 			<p:outputPanel>
 				<h:form id="form" prependId="false">
 					<div class="p-field p-grid" jsf:id="divId">
-						<h:outputLabel value="#{labels['aplicacion.id']}:*" for="inputId"
+						<h:outputLabel value="#{labels['solucion.id']}:*" for="inputId"
 							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputId"
-								value="#{aplicacionController.aplicacion.id}"/>
+								value="#{solucionController.solucion.id}"/>
 						</div>
 					</div>
 
 					<div class="p-field p-grid" jsf:id="divNombre">
-						<h:outputLabel value="#{labels['aplicacion.nombre']}:*"
+						<h:outputLabel value="#{labels['solucion.nombre']}:*"
 							for="inputNombre" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputNombre"
-								value="#{aplicacionController.aplicacion.nombre}"/>
+								value="#{solucionController.solucion.nombre}"/>
 						</div>
 					</div>
 					<div class="p-field p-grid" jsf:id="divVersion">
-						<h:outputLabel value="#{labels['aplicacion.version']}:*"
+						<h:outputLabel value="#{labels['solucion.version']}:*"
 							for="inputVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputVersion"
-								value="#{aplicacionController.aplicacion.version}"/>
+								value="#{solucionController.solucion.version}"/>
 						</div>
 					</div>
 
 					<div class="p-field p-grid" jsf:id="divFechaVersion">
-						<h:outputLabel value="#{labels['aplicacion.fechaVersion']}:*"
+						<h:outputLabel value="#{labels['solucion.fechaVersion']}:*"
 							for="inputFechaVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputFechaVersion"
-								value="#{aplicacionController.aplicacion.fechaVersion}"/>
+								value="#{solucionController.solucion.fechaVersion}"/>
 						</div>
 					</div>
 					<br />
-					<h2>Interfaces provistas</h2>
-					<p:dataTable var="interfaz"
-						value="#{aplicacionController.aplicacion.provee}" id="proveeTable"
+					<h2>-Componentes incluidos</h2>
+					<p:dataTable var="componente"
+						value="#{solucionController.solucion.componentes}" id="proveeTable"
 						emptyMessage="Esta aplicación no provee interfaces.">
-						<p:column headerText="#{labels['aplicacion.interfaz.nombre']}">
-							<h:outputText value="#{interfaz.nombre}" />
+						<p:column headerText="#{labels['solucion.componente.nombre']}">
+							<h:outputText value="#{componente.nombre}" />
 						</p:column>
 
-						<p:column headerText="#{labels['aplicacion.interfaz.version']}">
-							<h:outputText value="#{interfaz.version}" />
+						<p:column headerText="#{labels['aplicacion.componente.version']}">
+							<h:outputText value="#{componente.version}" />
 						</p:column>
 
 						<p:column
-							headerText="#{labels['aplicacion.interfaz.fechaVersion']}">
-							<h:outputText value="#{interfaz.fechaVersion}">
+							headerText="#{labels['aplicacion.componente.fechaVersion']}">
+							<h:outputText value="#{componente.fechaVersion}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
 
-						<p:column headerText="#{labels['aplicacion.interfaz.tipo']}">
-							<h:outputText value="#{interfaz.clase}" />
+						<p:column headerText="#{labels['aplicacion.componente.tipo']}">
+							<h:outputText value="#{componente.clase}" />
 						</p:column>
 					</p:dataTable>
 
-					<h:link outcome="aplicaciones.xhtml" value="volver" />
+					<h:link outcome="consultaSimple.xhtml" value="volver" />
 				</h:form>
 			</p:outputPanel>
 		</div>

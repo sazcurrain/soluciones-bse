@@ -5,27 +5,27 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import uy.com.bse.soluciones.domain.Interfaz;
+import uy.com.bse.soluciones.domain.Solucion;
 
 /**
- * Servicio EJB para la entity Interfaz
+ * Servicio EJB para la entity Solucion
  * @author juan
  *
  */
 @Stateless
-public class InterfazService extends AbstractService<Interfaz, Long>{
+public class SolucionService extends AbstractService<Solucion, Long>{
 	
 	@PersistenceContext(unitName = "soluciones_bse")
 	protected EntityManager em;
 		
 	
-	public InterfazService() {
-		super(Interfaz.class);
+	public SolucionService() {
+		super(Solucion.class);
 	}	
 	
 	@SuppressWarnings("unchecked")
-	public List<Interfaz> getInterfaces() {
-		return em.createQuery("select i from Interfaz i order by i.nombre").getResultList();
+	public List<Solucion> getSoluciones() {
+		return em.createQuery("select i from Solucion i order by i.nombre").getResultList();
 	}
 		
 	@Override
