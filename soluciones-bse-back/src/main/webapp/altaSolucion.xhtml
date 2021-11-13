@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{solucionController.solucion.id}" />
+		<f:viewAction action="#{solucionController.findSolucionById}" />
+	</f:metadata>
+
+	<ui:define name="title">#{labels['solucion.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<p:outputPanel>
+				<h:form id="form" prependId="false">
+
+					<div class="p-field p-grid" jsf:id="divId"
+						jsf:rendered="#{solucionController.isManaged(solucionController.solucion.id)}">
+						<h:outputLabel value="#{labels['solucion.id']}:*" for="inputId"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputId"
+								value="#{solucionController.solucion.id}" required="true"
+								size="40"
+								disabled="#{solucionController.isManaged(solucionController.solucion.id)}">
+							</p:inputText>
+						</div>
+					</div>
+
+
+					<div class="p-field p-grid" jsf:id="divNombre">
+						<h:outputLabel value="#{labels['solucion.nombre']}:*"
+							for="inputNombre" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputNombre"
+								value="#{solucionController.solucion.nombre}" required="true"
+								size="60">
+								<p:ajax event="blur" process="@this" update="msgNombre" />
+							</p:inputText>
+							<h:message id="msgNombre" for="inputNombre" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divDescripcion">
+						<h:outputLabel value="#{labels['solucion.descripcion']}:*"
+							for="inputDescripcion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputDescripcion"
+								value="#{solucionController.solucion.descripcion}"
+								required="true" size="40">
+								<p:ajax event="blur" process="@this" update="msgDescripcion" />
+							</p:inputText>
+							<h:message id="msgDescripcion" for="inputDescripcion" errorClass="err"
+								warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divVersion">
+						<h:outputLabel value="#{labels['solucion.version']}:*"
+							for="inputVersion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputVersion"
+								value="#{solucionController.solucion.version}" required="true"
+								size="40">
+								<p:ajax event="blur" process="@this" update="msgVersion" />
+							</p:inputText>
+							<h:message id="msgVersion" for="inputVersion" errorClass="err"
+								warnClass="warn" infoClass="info" />
+
+						</div>
+					</div>
+
+
+					<div class="p-field p-grid" jsf:id="divFechaVersion">
+						<h:outputLabel value="#{labels['solucion.fechaVersion']}:*"
+							for="inputFechaVersion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:datePicker id="inputFecVer"
+								value="#{solucionController.solucion.fechaVersion}"
+								required="true" pattern="dd/MM/yyyy" monthNavigator="true"
+								yearNavigator="true">
+								<p:ajax event="blur" process="@this" update="msgFVersion" />
+							</p:datePicker>
+							<h:message id="msgFVersion" for="inputFecVer" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div> 
+					
+									
+	    	<br />
+
+					<p:commandButton action="#{solucionController.crearSolucion}"
+						value="Confirmar">
+						<f:ajax event="click" execute="@form" render="@form" />
+					</p:commandButton>
+
+					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
+
+					<h:link outcome="soluciones.xhtml" value="volver" />
+				</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+
