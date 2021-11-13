@@ -32,8 +32,14 @@ INSERT INTO ComponenteSoftware(id,fechaVersioN, nombre, version) values (NEXT VA
 INSERT INTO Interfaz(implementacion, tipo , id, aplicacion_id) values (0, 1, 10, 9);
 INSERT INTO app_consume_inter (app_fk, inter_fk) values (7,10);
 
-
 INSERT INTO ComponenteSoftware(id,fechaVersioN, nombre, version) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '2021-10-01', 'Historia Clinica Electrónica', '2021');
 INSERT INTO Solucion(id,descripcion) VALUES(11,'Soft componentes de la HCE');
 INSERT INTO Solucion_ComponenteSoftware (Solucion_id, componentes_id) values (11,9);
 INSERT INTO Solucion_ComponenteSoftware (Solucion_id, componentes_id) values (11,7);
+
+INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'cacho@gmail.com', 'Cacho', '9999999', 1);
+INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'pepe@gmail.com', 'Pepe', '88888888', 0);
+INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'fulano@gmail.com', 'Fulano', '777777', 0);
+INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'toto@gmail.com', 'Toto', '66666666', 1);
+INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'mengano@gmail.com', 'Mengano', '5555555', 0);
+
