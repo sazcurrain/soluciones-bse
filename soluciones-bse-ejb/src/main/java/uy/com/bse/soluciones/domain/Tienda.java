@@ -1,6 +1,5 @@
 package uy.com.bse.soluciones.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 

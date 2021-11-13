@@ -19,11 +19,8 @@ import org.primefaces.event.SelectEvent;
 
 import uy.com.bse.soluciones.domain.Aplicacion;
 import uy.com.bse.soluciones.domain.Interfaz;
-import uy.com.bse.soluciones.domain.Stakeholder;
-import uy.com.bse.soluciones.domain.StakeholderType;
 import uy.com.bse.soluciones.ejbs.AplicacionService;
 import uy.com.bse.soluciones.ejbs.InterfazService;
-import uy.com.bse.soluciones.ejbs.StakeholderService;
 
 /**
  * Backing Bean de las pantallas de Persona

@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import uy.com.bse.soluciones.domain.Aplicacion;
-import uy.com.bse.soluciones.domain.Stakeholder;
 
 /**
  * Servicio EJB para la entity Persona

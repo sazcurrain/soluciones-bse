@@ -49,20 +49,6 @@
 						</div>
 					</div>
 					
-						<div class="p-field p-grid" jsf:id="divAplicacion_implementacion">
-						<h:outputLabel value="#{labels['interfaz.aplicacion_implementacion']}:*"
-							for="inputAplicacion_implementacion" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<p:inputText id="inputAplicacion_implementacion"
-								value="#{interfazController.interfaz.aplicacion_implementacion}" required="true"
-								size="60">
-								<p:ajax event="blur" process="@this" update="msgAplicacion_implementacion" />
-							</p:inputText>
-							<h:message id="msgAplicacion_implementacion" for="inputAplicacion_implementacion" errorClass="err"
-								warnClass="warn" infoClass="info" />
-						</div>
-					</div>
-
 					<div class="p-field p-grid" jsf:id="divNombre">
 						<h:outputLabel value="#{labels['interfaz.nombre']}:*"
 							for="inputNombre" class="p-col-fixed" style="width: 150px" />
@@ -105,23 +91,6 @@
 							<h:message id="msgFechaVersion" for="inputFechaVersion" errorClass="err"
 								warnClass="warn" infoClass="info" />
 
-						</div>
-					</div>
-
-
-					<div class="p-field p-grid" jsf:id="divStakeholdersComponente">
-						<h:outputLabel value="#{labels['interfaz.stakeholdersComponente']}:*"
-							for="inputStakeholdersComponente" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<p:selectOneMenu id="selectStakeholdersComponente"
-								value="#{interfazController.interfaz.stakeholdersComponente}" required="true">
-								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
-								<f:selectItems value="#{interfazController.stakeholdersComponenteValues}"
-									var="stakeholdersComponente" itemValue="#{stakeholdersComponente}" itemLabel="#{stakeholdersComponente}"
-									noSelectionValue="Seleccionar" />
-							</p:selectOneMenu>
-							<h:message id="msgStakeholdersComponente" for="selectStakeholdersComponente" errorClass="err"
-								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
 

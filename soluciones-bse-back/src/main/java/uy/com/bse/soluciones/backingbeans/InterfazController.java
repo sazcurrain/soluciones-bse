@@ -9,12 +9,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import uy.com.bse.soluciones.domain.Interfaz;
-import uy.com.bse.soluciones.domain.Persona;
-import uy.com.bse.soluciones.domain.Profesion;
-import uy.com.bse.soluciones.domain.Enumeradores.Sexo;
 import uy.com.bse.soluciones.ejbs.InterfazService;
-import uy.com.bse.soluciones.ejbs.PersonaService;
-import uy.com.bse.soluciones.ejbs.ProfesionService;
 
 /**
  * Backing Bean de las pantallas de Interfaz

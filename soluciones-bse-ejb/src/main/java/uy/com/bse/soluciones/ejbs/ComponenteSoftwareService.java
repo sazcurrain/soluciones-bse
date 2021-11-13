@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import uy.com.bse.soluciones.domain.ComponenteSoftware;
-import uy.com.bse.soluciones.domain.SolInfra;
 
 @Stateless
 public class ComponenteSoftwareService extends AbstractService<ComponenteSoftware, Long> {
@@ -35,6 +34,7 @@ public class ComponenteSoftwareService extends AbstractService<ComponenteSoftwar
 		List<String> tipos = new ArrayList<String>();
 		tipos.add("Interfaz");
 		tipos.add("Aplicacion");
+		tipos.add("Solucion");
 		return tipos;
 	}
 
