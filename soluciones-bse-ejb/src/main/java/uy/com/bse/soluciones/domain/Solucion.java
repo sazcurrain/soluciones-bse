@@ -12,15 +12,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Solucion extends BaseEntity<Long> {
+public class Solucion extends ComponenteSoftware {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Long id;
-	private String nombre;
 	private String descripcion;
 	
 	private Set<ComponenteSoftware> componentes = new HashSet<ComponenteSoftware>();
@@ -29,26 +27,6 @@ public class Solucion extends BaseEntity<Long> {
 		super();
 	}
 
-	@Id @GeneratedValue @Override
-	public Long getId() {
-		return this.id;
-	}
-
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	
-	@NotNull @Size(min=2, max=140) @Column(length=140)
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
 	@Size(min=2, max=2048)  @Column(length=2048)
 	public String getDescripcion() {
 		return descripcion;
