@@ -31,6 +31,11 @@
 			<groupId>uy.com.bse.soluciones</groupId>
 			<artifactId>soluciones-bse-ejb</artifactId>
 			<type>ejb</type>
+		</dependency>		
+		<dependency>
+			<groupId>uy.com.bse.soluciones</groupId>
+			<artifactId>soluciones-bse-servicios</artifactId>
+			<type>war</type>
 		</dependency>
 		
 	<!-- Primefaces version 10.0.0 -->
@@ -84,7 +89,14 @@
 							<artifactId>soluciones-bse-back</artifactId>
 							<bundleFileName>soluciones-bse-back-0.0.1-SNAPSHOT.war</bundleFileName>
 							<contextRoot>/soluciones/admin</contextRoot>
-						</webModule>						
+						</webModule>	
+
+						<webModule>
+							<groupId>uy.com.bse.soluciones</groupId>
+							<artifactId>soluciones-bse-servicios</artifactId>
+							<bundleFileName>soluciones-bse-servicios-0.0.1-SNAPSHOT.war</bundleFileName>
+							<contextRoot>/soluciones/servicios</contextRoot>
+						</webModule>					
 					</modules>
  					<defaultLibBundleDir>lib</defaultLibBundleDir>
 				</configuration>
