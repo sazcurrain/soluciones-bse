@@ -40,5 +40,15 @@ public class Solucion extends ComponenteSoftware {
 	public void setComponentes(Set<ComponenteSoftware> componentes) {
 		this.componentes = componentes;
 	}
+	
+	public void addComponente(ComponenteSoftware componente) {
+		this.componentes.add(componente);
+	}
+	
+	public void removeComponente(ComponenteSoftware componente) {
+		if(this.componentes.contains(componente)) {
+			this.componentes.remove(componente);
+		}
+	}
 
 }

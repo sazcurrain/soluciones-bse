@@ -96,9 +96,66 @@
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div> 
-					
 									
 	    	<br />
+	    	
+	    	<!-- inicio cambiar pat -->
+	    	
+	    						<h2>SW Componentes de la Solución</h2>
+					<p:commandButton value="Agregar" icon="pi pi-plus"
+						action="#{solucionController.selectComponente}"
+						styleClass="p-mr-2" immediate="true">
+						<p:ajax event="dialogReturn"
+							listener="#{solucionController.onAddComponente}"
+							update="componenteTable" />
+					</p:commandButton>
+					<p:dataTable var="componenteC"
+						value="#{solucionController.solucion.componentes}"
+						id="componenteTable"
+						emptyMessage="Esta solución no tiene SW que la compone.">
+
+						<p:column headerText="">
+
+							<p:commandButton
+								action="#{solucionController.eliminarComponente(componenteC)}"
+								update="componenteTable" styleClass="ui-button-danger"
+								icon="pi pi-trash" title="Eliminar" immediate="true">
+								<p:confirm header="Atencion"
+									message="Esta seguro que quiere eliminar el componente '#{componenteC.nombre}'?"
+									icon="pi pi-info-circle" />
+							</p:commandButton>
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade" responsive="true" width="350">
+								<p:commandButton value="No" type="button"
+									styleClass="ui-confirmdialog-no ui-button-flat" />
+								<p:commandButton value="Si" type="button"
+									styleClass="ui-confirmdialog-yes" />
+							</p:confirmDialog>
+						</p:column>
+
+						<p:column headerText="#{labels['solucion.componente.nombre']}">
+							<h:outputText value="#{componenteC.nombre}" />
+						</p:column>
+
+						<p:column headerText="#{labels['solucion.componente.version']}">
+							<h:outputText value="#{componenteC.version}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['solucion.componente.fechaVersion']}">
+							<h:outputText value="#{componenteC.fechaVersion}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						
+					<p:column headerText="#{labels['solucion.componente.clase']}">
+						<h:outputText value="#{componenteC.clase}" />
+					</p:column>
+						
+					</p:dataTable>
+	    	
+	    	<!-- fin cambiar  pat -->
 
 					<p:commandButton action="#{solucionController.crearSolucion}"
 						value="Confirmar">
