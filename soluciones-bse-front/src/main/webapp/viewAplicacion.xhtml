@@ -27,7 +27,7 @@
 							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputId"
-								value="#{aplicacionController.aplicacion.id}"/>
+								value="#{aplicacionController.aplicacion.id}" />
 						</div>
 					</div>
 
@@ -36,7 +36,7 @@
 							for="inputNombre" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputNombre"
-								value="#{aplicacionController.aplicacion.nombre}"/>
+								value="#{aplicacionController.aplicacion.nombre}" />
 						</div>
 					</div>
 					<div class="p-field p-grid" jsf:id="divVersion">
@@ -44,7 +44,7 @@
 							for="inputVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputVersion"
-								value="#{aplicacionController.aplicacion.version}"/>
+								value="#{aplicacionController.aplicacion.version}" />
 						</div>
 					</div>
 
@@ -53,10 +53,10 @@
 							for="inputFechaVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputFechaVersion"
-								value="#{aplicacionController.aplicacion.fechaVersion}"/>
+								value="#{aplicacionController.aplicacion.fechaVersion}" />
 						</div>
 					</div>
-					
+
 					<br />
 					<h2>Interfaces provistas</h2>
 					<p:dataTable var="interfaz"
@@ -81,12 +81,57 @@
 							<h:outputText value="#{interfaz.tipo}" />
 						</p:column>
 					</p:dataTable>
-					
+
+
 					<br />
-					<h2>Skateholders</h2>
+					<h2>Ambientes</h2>
+					<p:dataTable var="ambiente"
+						value="#{aplicacionController.aplicacion.ambientes}"
+						id="ambientesTable"
+						emptyMessage="Esta aplicación no tiene ambientes asociados"
+						scrollable="true">
+						<p:column headerText="#{labels['aplicacion.ambiente.entorno']}">
+							<h:outputText value="#{ambiente.entorno}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.ambiente.url']}">
+							<h:outputText value="#{ambiente.url}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.ambiente.puerto']}">
+							<h:outputText value="#{ambiente.puerto}">
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.ambiente.directorio']}">
+							<h:outputText value="#{ambiente.directorio}" />
+						</p:column>
+						<p:column headerText="#{labels['aplicacion.ambiente.solInfra.tipo']}">
+							<h:outputText value="#{ambiente.solInfra.tipo}" />
+						</p:column>
+						<p:column headerText="#{labels['aplicacion.ambiente.solInfra.nombre']}">
+							<h:outputText value="#{ambiente.solInfra.nombre}" />
+						</p:column>
+						<p:column headerText="#{labels['aplicacion.ambiente.solInfra.entornoInfra']}">
+							<h:outputText value="#{ambiente.solInfra.entorno}" />
+						</p:column>
+						<p:column headerText="#{labels['aplicacion.ambiente.solInfra.sistema_operativo']}">
+							<h:outputText value="#{ambiente.solInfra.sistema_operativo}" />
+						</p:column>
+						<p:column headerText="#{labels['aplicacion.ambiente.solInfra.version']}">
+							<h:outputText value="#{ambiente.solInfra.version}" />
+						</p:column>
+					</p:dataTable>
+
+
+
+					<br />
+					<h2>Interesados</h2>
 					<p:dataTable var="skateholder"
-						value="#{aplicacionController.aplicacion.stakeholders}" id="skateholderTable"
-						emptyMessage="Esta aplicación no tiene skateholders asociados" scrollable="true">
+						value="#{aplicacionController.aplicacion.stakeholders}"
+						id="skateholderTable"
+						emptyMessage="Esta aplicación no tiene skateholders asociados"
+						scrollable="true">
 						<p:column headerText="#{labels['aplicacion.skateholder.rol']}">
 							<h:outputText value="#{skateholder.rol}" />
 						</p:column>
@@ -95,8 +140,7 @@
 							<h:outputText value="#{skateholder.stakeholder.tipo}" />
 						</p:column>
 
-						<p:column
-							headerText="#{labels['aplicacion.skateholder.nombre']}">
+						<p:column headerText="#{labels['aplicacion.skateholder.nombre']}">
 							<h:outputText value="#{skateholder.stakeholder.nombre}">
 							</h:outputText>
 						</p:column>
@@ -104,12 +148,13 @@
 						<p:column headerText="#{labels['aplicacion.skateholder.mail']}">
 							<h:outputText value="#{skateholder.stakeholder.mail}" />
 						</p:column>
-						
-						<p:column headerText="#{labels['aplicacion.skateholder.telefono']}">
+
+						<p:column
+							headerText="#{labels['aplicacion.skateholder.telefono']}">
 							<h:outputText value="#{skateholder.stakeholder.telefono}" />
 						</p:column>
 					</p:dataTable>
-					
+
 					<h:link outcome="consultaSimple.xhtml" value="volver" />
 				</h:form>
 			</p:outputPanel>

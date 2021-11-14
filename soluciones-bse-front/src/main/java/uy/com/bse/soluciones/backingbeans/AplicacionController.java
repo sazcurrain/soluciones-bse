@@ -70,6 +70,7 @@ public class AplicacionController implements Serializable {
 			aplicacion.getProvee().size();
 			aplicacion.getConsume().size();
 			aplicacion.getStakeholders().size();
+			aplicacion.getAmbientes().size();
 			if (aplicacion == null) {
 				aplicacion = new Aplicacion();
 			}
