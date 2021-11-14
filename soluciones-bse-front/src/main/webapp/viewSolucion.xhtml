@@ -27,7 +27,7 @@
 							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputId"
-								value="#{solucionController.solucion.id}"/>
+								value="#{solucionController.solucion.id}" />
 						</div>
 					</div>
 
@@ -36,7 +36,7 @@
 							for="inputNombre" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputNombre"
-								value="#{solucionController.solucion.nombre}"/>
+								value="#{solucionController.solucion.nombre}" />
 						</div>
 					</div>
 					<div class="p-field p-grid" jsf:id="divVersion">
@@ -44,7 +44,7 @@
 							for="inputVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputVersion"
-								value="#{solucionController.solucion.version}"/>
+								value="#{solucionController.solucion.version}" />
 						</div>
 					</div>
 
@@ -53,13 +53,14 @@
 							for="inputFechaVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputFechaVersion"
-								value="#{solucionController.solucion.fechaVersion}"/>
+								value="#{solucionController.solucion.fechaVersion}" />
 						</div>
 					</div>
 					<br />
 					<h2>-Componentes incluidos</h2>
 					<p:dataTable var="componente"
-						value="#{solucionController.solucion.componentes}" id="proveeTable"
+						value="#{solucionController.solucion.componentes}"
+						id="componentesTable"
 						emptyMessage="Esta aplicación no provee interfaces.">
 						<p:column headerText="#{labels['solucion.componente.nombre']}">
 							<h:outputText value="#{componente.nombre}" />
@@ -80,6 +81,38 @@
 							<h:outputText value="#{componente.clase}" />
 						</p:column>
 					</p:dataTable>
+
+
+					<br />
+					<h2>Skateholders</h2>
+					<p:dataTable var="skateholder"
+						value="#{solucionController.solucion.stakeholders}"
+						id="skateholdersTable"
+						emptyMessage="Esta aplicación no tiene skateholders asociados"
+						scrollable="true">
+						<p:column headerText="#{labels['solucion.skateholder.rol']}">
+							<h:outputText value="#{skateholder.rol}" />
+						</p:column>
+
+						<p:column headerText="#{labels['solucion.skateholder.tipo']}">
+							<h:outputText value="#{skateholder.stakeholder.tipo}" />
+						</p:column>
+
+						<p:column headerText="#{labels['solucion.skateholder.nombre']}">
+							<h:outputText value="#{skateholder.stakeholder.nombre}">
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="#{labels['solucion.skateholder.mail']}">
+							<h:outputText value="#{skateholder.stakeholder.mail}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['solucion.skateholder.telefono']}">
+							<h:outputText value="#{skateholder.stakeholder.telefono}" />
+						</p:column>
+					</p:dataTable>
+
 
 					<h:link outcome="consultaSimple.xhtml" value="volver" />
 				</h:form>

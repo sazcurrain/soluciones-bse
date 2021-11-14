@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -66,7 +67,7 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 		this.fechaVersion = fechaVersion;
 	}
 	
-	@OneToMany(mappedBy = "componente")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "componente")
 	public Set<StakeholdersComponente> getStakeholders() {
 		return stakeholders;
 	}
@@ -74,6 +75,18 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 	public void setStakeholders(Set<StakeholdersComponente> stakeholders) {
 		this.stakeholders = stakeholders;
 	}
+	
+	
+	public void addStakeholders(StakeholdersComponente skate) {
+		this.getStakeholders().add(skate);
+	}
+	
+	public void removeStakeholders(StakeholdersComponente skate) {
+		if(this.getStakeholders().contains(skate)) {
+			this.getStakeholders().remove(skate);
+		}
+	}
+	
 	
 	@Transient
 	public String getClase() {

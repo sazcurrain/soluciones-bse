@@ -6,7 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import uy.com.bse.soluciones.domain.Stakeholder;
-import uy.com.bse.soluciones.domain.StakeholderType;
+import uy.com.bse.soluciones.domain.Enumeradores.StakeholderType;
 
 @XmlRootElement
 public class StakeholderDTO {

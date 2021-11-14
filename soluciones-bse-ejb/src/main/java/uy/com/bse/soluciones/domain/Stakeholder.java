@@ -10,6 +10,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import uy.com.bse.soluciones.domain.Enumeradores.StakeholderType;
+
 
 @Entity
 public class Stakeholder extends BaseEntity<Long> {
