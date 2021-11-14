@@ -10,7 +10,7 @@ import javax.inject.Named;
 
 
 import uy.com.bse.soluciones.domain.Stakeholder;
-import uy.com.bse.soluciones.domain.StakeholderType;
+import uy.com.bse.soluciones.domain.Enumeradores.StakeholderType;
 import uy.com.bse.soluciones.ejbs.StakeholderService;
 
 /**

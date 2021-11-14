@@ -69,6 +69,7 @@ public class AplicacionController implements Serializable {
 			//xhtml, que no es transaccional, da un error.
 			aplicacion.getProvee().size();
 			aplicacion.getConsume().size();
+			aplicacion.getStakeholders().size();
 			if (aplicacion == null) {
 				aplicacion = new Aplicacion();
 			}

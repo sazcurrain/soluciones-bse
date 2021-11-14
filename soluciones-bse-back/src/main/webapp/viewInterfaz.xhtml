@@ -28,8 +28,9 @@
 						<h:outputLabel value="#{labels['interfaz.id']}:*" for="inputId"
 							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputId" value="#{interfazController.interfaz.id}"
-								required="true" size="40"
+							<p:inputText id="inputId"
+								value="#{interfazController.interfaz.id}" required="true"
+								size="40"
 								disabled="#{interfazController.isManaged(interfazController.interfaz.id)}">
 							</p:inputText>
 						</div>
@@ -40,26 +41,12 @@
 							for="inputAplicacion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputAplicacion"
-								value="#{interfazController.interfaz.aplicacion}" required="true"
-								size="60">
+								value="#{interfazController.interfaz.aplicacion}"
+								required="true" size="60">
 								<p:ajax event="blur" process="@this" update="msgAplicacion" />
 							</p:inputText>
-							<h:message id="msgAplicacion" for="inputAplicacion" errorClass="err"
-								warnClass="warn" infoClass="info" />
-						</div>
-					</div>
-					
-						<div class="p-field p-grid" jsf:id="divAplicacion_implementacion">
-						<h:outputLabel value="#{labels['interfaz.aplicacion_implementacion']}:*"
-							for="inputAplicacion_implementacion" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<p:inputText id="inputAplicacion_implementacion"
-								value="#{interfazController.interfaz.aplicacion_implementacion}" required="true"
-								size="60">
-								<p:ajax event="blur" process="@this" update="msgAplicacion_implementacion" />
-							</p:inputText>
-							<h:message id="msgAplicacion_implementacion" for="inputAplicacion_implementacion" errorClass="err"
-								warnClass="warn" infoClass="info" />
+							<h:message id="msgAplicacion" for="inputAplicacion"
+								errorClass="err" warnClass="warn" infoClass="info" />
 						</div>
 					</div>
 
@@ -98,36 +85,43 @@
 							for="inputFechaVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputFechaVersion"
-								value="#{interfazController.interfaz.fechaVersion}" required="true"
-								size="40">
+								value="#{interfazController.interfaz.fechaVersion}"
+								required="true" size="40">
 								<p:ajax event="blur" process="@this" update="msgFechaVersion" />
 							</p:inputText>
-							<h:message id="msgFechaVersion" for="inputFechaVersion" errorClass="err"
-								warnClass="warn" infoClass="info" />
+							<h:message id="msgFechaVersion" for="inputFechaVersion"
+								errorClass="err" warnClass="warn" infoClass="info" />
 
 						</div>
 					</div>
 
 
 					<div class="p-field p-grid" jsf:id="divStakeholdersComponente">
-						<h:outputLabel value="#{labels['interfaz.stakeholdersComponente']}:*"
-							for="inputStakeholdersComponente" class="p-col-fixed" style="width: 150px" />
+						<h:outputLabel
+							value="#{labels['interfaz.stakeholdersComponente']}:*"
+							for="inputStakeholdersComponente" class="p-col-fixed"
+							style="width: 150px" />
 						<div class="p-col">
 							<p:selectOneMenu id="selectStakeholdersComponente"
-								value="#{interfazController.interfaz.stakeholdersComponente}" required="true">
+								value="#{interfazController.interfaz.stakeholdersComponente}"
+								required="true">
 								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
-								<f:selectItems value="#{interfazController.stakeholdersComponenteValues}"
-									var="stakeholdersComponente" itemValue="#{stakeholdersComponente}" itemLabel="#{stakeholdersComponente}"
+								<f:selectItems
+									value="#{interfazController.stakeholdersComponenteValues}"
+									var="stakeholdersComponente"
+									itemValue="#{stakeholdersComponente}"
+									itemLabel="#{stakeholdersComponente}"
 									noSelectionValue="Seleccionar" />
 							</p:selectOneMenu>
-							<h:message id="msgStakeholdersComponente" for="selectStakeholdersComponente" errorClass="err"
+							<h:message id="msgStakeholdersComponente"
+								for="selectStakeholdersComponente" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
 
 					<br />
 
-					<p:commandButton action="#{tiendaController.crearInterfaz}"
+					<p:commandButton action="#{interfazController.crearInterfaz}"
 						value="Confirmar">
 						<f:ajax event="click" execute="@form" render="@form" />
 					</p:commandButton>

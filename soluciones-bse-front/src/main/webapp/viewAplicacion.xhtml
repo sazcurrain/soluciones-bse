@@ -56,6 +56,7 @@
 								value="#{aplicacionController.aplicacion.fechaVersion}"/>
 						</div>
 					</div>
+					
 					<br />
 					<h2>Interfaces provistas</h2>
 					<p:dataTable var="interfaz"
@@ -80,7 +81,35 @@
 							<h:outputText value="#{interfaz.tipo}" />
 						</p:column>
 					</p:dataTable>
+					
+					<br />
+					<h2>Skateholders</h2>
+					<p:dataTable var="skateholder"
+						value="#{aplicacionController.aplicacion.stakeholders}" id="skateholderTable"
+						emptyMessage="Esta aplicación no tiene skateholders asociados" scrollable="true">
+						<p:column headerText="#{labels['aplicacion.skateholder.rol']}">
+							<h:outputText value="#{skateholder.rol}" />
+						</p:column>
 
+						<p:column headerText="#{labels['aplicacion.skateholder.tipo']}">
+							<h:outputText value="#{skateholder.stakeholder.tipo}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['aplicacion.skateholder.nombre']}">
+							<h:outputText value="#{skateholder.stakeholder.nombre}">
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.skateholder.mail']}">
+							<h:outputText value="#{skateholder.stakeholder.mail}" />
+						</p:column>
+						
+						<p:column headerText="#{labels['aplicacion.skateholder.telefono']}">
+							<h:outputText value="#{skateholder.stakeholder.telefono}" />
+						</p:column>
+					</p:dataTable>
+					
 					<h:link outcome="consultaSimple.xhtml" value="volver" />
 				</h:form>
 			</p:outputPanel>

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 import uy.com.bse.soluciones.domain.Interfaz;
 import uy.com.bse.soluciones.ejbs.InterfazService;
@@ -57,9 +58,13 @@ public class InterfazController implements Serializable {
 	 * Si la interfaz existe en la BD retorna esa interfaz
 	 * En caso contrario crea una nueva
 	 */
+	@Transactional
 	public void findInterfazById() {
 		if (interfaz.getId() != null) {
 			interfaz = interfazService.find(interfaz.getId());
+			//Esto lo hacemos para que recorra las interfaces provistas y las instancie, ya que están con fetch lazy, porque si trata de traerlas en el 
+			//xhtml, que no es transaccional, da un error.
+			interfaz.getStakeholders().size();
 			if (interfaz == null) {
 				interfaz = new Interfaz();
 			}
