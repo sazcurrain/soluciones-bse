@@ -38,7 +38,7 @@ public class StakeholderCompController implements Serializable {
 	@PostConstruct
 	public void init() {
 		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		stakeholderC = (StakeholdersComponente) sessionMap.get("stackeholdersComponente");
+		stakeholderC = (StakeholdersComponente) sessionMap.get("stakeholdersComponente");
 	}
 
 	public StakeholdersComponente getStakeholderC() {
