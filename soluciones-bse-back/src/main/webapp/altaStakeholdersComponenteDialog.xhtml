@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/dialogLayout.xhtml">
+
+	<ui:define name="title">#{labels['StakeholdersComponente.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<p:outputPanel>
+				<h:form id="form" prependId="false">
+					<p:messages globalOnly="true" id="mensajesGlobales" />
+
+					<div class="p-field p-grid" jsf:id="divRol">
+						<h:outputLabel value="#{labels['interfaz.tipo']}:*"
+							for="inputRol" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:selectOneMenu id="inputRol"
+								value="#{stakeholderCompController.stakeholderC.rol}" required="true">
+								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+								<f:selectItems value="#{stakeholderCompController.rolStakeholderCompValues}"
+									var="tipo" itemValue="#{tipo}" itemLabel="#{tipo}"
+									noSelectionValue="Seleccionar" />
+								<p:ajax event="change" process="@this"
+									update="msgTipo" />
+							</p:selectOneMenu>
+							<p:message id="msgTipo" for="inputTipo" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<p:commandButton action="#{stakeholderCompController.addStakeholderC}"
+						value="Confirmar" process=":form" update=":form" />
+				</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+

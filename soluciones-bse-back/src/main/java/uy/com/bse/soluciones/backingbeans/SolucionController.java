@@ -79,6 +79,8 @@ public class SolucionController implements Serializable {
 	public void findSolucionById() {
 		if (solucion.getId() != null) {
 			solucion = solucionService.find(solucion.getId());
+			solucion.getComponentes().size();
+			solucion.getStakeholders().size();
 			if (solucion == null) {
 				solucion = new Solucion();
 			}

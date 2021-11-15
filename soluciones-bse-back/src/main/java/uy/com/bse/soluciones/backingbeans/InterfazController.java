@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 import uy.com.bse.soluciones.domain.Interfaz;
 import uy.com.bse.soluciones.ejbs.InterfazService;
@@ -66,9 +67,11 @@ public class InterfazController implements Serializable {
 	 * Si la interfaz existe en la BD retorna esa interfaz
 	 * En caso contrario crea una nueva
 	 */
+	@Transactional
 	public void findInterfazById() {
 		if (interfaz.getId() != null) {
 			interfaz = interfazService.find(interfaz.getId());
+			interfaz.getStakeholders().size();
 			if (interfaz == null) {
 				interfaz = new Interfaz();
 			}

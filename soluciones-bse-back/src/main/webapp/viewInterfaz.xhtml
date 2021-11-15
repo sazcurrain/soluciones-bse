@@ -95,7 +95,6 @@
 						</div>
 					</div>
 
-
 					<div class="p-field p-grid" jsf:id="divStakeholdersComponente">
 						<h:outputLabel
 							value="#{labels['interfaz.stakeholdersComponente']}:*"
@@ -120,13 +119,6 @@
 					</div>
 
 					<br />
-
-					<p:commandButton action="#{interfazController.crearInterfaz}"
-						value="Confirmar">
-						<f:ajax event="click" execute="@form" render="@form" />
-					</p:commandButton>
-
-					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
 
 					<h:link outcome="interfaces.xhtml" value="volver" />
 				</h:form>

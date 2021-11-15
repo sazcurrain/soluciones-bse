@@ -77,6 +77,7 @@
 								errorClass="err" warnClass="warn" infoClass="info" />
 						</div>
 					</div>
+
 					<br />
 					<h2>Interfaces provistas</h2>
 					<p:commandButton value="Nueva" icon="pi pi-plus"
@@ -138,6 +139,7 @@
 						</p:column>
 					</p:dataTable>
 
+					<br />
 					<h2>Interfaces Consumidas</h2>
 					<p:commandButton value="Nueva" icon="pi pi-plus"
 						action="#{aplicacionController.addInterConsume}"
@@ -191,6 +193,70 @@
 						</p:column>
 						<p:column headerText="#{labels['aplicacion.interfaz.nombreApp']}">
 							<h:outputText value="#{interfazC.aplicacion.nombre}" />
+						</p:column>
+					</p:dataTable>
+
+					<br />
+					<h2>Interesados</h2>
+					<p:commandButton value="Nueva" icon="pi pi-plus"
+						action="#{aplicacionController.addStakeholdersComponente}"
+						styleClass="p-mr-2" immediate="true">
+						<p:ajax event="dialogReturn"
+							listener="#{aplicacionController.onAddSkateholder}"
+							update="InteresadosTable" />
+					</p:commandButton>
+					<p:dataTable var="stakeholderComp"
+						value="#{aplicacionController.aplicacion.stakeholders}" id="InteresadosTable"
+						emptyMessage="Esta aplicación no tiene Interesados asociados.">
+
+						<p:column headerText="">
+
+							<p:commandButton icon="pi pi-pencil"
+								action="#{aplicacionController.editStakeholdersComponente(stakeholderComp)}"
+								styleClass="ui-button-info" style="margin-right: 10px;"
+								immediate="true">
+								<p:ajax event="dialogReturn"
+									listener="#{aplicacionController.onEditSkateholder}"
+									update="InteresadosTable" />
+							</p:commandButton>
+							<p:commandButton
+								action="#{aplicacionController.eliminarStakeholder(stakeholderComp)}"
+								update="proveeTable" styleClass="ui-button-danger"
+								icon="pi pi-trash" title="Eliminar" immediate="true">
+								<p:confirm header="Atencion"
+									message="Esta seguro que quiere eliminar el interesado '#{stakeholderComp.stakeholder.nombre}'?"
+									icon="pi pi-info-circle" />
+							</p:commandButton>
+							
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade" responsive="true" width="350">
+								<p:commandButton value="No" type="button"
+									styleClass="ui-confirmdialog-no ui-button-flat" />
+								<p:commandButton value="Si" type="button"
+									styleClass="ui-confirmdialog-yes" />
+							</p:confirmDialog>
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.stakeholderComp.rol']}">
+							<h:outputText value="#{stakeholderComp.rol}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.stakeholderComp.tipo']}">
+							<h:outputText value="#{stakeholderComp.stakeholder.tipo}" />
+						</p:column>
+												
+						<p:column headerText="#{labels['aplicacion.stakeholderComp.nombre']}">
+							<h:outputText value="#{stakeholderComp.stakeholder.nombre}" />
+						</p:column>
+
+
+						<p:column
+							headerText="#{labels['aplicacion.stakeholderComp.mail']}">
+							<h:outputText value="#{stakeholderComp.stakeholder.mail}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.stakeholderComp.telefono']}">
+							<h:outputText value="#{stakeholderComp.stakeholder.telefono}" />
 						</p:column>
 					</p:dataTable>
 

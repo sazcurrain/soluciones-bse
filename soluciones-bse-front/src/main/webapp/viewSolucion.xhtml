@@ -56,6 +56,7 @@
 								value="#{solucionController.solucion.fechaVersion}" />
 						</div>
 					</div>
+					
 					<br />
 					<h2>-Componentes incluidos</h2>
 					<p:dataTable var="componente"
@@ -81,7 +82,6 @@
 							<h:outputText value="#{componente.clase}" />
 						</p:column>
 					</p:dataTable>
-
 
 					<br />
 					<h2>Interesados</h2>
@@ -112,7 +112,6 @@
 							<h:outputText value="#{skateholder.stakeholder.telefono}" />
 						</p:column>
 					</p:dataTable>
-
 
 					<h:link outcome="consultaSimple.xhtml" value="volver" />
 				</h:form>

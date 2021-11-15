@@ -1,42 +1,46 @@
 package uy.com.bse.soluciones.domain;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import uy.com.bse.soluciones.domain.Enumeradores.Rol;
 
 @Entity
-public class StakeholdersComponente extends BaseEntity<Long> {
+
+public class StakeholdersComponente {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	
-	private Long id;
+	private StakeholderComponenteId id;
 	private ComponenteSoftware componente;
 	private Stakeholder stakeholder;
 	private Rol rol;
 
 	public StakeholdersComponente() {
-		// TODO Auto-generated constructor stub
+		this.id = new StakeholderComponenteId();
 	}
 
-	@Id @GeneratedValue @Override
-	public Long getId() {
-		// TODO Auto-generated method stub
-		return this.id;
+
+	@EmbeddedId
+	public StakeholderComponenteId getId() {
+		return id;
 	}
 
-	@Override
-	public void setId(Long id) {
-		// TODO Auto-generated method stub
+
+
+	public void setId(StakeholderComponenteId id) {
 		this.id = id;
 	}
-	
+
+
+
 	@ManyToOne
+	@JoinColumn(name = "componente_id", insertable = false, updatable = false)
 	public ComponenteSoftware getComponente() {
 		return componente;
 	}
@@ -46,6 +50,7 @@ public class StakeholdersComponente extends BaseEntity<Long> {
 	}
 	
 	@ManyToOne
+	@JoinColumn(name = "stakeholder_id", insertable = false, updatable = false)
 	public Stakeholder getStakeholder() {
 		return stakeholder;
 	}

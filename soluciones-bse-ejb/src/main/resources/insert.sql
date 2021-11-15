@@ -40,16 +40,16 @@ INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE
 INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'mengano@gmail.com', 'Mengano', '5555555', 0);
 
 /* hasta aca HIBERNATE_SEQUENCE=16*/
-INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 0, 11, 16);
-INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 1, 11, 15);
-INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 2, 11, 14);
-INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 3, 11, 13);
-INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 0, 9, 16);
-INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 1, 9, 13);
-INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 0, 7, 15);
-INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 1, 7, 14);
-INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 0, 10, 16);
-INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 1, 10, 13);
+INSERT INTO StakeholdersComponente (rol, componente_id, stakeholder_id) values (0, 11, 16);
+INSERT INTO StakeholdersComponente (rol, componente_id, stakeholder_id) values (1, 11, 15);
+INSERT INTO StakeholdersComponente (rol, componente_id, stakeholder_id) values (2, 11, 14);
+INSERT INTO StakeholdersComponente (rol, componente_id, stakeholder_id) values (3, 11, 13);
+INSERT INTO StakeholdersComponente (rol, componente_id, stakeholder_id) values (0, 9, 16);
+INSERT INTO StakeholdersComponente (rol, componente_id, stakeholder_id) values (1, 9, 13);
+INSERT INTO StakeholdersComponente (rol, componente_id, stakeholder_id) values (0, 7, 15);
+INSERT INTO StakeholdersComponente (rol, componente_id, stakeholder_id) values (1, 7, 14);
+INSERT INTO StakeholdersComponente (rol, componente_id, stakeholder_id) values (0, 10, 16);
+INSERT INTO StakeholdersComponente (rol, componente_id, stakeholder_id) values (1, 10, 13);
 
-/* hasta aca HIBERNATE_SEQUENCE=26*/
+/* hasta aca HIBERNATE_SEQUENCE=16*/
 INSERT INTO Ambiente (id, directorio, entorno, puerto, url, aplicacion_id, solInfra_id) values(NEXT VALUE FOR HIBERNATE_SEQUENCE,'---', 0,'8080','http://jboss-desa.bse.com.uy:8080/MAGIK/index.html',9,4);
