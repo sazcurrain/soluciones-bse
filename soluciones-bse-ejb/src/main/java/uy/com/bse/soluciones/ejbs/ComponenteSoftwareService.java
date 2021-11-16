@@ -26,16 +26,6 @@ public class ComponenteSoftwareService extends AbstractService<ComponenteSoftwar
 		String sql = "select TREAT(cs as "+tipo.getName()+") from ComponenteSoftware cs order by cs.nombre";
 		return em.createQuery(sql).getResultList();
 	}
-
-	@Override
-	public ComponenteSoftware update(ComponenteSoftware cs) {
-		ComponenteSoftware nueva = super.update(cs);
-		for (StakeholdersComponente a : cs.getStakeholders()) {
-			a.getId().setComponenteId(nueva.getId());
-			em.merge(a);
-		}
-		return (nueva);
-	}
 	
 	@Override
 	protected EntityManager getEntityManager() {

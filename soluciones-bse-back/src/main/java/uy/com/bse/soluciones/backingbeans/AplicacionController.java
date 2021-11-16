@@ -157,7 +157,7 @@ public class AplicacionController implements Serializable {
 		options.put("modal", true);
 		options.put("width", 640);
 		options.put("height", 440);
-		options.put("contentWidth", "150%");
+		options.put("contentWidth", "100%");
 		options.put("contentHeight", "100%");
 		options.put("headerElement", "customheader");
 
@@ -193,7 +193,6 @@ public class AplicacionController implements Serializable {
 
 	public void onAddSkateholder(SelectEvent<StakeholdersComponente> event) {
 		StakeholdersComponente nueva = event.getObject();
-		nueva.getId().setComponenteId(aplicacion.getId());
 		nueva.setComponente(aplicacion);
 		aplicacion.addStakeholders(nueva);
 	}
@@ -211,28 +210,14 @@ public class AplicacionController implements Serializable {
 		
 		Map<String, Object> options = new HashMap<>();
 		options.put("modal", true);
-		options.put("width", 1540);
-		options.put("height", 440);
-		options.put("contentWidth", "150%");
-		options.put("contentHeight", "100%");
-		options.put("headerElement", "customheader");
-
-		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		sessionMap.put("stakeholdersComponente", new StakeholdersComponente());
-		PrimeFaces.current().dialog().openDynamic("altaStakeholdersComponenteDialog", options, null);
-	}
-
-	public void editStakeholdersComponente(StakeholdersComponente sc) {
-		Map<String, Object> options = new HashMap<>();
-		options.put("modal", true);
-		options.put("width", 1540);
+		options.put("width", 980);
 		options.put("height", 440);
 		options.put("contentWidth", "100%");
 		options.put("contentHeight", "100%");
 		options.put("headerElement", "customheader");
 
 		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		sessionMap.put("stakeholdersComponente", sc);
+		sessionMap.put("stakeholdersComponente", new StakeholdersComponente());
 		PrimeFaces.current().dialog().openDynamic("altaStakeholdersComponenteDialog", options, null);
 	}
 }
