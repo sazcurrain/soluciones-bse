@@ -10,6 +10,7 @@ public class StakeholderComponenteId implements Serializable {
 
 	protected Long componenteId;
 	protected Long stakeholderId;
+	private static final long serialVersionUID = 1L;
 
 	public StakeholderComponenteId() {
 

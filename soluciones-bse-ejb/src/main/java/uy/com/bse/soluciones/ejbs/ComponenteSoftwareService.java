@@ -7,7 +7,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import uy.com.bse.soluciones.domain.Aplicacion;
 import uy.com.bse.soluciones.domain.ComponenteSoftware;
+import uy.com.bse.soluciones.domain.StakeholdersComponente;
 
 @Stateless
 public class ComponenteSoftwareService extends AbstractService<ComponenteSoftware, Long> {
@@ -25,6 +27,16 @@ public class ComponenteSoftwareService extends AbstractService<ComponenteSoftwar
 		return em.createQuery(sql).getResultList();
 	}
 
+	@Override
+	public ComponenteSoftware update(ComponenteSoftware cs) {
+		ComponenteSoftware nueva = super.update(cs);
+		for (StakeholdersComponente a : cs.getStakeholders()) {
+			a.getId().setComponenteId(nueva.getId());
+			em.merge(a);
+		}
+		return (nueva);
+	}
+	
 	@Override
 	protected EntityManager getEntityManager() {
 		return em;

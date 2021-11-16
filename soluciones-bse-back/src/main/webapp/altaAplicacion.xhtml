@@ -211,14 +211,6 @@
 
 						<p:column headerText="">
 
-							<p:commandButton icon="pi pi-pencil"
-								action="#{aplicacionController.editStakeholdersComponente(stakeholderComp)}"
-								styleClass="ui-button-info" style="margin-right: 10px;"
-								immediate="true">
-								<p:ajax event="dialogReturn"
-									listener="#{aplicacionController.onEditSkateholder}"
-									update="InteresadosTable" />
-							</p:commandButton>
 							<p:commandButton
 								action="#{aplicacionController.eliminarStakeholder(stakeholderComp)}"
 								update="proveeTable" styleClass="ui-button-danger"

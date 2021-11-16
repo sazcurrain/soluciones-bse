@@ -31,16 +31,6 @@ public class AplicacionService extends AbstractService<Aplicacion, Long> {
 	}
 
 	@Override
-	public Aplicacion update(Aplicacion aplicacion) {
-		Aplicacion nueva = super.update(aplicacion);
-		for (StakeholdersComponente a : aplicacion.getStakeholders()) {
-			a.getId().setComponenteId(nueva.getId());
-			em.merge(a);
-		}
-		return (nueva);
-	}
-
-	@Override
 	public EntityManager getEntityManager() {
 		return em;
 	}

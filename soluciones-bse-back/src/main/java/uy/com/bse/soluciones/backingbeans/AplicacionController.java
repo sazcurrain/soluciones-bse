@@ -1,5 +1,6 @@
 package uy.com.bse.soluciones.backingbeans;
 
+import java.io.Console;
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -17,7 +18,6 @@ import org.primefaces.event.SelectEvent;
 
 import uy.com.bse.soluciones.domain.Aplicacion;
 import uy.com.bse.soluciones.domain.Interfaz;
-import uy.com.bse.soluciones.domain.StakeholderComponenteId;
 import uy.com.bse.soluciones.domain.StakeholdersComponente;
 import uy.com.bse.soluciones.ejbs.AplicacionService;
 import uy.com.bse.soluciones.ejbs.InterfazService;
@@ -71,6 +71,7 @@ public class AplicacionController implements Serializable {
 	 * @return String con la regla de navegacion
 	 */
 	public String crearAplicacion() {
+		//TODO AEM -- Se cae acá
 		aplicacionService.update(aplicacion);
 		return "aplicaciones.xhtml?faces-redirect=true";
 	}
@@ -146,7 +147,6 @@ public class AplicacionController implements Serializable {
 		options.put("contentWidth", "100%");
 		options.put("contentHeight", "100%");
 		options.put("headerElement", "customheader");
-		// TODO REVISAR CON SERGIO ESTOS 3 RENGLONES
 		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		sessionMap.put("interfaz", new Interfaz());
 		PrimeFaces.current().dialog().openDynamic("altaInterConsumeDialog", options, null);
@@ -194,6 +194,7 @@ public class AplicacionController implements Serializable {
 	public void onAddSkateholder(SelectEvent<StakeholdersComponente> event) {
 		StakeholdersComponente nueva = event.getObject();
 		nueva.getId().setComponenteId(aplicacion.getId());
+		nueva.setComponente(aplicacion);
 		aplicacion.addStakeholders(nueva);
 	}
 
@@ -210,7 +211,7 @@ public class AplicacionController implements Serializable {
 		
 		Map<String, Object> options = new HashMap<>();
 		options.put("modal", true);
-		options.put("width", 640);
+		options.put("width", 1540);
 		options.put("height", 440);
 		options.put("contentWidth", "150%");
 		options.put("contentHeight", "100%");
@@ -224,7 +225,7 @@ public class AplicacionController implements Serializable {
 	public void editStakeholdersComponente(StakeholdersComponente sc) {
 		Map<String, Object> options = new HashMap<>();
 		options.put("modal", true);
-		options.put("width", 640);
+		options.put("width", 1540);
 		options.put("height", 440);
 		options.put("contentWidth", "100%");
 		options.put("contentHeight", "100%");

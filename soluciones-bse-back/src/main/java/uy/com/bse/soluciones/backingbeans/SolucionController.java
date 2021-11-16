@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.transaction.Transactional;
@@ -16,7 +15,6 @@ import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
 import uy.com.bse.soluciones.domain.ComponenteSoftware;
-import uy.com.bse.soluciones.domain.Interfaz;
 import uy.com.bse.soluciones.domain.Solucion;
 import uy.com.bse.soluciones.ejbs.SolucionService;
 
