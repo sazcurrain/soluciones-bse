@@ -197,6 +197,78 @@
 					</p:dataTable>
 
 					<br />
+					<h2>Ambientes</h2>
+					<p:commandButton value="Nueva" icon="pi pi-plus"
+						action="#{aplicacionController.addAmbiente}" styleClass="p-mr-2"
+						immediate="true">
+						<p:ajax event="dialogReturn"
+							listener="#{aplicacionController.onAddAmbiente}"
+							update="ambientesTable" />
+					</p:commandButton>
+					<p:dataTable var="ambiente"
+						value="#{aplicacionController.aplicacion.ambientes}"
+						id="ambientesTable"
+						emptyMessage="Esta aplicación no tiene ambientes asociados"
+						scrollable="true">
+
+						<p:column headerText="">
+							<p:commandButton
+								action="#{aplicacionController.eliminarAmbiente(ambiente)}"
+								update="ambientesTable" styleClass="ui-button-danger"
+								icon="pi pi-trash" title="Eliminar" immediate="true">
+								<p:confirm header="Atencion"
+									message="Esta seguro que quiere eliminar el ambiente '#{ambiente.entorno}'?"
+									icon="pi pi-info-circle" />
+							</p:commandButton>
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade" responsive="true" width="350">
+								<p:commandButton value="No" type="button"
+									styleClass="ui-confirmdialog-no ui-button-flat" />
+								<p:commandButton value="Si" type="button"
+									styleClass="ui-confirmdialog-yes" />
+							</p:confirmDialog>
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.ambiente.entorno']}">
+							<h:outputText value="#{ambiente.entorno}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.ambiente.url']}">
+							<h:outputText value="#{ambiente.url}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.ambiente.puerto']}">
+							<h:outputText value="#{ambiente.puerto}">
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.ambiente.directorio']}">
+							<h:outputText value="#{ambiente.directorio}" />
+						</p:column>
+						<p:column
+							headerText="#{labels['aplicacion.ambiente.solInfra.tipo']}">
+							<h:outputText value="#{ambiente.solInfra.tipo}" />
+						</p:column>
+						<p:column
+							headerText="#{labels['aplicacion.ambiente.solInfra.nombre']}">
+							<h:outputText value="#{ambiente.solInfra.nombre}" />
+						</p:column>
+						<p:column
+							headerText="#{labels['aplicacion.ambiente.solInfra.entornoInfra']}">
+							<h:outputText value="#{ambiente.solInfra.entorno}" />
+						</p:column>
+						<p:column
+							headerText="#{labels['aplicacion.ambiente.solInfra.sistema_operativo']}">
+							<h:outputText value="#{ambiente.solInfra.sistema_operativo}" />
+						</p:column>
+						<p:column
+							headerText="#{labels['aplicacion.ambiente.solInfra.version']}">
+							<h:outputText value="#{ambiente.solInfra.version}" />
+						</p:column>
+					</p:dataTable>
+
+					<br />
 					<h2>Interesados</h2>
 					<p:commandButton value="Nueva" icon="pi pi-plus"
 						action="#{aplicacionController.addStakeholdersComponente}"
@@ -206,7 +278,8 @@
 							update="InteresadosTable" />
 					</p:commandButton>
 					<p:dataTable var="stakeholderComp"
-						value="#{aplicacionController.aplicacion.stakeholders}" id="InteresadosTable"
+						value="#{aplicacionController.aplicacion.stakeholders}"
+						id="InteresadosTable"
 						emptyMessage="Esta aplicación no tiene Interesados asociados.">
 
 						<p:column headerText="">
@@ -219,7 +292,7 @@
 									message="Esta seguro que quiere eliminar el interesado '#{stakeholderComp.stakeholder.nombre}'?"
 									icon="pi pi-info-circle" />
 							</p:commandButton>
-							
+
 							<p:confirmDialog global="true" showEffect="fade"
 								hideEffect="fade" responsive="true" width="350">
 								<p:commandButton value="No" type="button"
@@ -233,11 +306,13 @@
 							<h:outputText value="#{stakeholderComp.rol}" />
 						</p:column>
 
-						<p:column headerText="#{labels['aplicacion.stakeholderComp.tipo']}">
+						<p:column
+							headerText="#{labels['aplicacion.stakeholderComp.tipo']}">
 							<h:outputText value="#{stakeholderComp.stakeholder.tipo}" />
 						</p:column>
-												
-						<p:column headerText="#{labels['aplicacion.stakeholderComp.nombre']}">
+
+						<p:column
+							headerText="#{labels['aplicacion.stakeholderComp.nombre']}">
 							<h:outputText value="#{stakeholderComp.stakeholder.nombre}" />
 						</p:column>
 
@@ -247,7 +322,8 @@
 							<h:outputText value="#{stakeholderComp.stakeholder.mail}" />
 						</p:column>
 
-						<p:column headerText="#{labels['aplicacion.stakeholderComp.telefono']}">
+						<p:column
+							headerText="#{labels['aplicacion.stakeholderComp.telefono']}">
 							<h:outputText value="#{stakeholderComp.stakeholder.telefono}" />
 						</p:column>
 					</p:dataTable>

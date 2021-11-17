@@ -1,6 +1,5 @@
 package uy.com.bse.soluciones.backingbeans;
 
-import java.io.Console;
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -16,6 +15,7 @@ import javax.transaction.Transactional;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
+import uy.com.bse.soluciones.domain.Ambiente;
 import uy.com.bse.soluciones.domain.Aplicacion;
 import uy.com.bse.soluciones.domain.Interfaz;
 import uy.com.bse.soluciones.domain.StakeholdersComponente;
@@ -71,7 +71,6 @@ public class AplicacionController implements Serializable {
 	 * @return String con la regla de navegacion
 	 */
 	public String crearAplicacion() {
-		//TODO AEM -- Se cae acá
 		aplicacionService.update(aplicacion);
 		return "aplicaciones.xhtml?faces-redirect=true";
 	}
@@ -134,6 +133,10 @@ public class AplicacionController implements Serializable {
 	public void eliminarStakeholder(StakeholdersComponente s) {
 		aplicacion.removeStakeholders(s);
 	}
+	
+	public void eliminarAmbiente(Ambiente a) {
+		aplicacion.removeAmbiente(a);
+	}
 
 	public boolean isManaged(Long id) {
 		return id != null;
@@ -191,6 +194,12 @@ public class AplicacionController implements Serializable {
 		aplicacion.addConsume(nueva);
 	}
 
+	public void onAddAmbiente(SelectEvent<Ambiente> event) {
+		Ambiente nueva = event.getObject();
+		nueva.setAplicacion(aplicacion);
+		aplicacion.addAmbiente(nueva);
+	}
+	
 	public void onAddSkateholder(SelectEvent<StakeholdersComponente> event) {
 		StakeholdersComponente nueva = event.getObject();
 		nueva.setComponente(aplicacion);
@@ -202,10 +211,28 @@ public class AplicacionController implements Serializable {
 
 	public void onEditProvee(SelectEvent<Interfaz> event) {
 	}
+	
+	public void onEditAmbiente(SelectEvent<Ambiente> event) {
+	}
 
 	public void onEditSkateholder(SelectEvent<StakeholdersComponente> event) {
 	}
 
+	public void addAmbiente() {
+		
+		Map<String, Object> options = new HashMap<>();
+		options.put("modal", true);
+		options.put("width", 980);
+		options.put("height", 640);
+		options.put("contentWidth", "100%");
+		options.put("contentHeight", "100%");
+		options.put("headerElement", "customheader");
+
+		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		sessionMap.put("ambiente", new Ambiente());
+		PrimeFaces.current().dialog().openDynamic("altaAmbienteDialog", options, null);
+	}
+	
 	public void addStakeholdersComponente() {
 		
 		Map<String, Object> options = new HashMap<>();
