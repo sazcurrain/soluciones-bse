@@ -62,6 +62,13 @@
 					<p:dataTable var="interfazP"
 						value="#{aplicacionController.aplicacion.provee}" id="proveeTable"
 						emptyMessage="Esta aplicación no provee interfaces.">
+						<p:column headerText="">
+							<p:linkButton
+								outcome="#{aplicacionController.getViewUrlInterfaz(interfazP)}"
+								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+							</p:linkButton>
+						</p:column>
+
 						<p:column headerText="#{labels['aplicacion.interfazP.nombre']}">
 							<h:outputText value="#{interfazP.nombre}" />
 						</p:column>
@@ -88,6 +95,13 @@
 						value="#{aplicacionController.aplicacion.provee}"
 						id="ConsumeTable"
 						emptyMessage="Esta aplicación no consume interfaces.">
+						<p:column headerText="">
+							<p:linkButton
+								outcome="#{aplicacionController.getViewUrlInterfaz(interfazC)}"
+								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+							</p:linkButton>
+						</p:column>
+
 						<p:column headerText="#{labels['aplicacion.interfazC.nombre']}">
 							<h:outputText value="#{interfaz.nombre}" />
 						</p:column>
@@ -115,6 +129,12 @@
 						id="ambientesTable"
 						emptyMessage="Esta aplicación no tiene ambientes asociados"
 						scrollable="true">
+												<p:column headerText="">
+							<p:linkButton
+								outcome="#{aplicacionController.getViewUrlAmbiente(ambiente)}"
+								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+							</p:linkButton>
+						</p:column>
 						<p:column headerText="#{labels['aplicacion.ambiente.entorno']}">
 							<h:outputText value="#{ambiente.entorno}" />
 						</p:column>
@@ -160,6 +180,13 @@
 						id="skateholderTable"
 						emptyMessage="Esta aplicación no tiene skateholders asociados"
 						scrollable="true">
+						<p:column headerText="">
+							<p:linkButton
+								outcome="#{solucionController.getViewUrlStakeHolder(skateholder)}"
+								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+							</p:linkButton>
+						</p:column>
+						
 						<p:column headerText="#{labels['aplicacion.skateholder.rol']}">
 							<h:outputText value="#{skateholder.rol}" />
 						</p:column>

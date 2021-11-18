@@ -21,9 +21,8 @@ import uy.com.bse.soluciones.ejbs.ComponenteSoftwareService;
 public class ConsultaSimpleController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private List<ComponenteSoftware> filteredComponentes;
-	
 
 	@EJB
 	ComponenteSoftwareService componenteService;
@@ -39,17 +38,15 @@ public class ConsultaSimpleController implements Serializable {
 	 */
 	public List<ComponenteSoftware> getListaSolInfra() {
 		return componenteService.getComponentes(ComponenteSoftware.class);
-
 	}
-	
-	public List<String> getTipos(){
+
+	public List<String> getTipos() {
 		return componenteService.getTipos();
 	}
-	
+
 	public String getViewUrl(ComponenteSoftware componente) {
-		return "view"+componente.getClase()+".xhtml?id="+componente.getId();
+		return "view" + componente.getClase() + ".xhtml?id=" + componente.getId();
 	}
-	
 
 	public List<ComponenteSoftware> getFilteredComponentes() {
 		return filteredComponentes;

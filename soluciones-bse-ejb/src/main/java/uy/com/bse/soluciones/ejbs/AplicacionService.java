@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import uy.com.bse.soluciones.domain.Ambiente;
 import uy.com.bse.soluciones.domain.Aplicacion;
 
 /**
@@ -27,6 +28,10 @@ public class AplicacionService extends AbstractService<Aplicacion, Long> {
 	@SuppressWarnings("unchecked")
 	public List<Aplicacion> getAplicaciones() {
 		return em.createQuery("select a from Aplicacion a order by a.nombre").getResultList();
+	}
+
+	public Ambiente findAmbienteByid(Long id) {
+		return getEntityManager().find(Ambiente.class, id);
 	}
 
 	@Override

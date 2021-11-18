@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="ambienteId"
+			value="#{ambienteController.ambiente.id}" />
+		<f:viewAction action="#{ambienteController.findAmbienteById}" />
+		<f:viewParam name="clusterId" value="#{clusterController.cluster.id}" />
+		<f:viewAction action="#{clusterController.findClusterById}" />
+	</f:metadata>
+
+	<ui:define name="title">#{labels['cluster.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<p:outputPanel>
+				<h:form id="form" prependId="false">
+
+					<p:messages globalOnly="true" id="mensajesGlobales" />
+
+					<div class="p-field p-grid" jsf:id="divEntorno">
+						<h:outputLabel value="#{labels['ambiente.entorno']}:*"
+							for="inputEntorno" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputEntorno"
+								value="#{ambienteController.ambiente.entorno}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divUrl">
+						<h:outputLabel value="#{labels['ambiente.url']}:*" for="inputUrl"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputUrl"
+								value="#{ambienteController.ambiente.url}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divPuerto">
+						<h:outputLabel value="#{labels['ambiente.puerto']}:*"
+							for="inputPuerto" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputPuerto"
+								value="#{ambienteController.ambiente.puerto}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divDirectorio">
+						<h:outputLabel value="#{labels['ambiente.directorio']}:*"
+							for="inputDirectorio" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputDirectorio"
+								value="#{ambienteController.ambiente.directorio}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divId"
+						jsf:rendered="#{clusterController.isManaged(clusterController.cluster.id)}">
+						<h:outputLabel value="#{labels['cluster.id']}:*" for="inputId"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputId"
+								value="#{clusterController.cluster.id}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divNombre">
+						<h:outputLabel value="#{labels['cluster.nombre']}:*"
+							for="inputNombre" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputNombre"
+								value="#{clusterController.cluster.nombre}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divIps">
+						<h:outputLabel value="#{labels['cluster.IPs']}:*" for="inputIps"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputIps"
+								value="#{clusterController.cluster.IPs}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divCantidadNodos">
+						<h:outputLabel value="#{labels['cluster.cantNodos']}:*"
+							for="inputCantNodos" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputCantidadNodos"
+								value="#{clusterController.cluster.cantNodos}" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divVirtual">
+						<h:outputLabel value="#{labels['cluster.virtual']}:*"
+							for="inputVirtual" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="selectVirtual"
+								value="#{clusterController.cluster.virtual}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divTotalMemoriaRamGB">
+						<h:outputLabel value="#{labels['cluster.totalMemoriaRamGB']}:*"
+							for="inputTotalMemoriaRamGB" class="p-col-fixed"
+							style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputTotalMemoriaRamGB"
+								value="#{clusterController.cluster.totalMemoriaRamGB}" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divTotalAlmacenamientoGB">
+						<h:outputLabel
+							value="#{labels['cluster.totalAlmacenamientoGB']}:*"
+							for="inputTotalAlmacenamientoGB" class="p-col-fixed"
+							style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputTotalAlmacenamientoGB"
+								value="#{clusterController.cluster.totalAlmacenamientoGB}" />
+
+						</div>
+					</div>
+					<div class="p-field p-grid" jsf:id="divTotalNumeroCPU">
+						<h:outputLabel value="#{labels['cluster.totalNumeroCPU']}:*"
+							for="inputTotalNumeroCPU" class="p-col-fixed"
+							style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputTotalNumeroCPU"
+								value="#{clusterController.cluster.totalNumeroCPU}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divSistemaOperativo">
+						<h:outputLabel value="#{labels['cluster.sistema_operativo']}:*"
+							for="inputSistemaOperativo" class="p-col-fixed"
+							style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputSistemaOperativo"
+								value="#{clusterController.cluster.sistema_operativo}" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divVersion">
+						<h:outputLabel value="#{labels['cluster.version']}:*"
+							for="inputVersion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputVersion"
+								value="#{clusterController.cluster.version}" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divClusterEntorno">
+						<h:outputLabel value="#{labels['cluster.entorno']}:*"
+							for="inputClusterEntorno" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputClusterEntorno"
+								value="#{clusterController.cluster.entorno}" />
+						</div>
+					</div>
+
+					<br />
+					<h:link outcome="consultaSimple.xhtml" value="volver" />
+				</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{ambienteController.ambiente.id}" />
+		<f:viewAction action="#{ambienteController.findAmbienteById}" />
+	</f:metadata>
+
+	<ui:define name="title">#{labels['Ambiente.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<p:outputPanel>
+				<h:form id="form" prependId="false">
+					<p:messages globalOnly="true" id="mensajesGlobales" />
+
+					<div class="p-field p-grid" jsf:id="divEntorno">
+						<h:outputLabel value="#{labels['ambiente.entorno']}:*"
+							for="inputEntorno" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputEntorno"
+								value="#{ambienteController.ambiente.entorno}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divUrl">
+						<h:outputLabel value="#{labels['ambiente.url']}:*" for="inputUrl"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputUrl"
+								value="#{ambienteController.ambiente.url}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divPuerto">
+						<h:outputLabel value="#{labels['ambiente.puerto']}:*"
+							for="inputPuerto" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputPuerto"
+								value="#{ambienteController.ambiente.puerto}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divDirectorio">
+						<h:outputLabel value="#{labels['ambiente.directorio']}:*"
+							for="inputDirectorio" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputDirectorio"
+								value="#{ambienteController.ambiente.directorio}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divSolInfraNombre">
+						<h:outputLabel value="#{labels['solInfra.nombre']}:*"
+							for="inputSolInfraNombre" class="p-col-fixed"
+							style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputSolInfraNombre"
+								value="#{ambienteController.ambiente.solInfra.nombre}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divSolInfraTipo">
+						<h:outputLabel value="#{labels['solInfra.Tipo']}:*"
+							for="inputSolInfraTipo" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputSolInfraTipo"
+								value="#{ambienteController.ambiente.solInfra.tipo}" />
+						</div>
+					</div>
+
+
+					<div class="p-field p-grid" jsf:id="divSolInfraSO">
+						<h:outputLabel value="#{labels['solInfra.sistema_operativo']}:*"
+							for="inputSolInfraSO" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputSolInfraSO"
+								value="#{ambienteController.ambiente.solInfra.sistema_operativo}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divSolInfraVersion">
+						<h:outputLabel value="#{labels['solInfra.version']}:*"
+							for="inputSolInfraVersion" class="p-col-fixed"
+							style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputSolInfraVersion"
+								value="#{ambienteController.ambiente.solInfra.version}" />
+						</div>
+					</div>
+
+				</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+
