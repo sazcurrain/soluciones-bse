@@ -64,6 +64,7 @@ public class InterfazController implements Serializable {
 			// que están con fetch lazy, porque si trata de traerlas en el
 			// xhtml, que no es transaccional, da un error.
 			interfaz.getStakeholders().size();
+			interfaz.getConsumidaPor().size();
 			if (interfaz == null) {
 				interfaz = new Interfaz();
 			}

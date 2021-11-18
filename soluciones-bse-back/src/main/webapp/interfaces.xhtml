@@ -30,6 +30,9 @@
 						value="#{interfazController.listaInterfaces}">
 
 						<p:column headerText="">
+							<p:linkButton outcome="viewInterfaz.xhtml?id=#{interfaz.id}"
+								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+							</p:linkButton>
 							<p:linkButton outcome="altaInterfaz.xhtml?id=#{interfaz.id}"
 								icon="pi pi-pencil" style="margin-right:20px;" title="Editar">
 							</p:linkButton>

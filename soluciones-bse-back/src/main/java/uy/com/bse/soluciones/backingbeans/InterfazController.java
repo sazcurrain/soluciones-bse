@@ -79,6 +79,7 @@ public class InterfazController implements Serializable {
 		if (interfaz.getId() != null) {
 			interfaz = interfazService.find(interfaz.getId());
 			interfaz.getStakeholders().size();
+			interfaz.getConsumidaPor().size();
 			if (interfaz == null) {
 				interfaz = new Interfaz();
 			}

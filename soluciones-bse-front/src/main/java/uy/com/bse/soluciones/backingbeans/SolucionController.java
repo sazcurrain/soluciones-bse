@@ -8,6 +8,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
+import uy.com.bse.soluciones.domain.Aplicacion;
 import uy.com.bse.soluciones.domain.ComponenteSoftware;
 import uy.com.bse.soluciones.domain.Solucion;
 import uy.com.bse.soluciones.domain.StakeholdersComponente;
@@ -75,6 +76,10 @@ public class SolucionController implements Serializable {
 	
 	public String getViewUrlComponente(ComponenteSoftware componente) {
 		return "view" + componente.getClase() + ".xhtml?id=" + componente.getId();
+	}
+	
+	public String getViewUrlAplicacionesC(Aplicacion aplicacion) {
+		return "viewAplicacion.xhtml?id=" + aplicacion.getId();
 	}
 	
 	public String getViewUrlStakeHolder(StakeholdersComponente stakeholdersC) {

@@ -50,6 +50,20 @@
 						</div>
 					</div>
 
+					<div class="p-field p-grid" jsf:id="divNombre">
+						<h:outputLabel value="#{labels['interfaz.nombre']}:*"
+							for="inputNombre" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputNombre"
+								value="#{interfazController.interfaz.nombre}" required="true"
+								size="60" disabled="true">
+								<p:ajax event="blur" process="@this" update="msgNombre" />
+							</p:inputText>
+							<h:message id="msgNombre" for="inputNombre" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
 					<div class="p-field p-grid" jsf:id="divVersion">
 						<h:outputLabel value="#{labels['interfaz.version']}:*"
 							for="inputVersion" class="p-col-fixed" style="width: 150px" />
@@ -62,20 +76,6 @@
 							<h:message id="msgVersion" for="inputVersion" errorClass="err"
 								warnClass="warn" infoClass="info" />
 
-						</div>
-					</div>
-
-					<div class="p-field p-grid" jsf:id="divNombre">
-						<h:outputLabel value="#{labels['interfaz.nombre']}:*"
-							for="inputNombre" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<p:inputText id="inputNombre"
-								value="#{interfazController.interfaz.nombre}" required="true"
-								size="60" disabled="true">
-								<p:ajax event="blur" process="@this" update="msgNombre" />
-							</p:inputText>
-							<h:message id="msgNombre" for="inputNombre" errorClass="err"
-								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
 
@@ -93,7 +93,29 @@
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
-					
+
+					<br />
+					<h2>Aplicaciones que la consumen</h2>
+
+					<p:dataTable var="aplicacion"
+						value="#{interfazController.interfaz.consumidaPor}"
+						scrollable="true">
+
+						<p:column headerText="#{labels['aplicacion.nombre']}">
+							<h:outputText value="#{aplicacion.nombre}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.version']}">
+							<h:outputText value="#{aplicacion.version}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.fechaVersion']}">
+							<h:outputText value="#{aplicacion.fechaVersion}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+					</p:dataTable>
+
 					<br />
 					<h2>Interesados</h2>
 					<p:commandButton value="Nueva" icon="pi pi-plus"

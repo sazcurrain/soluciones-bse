@@ -71,11 +71,40 @@
 					</div>
 
 					<br />
+					<h2>Aplicaciones que la consumen</h2>
+
+					<p:dataTable var="aplicacion"
+						value="#{interfazController.interfaz.consumidaPor}"
+						emptyMessage="Esta interfaz no tiene aplicaciones que la consuman"
+						scrollable="true">
+						<p:column headerText="">
+							<p:linkButton
+								outcome="#{solucionController.getViewUrlAplicacionesC(aplicacion)}"
+								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+							</p:linkButton>
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.nombre']}">
+							<h:outputText value="#{aplicacion.nombre}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.version']}">
+							<h:outputText value="#{aplicacion.version}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.fechaVersion']}">
+							<h:outputText value="#{aplicacion.fechaVersion}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+					</p:dataTable>
+
+					<br />
 					<h2>Interesados</h2>
 					<p:dataTable var="skateholder"
 						value="#{interfazController.interfaz.stakeholders}"
 						id="skateholderTable"
-						emptyMessage="Esta aplicación no tiene skateholders asociados"
+						emptyMessage="Esta interfaz no tiene skateholders asociados"
 						scrollable="true">
 						<p:column headerText="">
 							<p:linkButton
