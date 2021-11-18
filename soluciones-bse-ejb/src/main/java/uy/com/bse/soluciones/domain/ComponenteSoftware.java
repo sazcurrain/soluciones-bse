@@ -3,6 +3,7 @@ package uy.com.bse.soluciones.domain;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -67,7 +68,7 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 		this.fechaVersion = fechaVersion;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "componente")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "componente", cascade = CascadeType.ALL, orphanRemoval = true)
 	public Set<StakeholdersComponente> getStakeholders() {
 		return stakeholders;
 	}

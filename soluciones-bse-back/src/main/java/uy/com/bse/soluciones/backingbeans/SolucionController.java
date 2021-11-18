@@ -16,8 +16,8 @@ import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
 import uy.com.bse.soluciones.domain.ComponenteSoftware;
-import uy.com.bse.soluciones.domain.Interfaz;
 import uy.com.bse.soluciones.domain.Solucion;
+import uy.com.bse.soluciones.domain.StakeholdersComponente;
 import uy.com.bse.soluciones.ejbs.SolucionService;
 
 /**
@@ -79,6 +79,8 @@ public class SolucionController implements Serializable {
 	public void findSolucionById() {
 		if (solucion.getId() != null) {
 			solucion = solucionService.find(solucion.getId());
+			solucion.getComponentes().size();
+			solucion.getStakeholders().size();
 			if (solucion == null) {
 				solucion = new Solucion();
 			}
@@ -115,6 +117,35 @@ public class SolucionController implements Serializable {
 	public void eliminarComponente(ComponenteSoftware eliminar) {
 		solucion.removeComponente(eliminar);
 	}
+	
+	public void eliminarStakeholder(StakeholdersComponente s) {
+		solucion.removeStakeholders(s);
+	}
+	
+	public void onAddSkateholder(SelectEvent<StakeholdersComponente> event) {
+		StakeholdersComponente nueva = event.getObject();
+		nueva.setComponente(solucion);
+		solucion.addStakeholders(nueva);
+	}
+	
+	public void onEditSkateholder(SelectEvent<StakeholdersComponente> event) {
+	}
+
+	public void addStakeholdersComponente() {
+		
+		Map<String, Object> options = new HashMap<>();
+		options.put("modal", true);
+		options.put("width", 980);
+		options.put("height", 440);
+		options.put("contentWidth", "100%");
+		options.put("contentHeight", "100%");
+		options.put("headerElement", "customheader");
+
+		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		sessionMap.put("stakeholdersComponente", new StakeholdersComponente());
+		PrimeFaces.current().dialog().openDynamic("altaStakeholdersComponenteDialog", options, null);
+	}
+	
 	public boolean isManaged(Long id) {
 		return id != null;
 	}

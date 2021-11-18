@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="ambienteId"
+			value="#{ambienteController.ambiente.id}" />
+		<f:viewAction action="#{ambienteController.findAmbienteById}" />
+		<f:viewParam name="nubeId" value="#{nubeController.nube.id}" />
+		<f:viewAction action="#{nubeController.findNubeById}" />
+	</f:metadata>
+
+	<ui:define name="title">#{labels['nube.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<p:outputPanel>
+				<h:form id="form" prependId="false">
+
+					<p:messages globalOnly="true" id="mensajesGlobales" />
+
+					<div class="p-field p-grid" jsf:id="divEntorno">
+						<h:outputLabel value="#{labels['ambiente.entorno']}:*"
+							for="inputEntorno" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputEntorno"
+								value="#{ambienteController.ambiente.entorno}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divUrl">
+						<h:outputLabel value="#{labels['ambiente.url']}:*" for="inputUrl"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputUrl"
+								value="#{ambienteController.ambiente.url}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divPuerto">
+						<h:outputLabel value="#{labels['ambiente.puerto']}:*"
+							for="inputPuerto" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputPuerto"
+								value="#{ambienteController.ambiente.puerto}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divDirectorio">
+						<h:outputLabel value="#{labels['ambiente.directorio']}:*"
+							for="inputDirectorio" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputDirectorio"
+								value="#{ambienteController.ambiente.directorio}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divId"
+						jsf:rendered="#{nubeController.isManaged(nubeController.nube.id)}">
+						<h:outputLabel value="#{labels['nube.id']}:*" for="inputId"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputId" value="#{nubeController.nube.id}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divNombre">
+						<h:outputLabel value="#{labels['nube.nombre']}:*"
+							for="inputNombre" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputNombre"
+								value="#{nubeController.nube.nombre}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divNuveUrl">
+						<h:outputLabel value="#{labels['nube.url']}:*" for="inputNuveURL"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputNuveUrl" value="#{nubeController.nube.url}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divSistemaOperativo">
+						<h:outputLabel value="#{labels['nube.sistema_operativo']}:*"
+							for="inputSistemaOperativo" class="p-col-fixed"
+							style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputSistemaOperativo"
+								value="#{nubeController.nube.sistema_operativo}" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divVersion">
+						<h:outputLabel value="#{labels['nube.version']}:*"
+							for="inputVersion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputVersion"
+								value="#{nubeController.nube.version}" />
+
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divNubeEntorno">
+						<h:outputLabel value="#{labels['nube.entorno']}:*"
+							for="inputNubeEntorno" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputNubeEntorno"
+								value="#{nubeController.nube.entorno}" />
+						</div>
+					</div>
+
+					<br />
+					<h:link outcome="consultaSimple.xhtml" value="volver" />
+				</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+

@@ -6,30 +6,34 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import uy.com.bse.soluciones.domain.Ambiente;
 import uy.com.bse.soluciones.domain.Aplicacion;
 
 /**
  * Servicio EJB para la entity Persona
+ * 
  * @author juan
  *
  */
 @Stateless
-public class AplicacionService extends AbstractService<Aplicacion, Long>{
-	
+public class AplicacionService extends AbstractService<Aplicacion, Long> {
+
 	@PersistenceContext(unitName = "soluciones_bse")
 	protected EntityManager em;
-		
-	
+
 	public AplicacionService() {
 		super(Aplicacion.class);
-	}	
-	
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<Aplicacion> getAplicaciones() {
 		return em.createQuery("select a from Aplicacion a order by a.nombre").getResultList();
 	}
-		
-	
+
+	public Ambiente findAmbienteByid(Long id) {
+		return getEntityManager().find(Ambiente.class, id);
+	}
+
 	@Override
 	public EntityManager getEntityManager() {
 		return em;

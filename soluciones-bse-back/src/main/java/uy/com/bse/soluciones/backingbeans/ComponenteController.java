@@ -11,10 +11,7 @@ import javax.transaction.Transactional;
 import org.primefaces.PrimeFaces;
 
 import uy.com.bse.soluciones.domain.ComponenteSoftware;
-import uy.com.bse.soluciones.domain.Interfaz;
-import uy.com.bse.soluciones.domain.Enumeradores.TipoInterfaz;
 import uy.com.bse.soluciones.ejbs.ComponenteSoftwareService;
-import uy.com.bse.soluciones.ejbs.InterfazService;
 
 /**
  * Backing Bean de las pantallas de Componentes

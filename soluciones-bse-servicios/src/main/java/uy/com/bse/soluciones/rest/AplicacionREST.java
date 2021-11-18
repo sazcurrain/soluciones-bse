@@ -1,27 +1,18 @@
 package uy.com.bse.soluciones.rest;
 
 
-import java.net.URI;
-import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.transaction.Transactional;
-import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import uy.com.bse.soluciones.domain.Aplicacion;
-import uy.com.bse.soluciones.domain.Stakeholder;
 import uy.com.bse.soluciones.dto.AplicacionDTO;
-import uy.com.bse.soluciones.dto.InterfazDTO;
-import uy.com.bse.soluciones.dto.StakeholderDTO;
-import uy.com.bse.soluciones.dto.StakeholdersDTO;
 import uy.com.bse.soluciones.ejbs.AplicacionService;
-import uy.com.bse.soluciones.ejbs.StakeholderService;
 
 
 @Stateless

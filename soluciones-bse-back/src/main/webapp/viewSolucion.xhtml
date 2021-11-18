@@ -28,13 +28,14 @@
 						<h:outputLabel value="#{labels['solucion.id']}:*" for="inputId"
 							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputId" value="#{solucionController.solucion.id}"
-								required="true" size="40"
+							<p:inputText id="inputId"
+								value="#{solucionController.solucion.id}" required="true"
+								size="40"
 								disabled="#{solucionController.isManaged(solucionController.solucion.id)}">
 							</p:inputText>
 						</div>
 					</div>
-					
+
 
 					<div class="p-field p-grid" jsf:id="divNombre">
 						<h:outputLabel value="#{labels['solucion.nombre']}:*"
@@ -50,23 +51,23 @@
 						</div>
 					</div>
 
-					
+
 					<div class="p-field p-grid" jsf:id="divDescripcion">
 						<h:outputLabel value="#{labels['solucion.descripcion']}:*"
 							for="inputDescripcion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputDescripcion"
-								value="#{solucionController.solucion.descripcion}" required="true"
-								size="40">
+								value="#{solucionController.solucion.descripcion}"
+								required="true" size="40">
 								<p:ajax event="blur" process="@this" update="msgDescripcion" />
 							</p:inputText>
-							<h:message id="msgDescripcion" for="inputDescripcion" errorClass="err"
-								warnClass="warn" infoClass="info" />
+							<h:message id="msgDescripcion" for="inputDescripcion"
+								errorClass="err" warnClass="warn" infoClass="info" />
 
 						</div>
 					</div>
-					
-						<div class="p-field p-grid" jsf:id="divVersion">
+
+					<div class="p-field p-grid" jsf:id="divVersion">
 						<h:outputLabel value="#{labels['solucion.version']}:*"
 							for="inputVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
@@ -81,7 +82,6 @@
 						</div>
 					</div>
 
-
 					<div class="p-field p-grid" jsf:id="divFechaVersion">
 						<h:outputLabel value="#{labels['solucion.fechaVersion']}:*"
 							for="inputFechaVersion" class="p-col-fixed" style="width: 150px" />
@@ -95,18 +95,65 @@
 							<h:message id="msgFVersion" for="inputFecVer" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
-					</div> 
-				
+					</div>
 
 					<br />
+					<h2>-Componentes incluidos</h2>
+					<p:dataTable var="componente"
+						value="#{solucionController.solucion.componentes}"
+						id="componentesTable"
+						emptyMessage="Esta aplicación no provee interfaces.">
+						<p:column headerText="#{labels['solucion.componente.nombre']}">
+							<h:outputText value="#{componente.nombre}" />
+						</p:column>
 
-					<p:commandButton action="#{tiendaController.crearSolucion}"
-						value="Confirmar">
-						<f:ajax event="click" execute="@form" render="@form" />
-					</p:commandButton>
+						<p:column headerText="#{labels['aplicacion.componente.version']}">
+							<h:outputText value="#{componente.version}" />
+						</p:column>
 
-					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
+						<p:column
+							headerText="#{labels['aplicacion.componente.fechaVersion']}">
+							<h:outputText value="#{componente.fechaVersion}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
 
+						<p:column headerText="#{labels['aplicacion.componente.tipo']}">
+							<h:outputText value="#{componente.clase}" />
+						</p:column>
+					</p:dataTable>
+
+					<br />
+					<h2>Interesados</h2>
+					<p:dataTable var="skateholder"
+						value="#{solucionController.solucion.stakeholders}"
+						id="skateholdersTable"
+						emptyMessage="Esta aplicación no tiene skateholders asociados"
+						scrollable="true">
+						<p:column headerText="#{labels['solucion.skateholder.rol']}">
+							<h:outputText value="#{skateholder.rol}" />
+						</p:column>
+
+						<p:column headerText="#{labels['solucion.skateholder.tipo']}">
+							<h:outputText value="#{skateholder.stakeholder.tipo}" />
+						</p:column>
+
+						<p:column headerText="#{labels['solucion.skateholder.nombre']}">
+							<h:outputText value="#{skateholder.stakeholder.nombre}">
+							</h:outputText>
+						</p:column>
+
+						<p:column headerText="#{labels['solucion.skateholder.mail']}">
+							<h:outputText value="#{skateholder.stakeholder.mail}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['solucion.skateholder.telefono']}">
+							<h:outputText value="#{skateholder.stakeholder.telefono}" />
+						</p:column>
+					</p:dataTable>
+					
+					<br />
 					<h:link outcome="soluciones.xhtml" value="volver" />
 				</h:form>
 			</p:outputPanel>

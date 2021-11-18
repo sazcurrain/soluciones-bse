@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/dialogLayout.xhtml">
+
+	<ui:define name="title">#{labels['Ambiente.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<p:outputPanel>
+				<h:form id="form" prependId="false">
+					<p:messages globalOnly="true" id="mensajesGlobales" />
+
+					<div class="p-field p-grid" jsf:id="divEntorno">
+						<h:outputLabel value="#{labels['ambiente.entorno']}:*"
+							for="inputEntorno" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:selectOneMenu id="inputEntorno"
+								value="#{ambienteController.ambiente.entorno}" required="true">
+								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+								<f:selectItems value="#{ambienteController.entornoValues}"
+									var="entorno" itemValue="#{entorno}" itemLabel="#{entorno}"
+									noSelectionValue="Seleccionar" />
+								<p:ajax event="change" process="@this" update="msgEntorno" />
+							</p:selectOneMenu>
+							<p:message id="msgEntorno" for="inputEntorno" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divUrl">
+						<h:outputLabel value="#{labels['ambiente.url']}:*" for="inputUrl"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputUrl"
+								value="#{ambienteController.ambiente.url}" required="true"
+								size="80">
+								<p:ajax event="blur" process="@this" update="msgUrl" />
+							</p:inputText>
+							<p:message id="msgUrl" for="inputUrl" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divPuerto">
+						<h:outputLabel value="#{labels['ambiente.puerto']}:*"
+							for="inputPuerto" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputPuerto"
+								value="#{ambienteController.ambiente.puerto}" required="true"
+								size="10">
+								<p:ajax event="blur" process="@this" update="msgPuerto" />
+							</p:inputText>
+							<p:message id="msgPuerto" for="inputPuerto" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divDirectorio">
+						<h:outputLabel value="#{labels['ambiente.directorio']}:*" for="inputDirectorio"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputDirectorio"
+								value="#{ambienteController.ambiente.directorio}" required="true"
+								size="80">
+								<p:ajax event="blur" process="@this" update="msgUrl" />
+							</p:inputText>
+							<p:message id="msgDirectorio" for="inputDirectorio" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
+					</div>
+
+					<p:dataTable var="solInfra"
+						value="#{solInfraController.listaSolInfra}" id="solInfraTable"
+						emptyMessage="Esta aplicación no tiene elementos de infraestructura relacionados.">
+
+						<p:column headerText="#{labels['solInfra.nombre']}">
+							<h:outputText value="#{solInfra.nombre}" />
+						</p:column>
+
+						<p:column headerText="#{labels['solInfra.tipo']}">
+							<h:outputText value="#{solInfra.tipo}" />
+						</p:column>
+
+						<p:column headerText="#{labels['solInfra.sistema_operativo']}">
+							<h:outputText value="#{solInfra.sistema_operativo}" />
+						</p:column>
+
+						<p:column headerText="#{labels['solInfra.version']}">
+							<h:outputText value="#{solInfra.version}" />
+						</p:column>
+
+						<p:column>
+							<p:growl id="form" showDetail="true" />
+							<p:commandButton icon="pi pi-check" style="margin-right:20px;"
+								title="Seleccionar"
+								action="#{ambienteController.seleccionaAmbiente(solInfra)}">
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+

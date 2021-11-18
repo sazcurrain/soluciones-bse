@@ -56,12 +56,21 @@
 								value="#{solucionController.solucion.fechaVersion}" />
 						</div>
 					</div>
+
 					<br />
 					<h2>-Componentes incluidos</h2>
 					<p:dataTable var="componente"
 						value="#{solucionController.solucion.componentes}"
 						id="componentesTable"
 						emptyMessage="Esta aplicación no provee interfaces.">
+
+						<p:column headerText="">
+							<p:linkButton
+								outcome="#{solucionController.getViewUrlComponente(componente)}"
+								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+							</p:linkButton>
+						</p:column>
+
 						<p:column headerText="#{labels['solucion.componente.nombre']}">
 							<h:outputText value="#{componente.nombre}" />
 						</p:column>
@@ -82,14 +91,20 @@
 						</p:column>
 					</p:dataTable>
 
-
 					<br />
-					<h2>Skateholders</h2>
+					<h2>Interesados</h2>
 					<p:dataTable var="skateholder"
 						value="#{solucionController.solucion.stakeholders}"
 						id="skateholdersTable"
 						emptyMessage="Esta aplicación no tiene skateholders asociados"
 						scrollable="true">
+						<p:column headerText="">
+							<p:linkButton
+								outcome="#{solucionController.getViewUrlStakeHolder(skateholder)}"
+								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+							</p:linkButton>
+						</p:column>
+
 						<p:column headerText="#{labels['solucion.skateholder.rol']}">
 							<h:outputText value="#{skateholder.rol}" />
 						</p:column>
@@ -107,12 +122,10 @@
 							<h:outputText value="#{skateholder.stakeholder.mail}" />
 						</p:column>
 
-						<p:column
-							headerText="#{labels['solucion.skateholder.telefono']}">
+						<p:column headerText="#{labels['solucion.skateholder.telefono']}">
 							<h:outputText value="#{skateholder.stakeholder.telefono}" />
 						</p:column>
 					</p:dataTable>
-
 
 					<h:link outcome="consultaSimple.xhtml" value="volver" />
 				</h:form>

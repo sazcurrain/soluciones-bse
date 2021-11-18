@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import uy.com.bse.soluciones.adapter.DateAdapter;
-import uy.com.bse.soluciones.domain.Aplicacion;
 import uy.com.bse.soluciones.domain.Interfaz;
 import uy.com.bse.soluciones.domain.Enumeradores.TipoInterfaz;
 

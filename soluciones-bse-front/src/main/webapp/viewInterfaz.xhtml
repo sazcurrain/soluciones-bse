@@ -28,40 +28,35 @@
 						<h:outputLabel value="#{labels['interfaz.id']}:*" for="inputId"
 							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputId" value="#{interfazController.interfaz.id}"
-								required="true" size="40"
-								disabled="#{interfazController.isManaged(interfazController.interfaz.id)}">
-							</p:inputText>
+							<h:outputText id="inputId"
+								value="#{interfazController.interfaz.id}" />
 						</div>
 					</div>
-								
+
+					<div class="p-field p-grid" jsf:id="divAplNombre">
+						<h:outputLabel value="#{labels['interfaz.Aplicacion.nombre']}:*"
+							for="inputAplNombre" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputAplNombre"
+								value="#{interfazController.interfaz.aplicacion.nombre}" />
+						</div>
+					</div>
+
 					<div class="p-field p-grid" jsf:id="divNombre">
 						<h:outputLabel value="#{labels['interfaz.nombre']}:*"
 							for="inputNombre" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputNombre"
-								value="#{interfazController.interfaz.nombre}" required="true"
-								size="60">
-								<p:ajax event="blur" process="@this" update="msgNombre" />
-							</p:inputText>
-							<h:message id="msgNombre" for="inputNombre" errorClass="err"
-								warnClass="warn" infoClass="info" />
+							<h:outputText id="inputNombre"
+								value="#{interfazController.interfaz.nombre}" />
 						</div>
 					</div>
 
-					
 					<div class="p-field p-grid" jsf:id="divVersion">
 						<h:outputLabel value="#{labels['interfaz.version']}:*"
 							for="inputVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputVersion"
-								value="#{interfazController.interfaz.version}" required="true"
-								size="40">
-								<p:ajax event="blur" process="@this" update="msgVersion" />
-							</p:inputText>
-							<h:message id="msgVersion" for="inputVersion" errorClass="err"
-								warnClass="warn" infoClass="info" />
-
+							<h:outputText id="inputVersion"
+								value="#{interfazController.interfaz.version}" />
 						</div>
 					</div>
 
@@ -69,22 +64,55 @@
 						<h:outputLabel value="#{labels['interfaz.fechaVersion']}:*"
 							for="inputFechaVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputFechaVersion"
-								value="#{interfazController.interfaz.fechaVersion}" required="true"
-								size="40">
-								<p:ajax event="blur" process="@this" update="msgFechaVersion" />
-							</p:inputText>
-							<h:message id="msgFechaVersion" for="inputFechaVersion" errorClass="err"
-								warnClass="warn" infoClass="info" />
+							<h:outputText id="inputFechaVersion"
+								value="#{interfazController.interfaz.fechaVersion}" />
 
 						</div>
 					</div>
-					
-										<br />
-					<h2>Skateholders</h2>
+
+					<br />
+					<h2>Aplicaciones que la consumen</h2>
+
+					<p:dataTable var="aplicacion"
+						value="#{interfazController.interfaz.consumidaPor}"
+						emptyMessage="Esta interfaz no tiene aplicaciones que la consuman"
+						scrollable="true">
+						<p:column headerText="">
+							<p:linkButton
+								outcome="#{solucionController.getViewUrlAplicacionesC(aplicacion)}"
+								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+							</p:linkButton>
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.nombre']}">
+							<h:outputText value="#{aplicacion.nombre}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.version']}">
+							<h:outputText value="#{aplicacion.version}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.fechaVersion']}">
+							<h:outputText value="#{aplicacion.fechaVersion}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+					</p:dataTable>
+
+					<br />
+					<h2>Interesados</h2>
 					<p:dataTable var="skateholder"
-						value="#{interfazController.interfaz.stakeholders}" id="skateholderTable"
-						emptyMessage="Esta aplicación no tiene skateholders asociados" scrollable="true">
+						value="#{interfazController.interfaz.stakeholders}"
+						id="skateholderTable"
+						emptyMessage="Esta interfaz no tiene skateholders asociados"
+						scrollable="true">
+						<p:column headerText="">
+							<p:linkButton
+								outcome="#{solucionController.getViewUrlStakeHolder(skateholder)}"
+								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+							</p:linkButton>
+						</p:column>
+
 						<p:column headerText="#{labels['interfaz.skateholder.rol']}">
 							<h:outputText value="#{skateholder.rol}" />
 						</p:column>
@@ -93,8 +121,7 @@
 							<h:outputText value="#{skateholder.stakeholder.tipo}" />
 						</p:column>
 
-						<p:column
-							headerText="#{labels['interfaz.skateholder.nombre']}">
+						<p:column headerText="#{labels['interfaz.skateholder.nombre']}">
 							<h:outputText value="#{skateholder.stakeholder.nombre}">
 							</h:outputText>
 						</p:column>
@@ -102,21 +129,13 @@
 						<p:column headerText="#{labels['interfaz.skateholder.mail']}">
 							<h:outputText value="#{skateholder.stakeholder.mail}" />
 						</p:column>
-						
+
 						<p:column headerText="#{labels['interfaz.skateholder.telefono']}">
 							<h:outputText value="#{skateholder.stakeholder.telefono}" />
 						</p:column>
 					</p:dataTable>
 
 					<br />
-
-					<p:commandButton action="#{tiendaController.crearInterfaz}"
-						value="Confirmar">
-						<f:ajax event="click" execute="@form" render="@form" />
-					</p:commandButton>
-
-					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
-
 					<h:link outcome="consultaSimple.xhtml" value="volver" />
 				</h:form>
 			</p:outputPanel>

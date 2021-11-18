@@ -1,9 +1,3 @@
-INSERT INTO PROFESION (ID,DESCRIPCION) VALUES (1, 'INGENIERO')
-INSERT INTO PROFESION (ID,DESCRIPCION) VALUES (2, 'COCINERO')
-INSERT INTO PROFESION (ID,DESCRIPCION) VALUES (3, 'ESTUDIANTE')
-INSERT INTO PROFESION (ID,DESCRIPCION) VALUES (4, 'DOCENTE')
-INSERT INTO PROFESION (ID,DESCRIPCION) VALUES (5, 'CARPINTERO')
-
 INSERT INTO SolInfra (nombre, entorno, sistema_operativo, version, id) VALUES ('TuHBSEapp_IOS', 0,'IOS','2.5',NEXT VALUE FOR HIBERNATE_SEQUENCE)
 INSERT INTO SolInfra (nombre, entorno, sistema_operativo, version, id) VALUES ('TuHBSEapp_ANDROID',1,'Android','2.5',NEXT VALUE FOR HIBERNATE_SEQUENCE)
 INSERT INTO SolInfra (nombre, entorno, sistema_operativo, version, id) VALUES ('BSE_CLOUD',0,'Linux','2.5',NEXT VALUE FOR HIBERNATE_SEQUENCE)
@@ -32,18 +26,20 @@ INSERT INTO ComponenteSoftware(id,fechaVersioN, nombre, version) values (NEXT VA
 INSERT INTO Interfaz(implementacion, tipo , id, aplicacion_id) values (0, 1, 10, 9);
 INSERT INTO app_consume_inter (app_fk, inter_fk) values (7,10);
 
+/* hasta aca HIBERNATE_SEQUENCE=10*/
 INSERT INTO ComponenteSoftware(id,fechaVersioN, nombre, version) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '2021-10-01', 'Historia Clinica Electrónica', '2021');
 INSERT INTO Solucion(id,descripcion) VALUES(11,'Soft componentes de la HCE');
 INSERT INTO Solucion_ComponenteSoftware (Solucion_id, componentes_id) values (11,9);
 INSERT INTO Solucion_ComponenteSoftware (Solucion_id, componentes_id) values (11,7);
 
+/* hasta aca HIBERNATE_SEQUENCE=11*/
 INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'cacho@gmail.com', 'Cacho', '9999999', 1);
 INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'pepe@gmail.com', 'Pepe', '88888888', 0);
 INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'fulano@gmail.com', 'Fulano', '777777', 0);
 INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'toto@gmail.com', 'Toto', '66666666', 1);
 INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'mengano@gmail.com', 'Mengano', '5555555', 0);
 
-
+/* hasta aca HIBERNATE_SEQUENCE=16*/
 INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 0, 11, 16);
 INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 1, 11, 15);
 INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 2, 11, 14);
@@ -54,3 +50,6 @@ INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) valu
 INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 1, 7, 14);
 INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 0, 10, 16);
 INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 1, 10, 13);
+
+/* hasta aca HIBERNATE_SEQUENCE=26*/
+INSERT INTO Ambiente (id, directorio, entorno, puerto, url, aplicacion_id, solInfra_id) values(NEXT VALUE FOR HIBERNATE_SEQUENCE,'---', 0,'8080','http://jboss-desa.bse.com.uy:8080/MAGIK/index.html',9,4);

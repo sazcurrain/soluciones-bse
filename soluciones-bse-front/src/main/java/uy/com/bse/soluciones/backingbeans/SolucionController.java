@@ -8,7 +8,10 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
+import uy.com.bse.soluciones.domain.Aplicacion;
+import uy.com.bse.soluciones.domain.ComponenteSoftware;
 import uy.com.bse.soluciones.domain.Solucion;
+import uy.com.bse.soluciones.domain.StakeholdersComponente;
 import uy.com.bse.soluciones.ejbs.SolucionService;
 
 /**
@@ -29,13 +32,6 @@ public class SolucionController implements Serializable {
 	
 	@EJB
 	SolucionService SolucionService;
-	
-	//@EJB
-	//AplicacionService aplicacionService;
-	
-	//@EJB
-	//InterfazService interfazService;
-	
 	
 	public SolucionController() {
 		
@@ -76,6 +72,18 @@ public class SolucionController implements Serializable {
 				solucion = new Solucion();
 			}
 		}
+	}
+	
+	public String getViewUrlComponente(ComponenteSoftware componente) {
+		return "view" + componente.getClase() + ".xhtml?id=" + componente.getId();
+	}
+	
+	public String getViewUrlAplicacionesC(Aplicacion aplicacion) {
+		return "viewAplicacion.xhtml?id=" + aplicacion.getId();
+	}
+	
+	public String getViewUrlStakeHolder(StakeholdersComponente stakeholdersC) {
+		return "viewStakeholder.xhtml?id=" + stakeholdersC.getId();
 	}
 	
 	public boolean isManaged(Long id) {

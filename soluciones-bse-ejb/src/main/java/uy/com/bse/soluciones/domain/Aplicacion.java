@@ -20,7 +20,7 @@ public class Aplicacion extends ComponenteSoftware {
 	private static final long serialVersionUID = 1L;
 	private Set<Interfaz> provee = new HashSet<Interfaz>();
 	private Set<Interfaz> consume = new HashSet<Interfaz>();
-	//private Set<Ambiente> ambientes= new HashSet<Ambiente>();
+	private Set<Ambiente> ambientes= new HashSet<Ambiente>();
 	
 	@OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "aplicacion", cascade = CascadeType.ALL)
 	public Set<Interfaz> getProvee() {
@@ -60,19 +60,29 @@ public class Aplicacion extends ComponenteSoftware {
 			this.getConsume().remove(inter);
 		}
 	}
+	
+	public void addAmbiente(Ambiente ambiente) {
+		this.getAmbientes().add(ambiente);
+	}
+	
+	public void removeAmbiente(Ambiente ambiente) {
+		if(this.getAmbientes().contains(ambiente)) {
+			this.getAmbientes().remove(ambiente);
+		}
+	}
 
 	public Aplicacion() {
 		super();
 	}
 
 	
-//	@OneToMany(mappedBy = "aplicacion")
-//	public Set<Ambiente> getAmbientes() {
-//		return ambientes;
-//	}
-//
-//	public void setAmbientes(Set<Ambiente> ambientes) {
-//		this.ambientes = ambientes;
-//	}
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "aplicacion", cascade = CascadeType.ALL, orphanRemoval = true)
+	public Set<Ambiente> getAmbientes() {
+		return ambientes;
+	}
+
+	public void setAmbientes(Set<Ambiente> ambientes) {
+		this.ambientes = ambientes;
+	}
 
 }
