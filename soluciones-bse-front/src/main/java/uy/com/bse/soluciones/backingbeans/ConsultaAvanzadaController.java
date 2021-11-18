@@ -1,10 +1,12 @@
 package uy.com.bse.soluciones.backingbeans;
 
 import java.io.Serializable;
+import java.time.temporal.Temporal;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -12,7 +14,10 @@ import javax.inject.Named;
 import org.primefaces.model.LazyDataModel;
 
 import uy.com.bse.soluciones.domain.ComponenteSoftware;
+import uy.com.bse.soluciones.domain.Interfaz;
+import uy.com.bse.soluciones.domain.Enumeradores.TipoInterfaz;
 import uy.com.bse.soluciones.ejbs.ComponenteSoftwareService;
+import uy.com.bse.soluciones.ejbs.InterfazService;
 import uy.com.bse.soluciones.model.LazyComponenteDataModel;
 
 /**
@@ -34,27 +39,19 @@ public class ConsultaAvanzadaController implements Serializable {
 
 	@EJB
 	ComponenteSoftwareService componenteService;
+	
+	private String clase;
 
 	public ConsultaAvanzadaController() {
 
 	}
 	
-	/*@PostConstruct
-	public void init() {
-		filteredComponentes = new LazyComponenteDataModel(componenteService);
-	}*/
-	/**
-	 * Retorno la lista de SolInfra cargadas en la BD
-	 * 
-	 * @return List<Servidor>
-	 */
-	public List<ComponenteSoftware> getListaSolInfra() {
-		return componenteService.getComponentes(ComponenteSoftware.class);
-
-	}
-	
 	public List<String> getTipos(){
 		return componenteService.getTipos();
+	}
+	
+	public TipoInterfaz[] getTiposInterfaz() {
+		return TipoInterfaz.values();
 	}
 	
 	public String getViewUrl(ComponenteSoftware componente) {
@@ -69,5 +66,13 @@ public class ConsultaAvanzadaController implements Serializable {
 
 	public void setFilteredComponentes(LazyComponenteDataModel filteredComponentes) {
 		this.filteredComponentes = filteredComponentes;
+	}
+	
+	public String getClase() {
+		return clase;
+	}
+
+	public void setClase(String clase) {
+		this.clase = clase;
 	}
 }

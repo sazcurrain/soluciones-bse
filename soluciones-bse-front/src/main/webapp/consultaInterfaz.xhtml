@@ -7,28 +7,16 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
-
-<ui:composition template="templates/layout.xhtml">
-
-	<ui:define name="title">Consulta Avanzada</ui:define>
-
-
-	<ui:define name="body">
-
-
-		<div jsf:id="divGlobal">
-
-			<h:messages id="globalMessage" globalOnly="true" errorClass="err"
-				warnClass="warn" infoClass="info" />
-
-
 			<h:form>
 				<div class="card">
-					<p:dataTable var="componente" id="componentesTable"
+					<p:dataTable var="componente"
 						value="#{avanzadaController.filteredComponentes}"
-						emptyMessage="No hay resultados" paginator="true" rows="2"
+						emptyMessage="No hay resultados"
+						paginator="true" rows="2"
 						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-						rowsPerPageTemplate="5,10,15" widgetVar="componenteTable">
+						rowsPerPageTemplate="2,5,15"
+						widgetVar="componenteTable">
+
 						<p:column headerText="">
 							<p:linkButton
 								outcome="#{avanzadaController.getViewUrl(componente)}"
@@ -42,15 +30,14 @@
 							<h:outputText value="#{componente.nombre}" />
 						</p:column>
 
-						<p:column headerText="#{labels['componente.clase']}"
-							filterBy="#{componente.clase}" filterMatchMode="exact">
+						<p:column headerText="#{labels['componente.clase']}" filterBy="#{componente.clase}"
+							filterMatchMode="exact">
 							<f:facet name="filter">
 								<p:selectOneMenu onchange="PF('componenteTable').filter()"
-									styleClass="custom-filter" value="#{avanzadaController.clase}">
+									styleClass="custom-filter">
 									<f:selectItem itemLabel="All" itemValue="#{null}"
 										noSelectionOption="true" />
-									<f:selectItems value="#{avanzadaController.tipos}" />
-									<p:ajax update="componentesTable"></p:ajax>
+									<f:selectItems value="#{simpleController.tipos}" />
 								</p:selectOneMenu>
 							</f:facet>
 							<h:outputText value="#{componente.clase}" />
@@ -59,33 +46,18 @@
 						<p:column headerText="#{labels['componente.version']}">
 							<h:outputText value="#{componente.version}" />
 						</p:column>
+						
+						<p:column headerText="#{labels['interfaz.tipo']}">
+							<h:outputText value="#{componente.tipo}" />
+						</p:column>
 
 						<p:column headerText="#{labels['componente.fechaVersion']}">
 							<h:outputText value="#{componente.fechaVersion}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
-
-						<p:column headerText="Tipo"
-							rendered='#{avanzadaController.clase eq "Interfaz"}'
-							filterBy="#{componente.tipo}" filterMatchMode="exact">
-							<f:facet name="filter">
-								<p:selectOneMenu onchange="PF('componenteTable').filter()"
-									styleClass="custom-filter">
-									<f:selectItem itemLabel="All" itemValue="#{null}"
-										noSelectionOption="true" />
-									<f:selectItems value="#{avanzadaController.tiposInterfaz}" />
-								</p:selectOneMenu>
-							</f:facet>
-							<h:outputText value="#{componente.tipo}" />
-						</p:column>
 					</p:dataTable>
 				</div>
 			</h:form>
-		</div>
-
-	</ui:define>
-
-</ui:composition>
 </html>
 
