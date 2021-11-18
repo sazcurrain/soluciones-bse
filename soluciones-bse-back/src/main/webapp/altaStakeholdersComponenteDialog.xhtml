@@ -20,25 +20,56 @@
 					<p:messages globalOnly="true" id="mensajesGlobales" />
 
 					<div class="p-field p-grid" jsf:id="divRol">
-						<h:outputLabel value="#{labels['interfaz.tipo']}:*"
-							for="inputRol" class="p-col-fixed" style="width: 150px" />
+						<h:outputLabel value="#{labels['interfaz.tipo']}:*" for="inputRol"
+							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:selectOneMenu id="inputRol"
-								value="#{stakeholderCompController.stakeholderC.rol}" required="true">
+								value="#{stakeholderCompController.stakeholderC.rol}"
+								required="true">
 								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
-								<f:selectItems value="#{stakeholderCompController.rolStakeholderCompValues}"
-									var="tipo" itemValue="#{tipo}" itemLabel="#{tipo}"
+								<f:selectItems
+									value="#{stakeholderCompController.rolStakeholderCompValues}"
+									var="rol" itemValue="#{rol}" itemLabel="#{rol}"
 									noSelectionValue="Seleccionar" />
-								<p:ajax event="change" process="@this"
-									update="msgTipo" />
+								<p:ajax event="change" process="@this" update="msgRol" />
 							</p:selectOneMenu>
-							<p:message id="msgTipo" for="inputTipo" errorClass="err"
+							<p:message id="msgRol" for="inputRol" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
 
-					<p:commandButton action="#{stakeholderCompController.addStakeholderC}"
-						value="Confirmar" process=":form" update=":form" />
+
+					<p:dataTable var="stakeholder"
+						value="#{stakeholderController.listaStakeholder}"
+						id="stakeholderTable"
+						emptyMessage="Esta aplicación no tiene interesados relacionados.">
+
+						<p:column headerText="#{labels['aplicacion.stakeholder.nombre']}">
+							<h:outputText value="#{stakeholder.nombre}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.stakeholder.mail']}">
+							<h:outputText value="#{stakeholder.mail}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['aplicacion.stakeholder.telefono']}">
+							<h:outputText value="#{stakeholder.telefono}" />
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.stakeholder.tipo']}">
+							<h:outputText value="#{stakeholder.tipo}" />
+						</p:column>
+
+						<p:column>
+							<p:growl id="form" showDetail="true" />
+							<p:commandButton icon="pi pi-check" style="margin-right:20px;"
+								title="Seleccionar"
+								action="#{stakeholderCompController.seleccionaInterfaz(stakeholder)}">
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
 				</h:form>
 			</p:outputPanel>
 		</div>

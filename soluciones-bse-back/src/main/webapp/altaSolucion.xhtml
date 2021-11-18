@@ -60,8 +60,8 @@
 								required="true" size="40">
 								<p:ajax event="blur" process="@this" update="msgDescripcion" />
 							</p:inputText>
-							<h:message id="msgDescripcion" for="inputDescripcion" errorClass="err"
-								warnClass="warn" infoClass="info" />
+							<h:message id="msgDescripcion" for="inputDescripcion"
+								errorClass="err" warnClass="warn" infoClass="info" />
 
 						</div>
 					</div>
@@ -95,13 +95,10 @@
 							<h:message id="msgFVersion" for="inputFecVer" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
-					</div> 
-									
-	    	<br />
-	    	
-	    	<!-- inicio cambiar pat -->
-	    	
-	    						<h2>SW Componentes de la Solución</h2>
+					</div>
+
+					<br />
+					<h2>SW Componentes de la Solución</h2>
 					<p:commandButton value="Agregar" icon="pi pi-plus"
 						action="#{solucionController.selectComponente}"
 						styleClass="p-mr-2" immediate="true">
@@ -148,14 +145,71 @@
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
-						
-					<p:column headerText="#{labels['solucion.componente.clase']}">
-						<h:outputText value="#{componenteC.clase}" />
-					</p:column>
-						
+
+						<p:column headerText="#{labels['solucion.componente.clase']}">
+							<h:outputText value="#{componenteC.clase}" />
+						</p:column>
+
 					</p:dataTable>
-	    	
-	    	<!-- fin cambiar  pat -->
+
+					<br />
+					<h2>Interesados</h2>
+					<p:commandButton value="Nueva" icon="pi pi-plus"
+						action="#{solucionController.addStakeholdersComponente}"
+						styleClass="p-mr-2" immediate="true">
+						<p:ajax event="dialogReturn"
+							listener="#{solucionController.onAddSkateholder}"
+							update="InteresadosTable" />
+					</p:commandButton>
+					<p:dataTable var="stakeholderComp"
+						value="#{solucionController.solucion.stakeholders}"
+						id="InteresadosTable"
+						emptyMessage="Esta solucion no tiene Interesados asociados.">
+
+						<p:column headerText="">
+
+							<p:commandButton
+								action="#{solucionController.eliminarStakeholder(stakeholderComp)}"
+								update="InteresadosTable" styleClass="ui-button-danger"
+								icon="pi pi-trash" title="Eliminar" immediate="true">
+								<p:confirm header="Atencion"
+									message="Esta seguro que quiere eliminar el interesado '#{stakeholderComp.stakeholder.nombre}'?"
+									icon="pi pi-info-circle" />
+							</p:commandButton>
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade" responsive="true" width="350">
+								<p:commandButton value="No" type="button"
+									styleClass="ui-confirmdialog-no ui-button-flat" />
+								<p:commandButton value="Si" type="button"
+									styleClass="ui-confirmdialog-yes" />
+							</p:confirmDialog>
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.stakeholderComp.rol']}">
+							<h:outputText value="#{stakeholderComp.rol}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['aplicacion.stakeholderComp.tipo']}">
+							<h:outputText value="#{stakeholderComp.stakeholder.tipo}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['aplicacion.stakeholderComp.nombre']}">
+							<h:outputText value="#{stakeholderComp.stakeholder.nombre}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['aplicacion.stakeholderComp.mail']}">
+							<h:outputText value="#{stakeholderComp.stakeholder.mail}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['aplicacion.stakeholderComp.telefono']}">
+							<h:outputText value="#{stakeholderComp.stakeholder.telefono}" />
+						</p:column>
+					</p:dataTable>
 
 					<p:commandButton action="#{solucionController.crearSolucion}"
 						value="Confirmar">

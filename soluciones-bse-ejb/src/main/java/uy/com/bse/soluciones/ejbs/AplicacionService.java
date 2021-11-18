@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import uy.com.bse.soluciones.domain.Aplicacion;
-import uy.com.bse.soluciones.domain.StakeholdersComponente;
 
 /**
  * Servicio EJB para la entity Persona
@@ -28,16 +27,6 @@ public class AplicacionService extends AbstractService<Aplicacion, Long> {
 	@SuppressWarnings("unchecked")
 	public List<Aplicacion> getAplicaciones() {
 		return em.createQuery("select a from Aplicacion a order by a.nombre").getResultList();
-	}
-
-	@Override
-	public Aplicacion update(Aplicacion aplicacion) {
-		Aplicacion nueva = super.update(aplicacion);
-		for (StakeholdersComponente a : aplicacion.getStakeholders()) {
-			a.getId().setComponenteId(nueva.getId());
-			em.merge(a);
-		}
-		return (nueva);
 	}
 
 	@Override

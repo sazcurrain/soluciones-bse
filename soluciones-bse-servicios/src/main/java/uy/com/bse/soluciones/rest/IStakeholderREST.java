@@ -11,7 +11,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import uy.com.bse.soluciones.domain.Stakeholder;
 import uy.com.bse.soluciones.dto.StakeholderDTO;
 
 @Path("stakeholders")

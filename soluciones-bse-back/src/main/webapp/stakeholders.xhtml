@@ -6,14 +6,13 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <ui:composition template="templates/layout.xhtml">
 
 	<ui:define name="title">Lista de Interesados</ui:define>
 
- 
+
 	<ui:define name="body">
 
 
@@ -22,55 +21,60 @@
 		<br />
 		<br />
 
-		
+
 		<div jsf:id="divGlobal">
 
-		<h:messages id="globalMessage" globalOnly="true" errorClass="err"
-			warnClass="warn" infoClass="info" />
+			<h:messages id="globalMessage" globalOnly="true" errorClass="err"
+				warnClass="warn" infoClass="info" />
 
 
-		<h:form>
+			<h:form>
 
-			<div class="card">
-				<p:dataTable var="stakeholder"
-					value="#{stakeholderController.listaStakeholder}">
+				<div class="card">
+					<p:dataTable var="stakeholder"
+						value="#{stakeholderController.listaStakeholder}">
 
-					<p:column headerText="">
-						<h:link outcome="altaStakeholder.xhtml?id=#{stakeholder.id}">
-							<h:graphicImage value="/resources/images/edit.png" height="20px"
-								width="20px" title="Editar" style="border: none" />
-						</h:link>
-						
-						 <p:commandLink action="#{stakeholderController.eliminar(stakeholder)}" update="divGlobal" styleClass="ui-button-danger" icon="pi pi-times">
-            				<h:graphicImage value="/resources/images/delete.png" height="24px" width="24px" title="Eliminar" style="border: none" />
-            				<p:confirm header="Atencion" message="Esta seguro que quiere eliminar?" icon="pi pi-info-circle"/>
-        				</p:commandLink>
-        				
-        				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
-            				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
-            				<p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" />
-        				</p:confirmDialog>
-						
-					</p:column>
+						<p:column headerText="">
+							<p:linkButton
+								outcome="altaStakeholder.xhtml?id=#{stakeholder.id}"
+								icon="pi pi-pencil" style="margin-right:20px;" title="Editar">
+							</p:linkButton>
+							<p:commandButton
+								action="#{stakeholderController.eliminar(stakeholder)}"
+								update="divGlobal" styleClass="ui-button-danger"
+								icon="pi pi-trash" title="Eliminar">
+								<p:confirm header="Atencion"
+									message="Esta seguro que quiere eliminar el interesado '#{aplicacion.nombre}'?"
+									icon="pi pi-info-circle" />
+							</p:commandButton>
 
-					<p:column headerText="#{labels['stakeholder.nombre']}">
-						<h:outputText value="#{stakeholder.nombre}" />
-					</p:column>
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade" responsive="true" width="350">
+								<p:commandButton value="No" type="button"
+									styleClass="ui-confirmdialog-no ui-button-flat" />
+								<p:commandButton value="Si" type="button"
+									styleClass="ui-confirmdialog-yes" />
+							</p:confirmDialog>
+						</p:column>
 
-					<p:column headerText="#{labels['stakeholder.tipo']}">
-						<h:outputText value="#{stakeholder.tipo}" />
-					</p:column>
+						<p:column headerText="#{labels['stakeholder.nombre']}">
+							<h:outputText value="#{stakeholder.nombre}" />
+						</p:column>
 
-					<p:column headerText="#{labels['stakeholder.mail']}">
-						<h:outputText value="#{stakeholder.mail}" />
-					</p:column>
+						<p:column headerText="#{labels['stakeholder.tipo']}">
+							<h:outputText value="#{stakeholder.tipo}" />
+						</p:column>
 
-					<p:column headerText="#{labels['stakeholder.telefono']}">
-						<h:outputText value="#{stakeholder.telefono}" />
-					</p:column>
-				</p:dataTable>
-			</div>
-		</h:form>
+						<p:column headerText="#{labels['stakeholder.mail']}">
+							<h:outputText value="#{stakeholder.mail}" />
+						</p:column>
+
+						<p:column headerText="#{labels['stakeholder.telefono']}">
+							<h:outputText value="#{stakeholder.telefono}" />
+						</p:column>
+					</p:dataTable>
+				</div>
+			</h:form>
 		</div>
 
 	</ui:define>

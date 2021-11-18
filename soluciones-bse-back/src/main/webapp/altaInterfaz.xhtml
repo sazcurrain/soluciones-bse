@@ -28,33 +28,35 @@
 						<h:outputLabel value="#{labels['interfaz.id']}:*" for="inputId"
 							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputId" value="#{interfazController.interfaz.id}"
-								required="true" size="40"
+							<p:inputText id="inputId"
+								value="#{interfazController.interfaz.id}" required="true"
+								size="40"
 								disabled="#{interfazController.isManaged(interfazController.interfaz.id)}">
 							</p:inputText>
 						</div>
 					</div>
-					
+
 					<div class="p-field p-grid" jsf:id="divAplicacion">
-						<h:outputLabel value="#{labels['interfaz.aplicacion']}:*" for="inputAplicacion"
-							class="p-col-fixed" style="width: 450px" />
+						<h:outputLabel value="#{labels['interfaz.aplicacion.nombre']}:*"
+							for="inputAplicacion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputAplicacion" value="#{interfazController.interfaz.aplicacion}"
-								required="true" size="500">
+							<p:inputText id="inputAplicacion"
+								value="#{interfazController.interfaz.aplicacion.nombre}"
+								required="true" size="50" disabled="true">
 								<p:ajax event="blur" process="@this" update="msgAplicacion" />
 							</p:inputText>
-							<h:message id="msgAplicacion" for="inputAplicacion" errorClass="err"
-								warnClass="warn" infoClass="info" />
+							<h:message id="msgAplicacion" for="inputAplicacion"
+								errorClass="err" warnClass="warn" infoClass="info" />
 						</div>
 					</div>
-					
+
 					<div class="p-field p-grid" jsf:id="divVersion">
 						<h:outputLabel value="#{labels['interfaz.version']}:*"
 							for="inputVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputVersion"
 								value="#{interfazController.interfaz.version}" required="true"
-								size="40">
+								size="40" disabled="true">
 								<p:ajax event="blur" process="@this" update="msgVersion" />
 							</p:inputText>
 							<h:message id="msgVersion" for="inputVersion" errorClass="err"
@@ -62,8 +64,6 @@
 
 						</div>
 					</div>
-					
-					
 
 					<div class="p-field p-grid" jsf:id="divNombre">
 						<h:outputLabel value="#{labels['interfaz.nombre']}:*"
@@ -71,31 +71,90 @@
 						<div class="p-col">
 							<p:inputText id="inputNombre"
 								value="#{interfazController.interfaz.nombre}" required="true"
-								size="60">
+								size="60" disabled="true">
 								<p:ajax event="blur" process="@this" update="msgNombre" />
 							</p:inputText>
 							<h:message id="msgNombre" for="inputNombre" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
-				
-				<div class="p-field p-grid" jsf:id="divFechaVersion">
-					<h:outputLabel value="#{labels['interfaz.fechaVersion']}:*"
-						for="inputFechaVersion" class="p-col-fixed" style="width: 150px" />
-					<div class="p-col">
-						<p:datePicker id="inputFecVer"
-							value="#{interfazController.interfaz.fechaVersion}"
-							required="true" pattern="dd/MM/yyyy" monthNavigator="true"
-							yearNavigator="true">
-							<p:ajax event="blur" process="@this" update="msgFVersion" />
-						</p:datePicker>
-						<h:message id="msgFVersion" for="inputFecVer" errorClass="err"
-							warnClass="warn" infoClass="info" />
+
+					<div class="p-field p-grid" jsf:id="divFechaVersion">
+						<h:outputLabel value="#{labels['interfaz.fechaVersion']}:*"
+							for="inputFechaVersion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:datePicker id="inputFecVer"
+								value="#{interfazController.interfaz.fechaVersion}"
+								required="true" pattern="dd/MM/yyyy" monthNavigator="true"
+								yearNavigator="true" disabled="true">
+								<p:ajax event="blur" process="@this" update="msgFVersion" />
+							</p:datePicker>
+							<h:message id="msgFVersion" for="inputFecVer" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
 					</div>
-				</div>
 					
-									
-	    	<br />
+					<br />
+					<h2>Interesados</h2>
+					<p:commandButton value="Nueva" icon="pi pi-plus"
+						action="#{interfazController.addStakeholdersComponente}"
+						styleClass="p-mr-2" immediate="true">
+						<p:ajax event="dialogReturn"
+							listener="#{interfazController.onAddSkateholder}"
+							update="InteresadosTable" />
+					</p:commandButton>
+					<p:dataTable var="stakeholderComp"
+						value="#{interfazController.interfaz.stakeholders}"
+						id="InteresadosTable"
+						emptyMessage="Esta interfaz no tiene Interesados asociados.">
+
+						<p:column headerText="">
+
+							<p:commandButton
+								action="#{interfazController.eliminarStakeholder(stakeholderComp)}"
+								update="InteresadosTable" styleClass="ui-button-danger"
+								icon="pi pi-trash" title="Eliminar" immediate="true">
+								<p:confirm header="Atencion"
+									message="Esta seguro que quiere eliminar el interesado '#{stakeholderComp.stakeholder.nombre}'?"
+									icon="pi pi-info-circle" />
+							</p:commandButton>
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade" responsive="true" width="350">
+								<p:commandButton value="No" type="button"
+									styleClass="ui-confirmdialog-no ui-button-flat" />
+								<p:commandButton value="Si" type="button"
+									styleClass="ui-confirmdialog-yes" />
+							</p:confirmDialog>
+						</p:column>
+
+						<p:column headerText="#{labels['aplicacion.stakeholderComp.rol']}">
+							<h:outputText value="#{stakeholderComp.rol}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['aplicacion.stakeholderComp.tipo']}">
+							<h:outputText value="#{stakeholderComp.stakeholder.tipo}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['aplicacion.stakeholderComp.nombre']}">
+							<h:outputText value="#{stakeholderComp.stakeholder.nombre}" />
+						</p:column>
+
+
+						<p:column
+							headerText="#{labels['aplicacion.stakeholderComp.mail']}">
+							<h:outputText value="#{stakeholderComp.stakeholder.mail}" />
+						</p:column>
+
+						<p:column
+							headerText="#{labels['aplicacion.stakeholderComp.telefono']}">
+							<h:outputText value="#{stakeholderComp.stakeholder.telefono}" />
+						</p:column>
+					</p:dataTable>
+
+					<br />
 
 					<p:commandButton action="#{interfazController.crearInterfaz}"
 						value="Confirmar">

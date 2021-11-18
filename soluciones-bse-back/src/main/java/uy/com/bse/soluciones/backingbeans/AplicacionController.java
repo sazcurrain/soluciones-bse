@@ -15,9 +15,9 @@ import javax.transaction.Transactional;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
+import uy.com.bse.soluciones.domain.Ambiente;
 import uy.com.bse.soluciones.domain.Aplicacion;
 import uy.com.bse.soluciones.domain.Interfaz;
-import uy.com.bse.soluciones.domain.StakeholderComponenteId;
 import uy.com.bse.soluciones.domain.StakeholdersComponente;
 import uy.com.bse.soluciones.ejbs.AplicacionService;
 import uy.com.bse.soluciones.ejbs.InterfazService;
@@ -133,6 +133,10 @@ public class AplicacionController implements Serializable {
 	public void eliminarStakeholder(StakeholdersComponente s) {
 		aplicacion.removeStakeholders(s);
 	}
+	
+	public void eliminarAmbiente(Ambiente a) {
+		aplicacion.removeAmbiente(a);
+	}
 
 	public boolean isManaged(Long id) {
 		return id != null;
@@ -146,7 +150,6 @@ public class AplicacionController implements Serializable {
 		options.put("contentWidth", "100%");
 		options.put("contentHeight", "100%");
 		options.put("headerElement", "customheader");
-		// TODO REVISAR CON SERGIO ESTOS 3 RENGLONES
 		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		sessionMap.put("interfaz", new Interfaz());
 		PrimeFaces.current().dialog().openDynamic("altaInterConsumeDialog", options, null);
@@ -157,7 +160,7 @@ public class AplicacionController implements Serializable {
 		options.put("modal", true);
 		options.put("width", 640);
 		options.put("height", 440);
-		options.put("contentWidth", "150%");
+		options.put("contentWidth", "100%");
 		options.put("contentHeight", "100%");
 		options.put("headerElement", "customheader");
 
@@ -191,9 +194,15 @@ public class AplicacionController implements Serializable {
 		aplicacion.addConsume(nueva);
 	}
 
+	public void onAddAmbiente(SelectEvent<Ambiente> event) {
+		Ambiente nueva = event.getObject();
+		nueva.setAplicacion(aplicacion);
+		aplicacion.addAmbiente(nueva);
+	}
+	
 	public void onAddSkateholder(SelectEvent<StakeholdersComponente> event) {
 		StakeholdersComponente nueva = event.getObject();
-		nueva.getId().setComponenteId(aplicacion.getId());
+		nueva.setComponente(aplicacion);
 		aplicacion.addStakeholders(nueva);
 	}
 
@@ -202,36 +211,40 @@ public class AplicacionController implements Serializable {
 
 	public void onEditProvee(SelectEvent<Interfaz> event) {
 	}
+	
+	public void onEditAmbiente(SelectEvent<Ambiente> event) {
+	}
 
 	public void onEditSkateholder(SelectEvent<StakeholdersComponente> event) {
 	}
 
-	public void addStakeholdersComponente() {
+	public void addAmbiente() {
 		
 		Map<String, Object> options = new HashMap<>();
 		options.put("modal", true);
-		options.put("width", 640);
-		options.put("height", 440);
-		options.put("contentWidth", "150%");
+		options.put("width", 980);
+		options.put("height", 640);
+		options.put("contentWidth", "100%");
 		options.put("contentHeight", "100%");
 		options.put("headerElement", "customheader");
 
 		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		sessionMap.put("stakeholdersComponente", new StakeholdersComponente());
-		PrimeFaces.current().dialog().openDynamic("altaStakeholdersComponenteDialog", options, null);
+		sessionMap.put("ambiente", new Ambiente());
+		PrimeFaces.current().dialog().openDynamic("altaAmbienteDialog", options, null);
 	}
-
-	public void editStakeholdersComponente(StakeholdersComponente sc) {
+	
+	public void addStakeholdersComponente() {
+		
 		Map<String, Object> options = new HashMap<>();
 		options.put("modal", true);
-		options.put("width", 640);
+		options.put("width", 980);
 		options.put("height", 440);
 		options.put("contentWidth", "100%");
 		options.put("contentHeight", "100%");
 		options.put("headerElement", "customheader");
 
 		Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		sessionMap.put("stakeholdersComponente", sc);
+		sessionMap.put("stakeholdersComponente", new StakeholdersComponente());
 		PrimeFaces.current().dialog().openDynamic("altaStakeholdersComponenteDialog", options, null);
 	}
 }

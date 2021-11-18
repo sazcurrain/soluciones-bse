@@ -49,9 +49,8 @@ public class StakeholderCompController implements Serializable {
 		this.stakeholderC = stakeholderC;
 	}
 
-	public void addStakeholderC() {
-		// TODO Borrar cuando se seleccione un stakeholder desde la grilla.
-		this.stakeholderC.getId().setStakeholderId(15L);
+	public void seleccionaInterfaz(Stakeholder stakeholder) {
+		this.stakeholderC.setStakeholder(stakeholder);
 		PrimeFaces.current().dialog().closeDynamic(stakeholderC);
 	}
 
