@@ -12,6 +12,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+
+
 import uy.com.bse.soluciones.domain.ComponenteSoftware;
 import uy.com.bse.soluciones.domain.StakeholdersComponente;
 
@@ -135,7 +137,6 @@ public class ComponenteSoftwareService extends AbstractService<ComponenteSoftwar
 				.setMaxResults(count)
 				.getResultList();
 	}
-
 
 	public StakeholdersComponente findStakeholderCompByid(Long id) {
 		return getEntityManager().find(StakeholdersComponente.class, id);
