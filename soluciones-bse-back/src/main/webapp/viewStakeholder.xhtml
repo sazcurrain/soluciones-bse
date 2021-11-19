@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{stakeholderController.stakeholder.id}" />
+		<f:viewAction action="#{stakeholderController.findStakeholderById}" />
+	</f:metadata>
+
+	<ui:define name="title">#{labels['stakeholder.alta.title']}</ui:define>
+
+	<ui:define name="body">
+
+		<div class="card">
+			<p:outputPanel>
+				<h:form id="form" prependId="false">
+
+					<div class="p-field p-grid" jsf:id="divId"
+						jsf:rendered="#{stakeholderController.isManaged(stakeholderController.stakeholder.id)}">
+						<h:outputLabel value="#{labels['stakeholder.id']}:*" for="inputId"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputId"
+								value="#{stakeholderController.stakeholder.id}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divNombre">
+						<h:outputLabel value="#{labels['stakeholder.nombre']}:*"
+							for="inputNombre" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputNombre"
+								value="#{stakeholderController.stakeholder.nombre}" />
+						</div>
+					</div>
+					<div class="p-field p-grid" jsf:id="divMail">
+						<h:outputLabel value="#{labels['stakeholder.mail']}:*"
+							for="inputMail" class="p-col-fixed" style="width: 250px" />
+						<div class="p-col">
+							<h:outputText id="inputMail"
+								value="#{stakeholderController.stakeholder.mail}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divTelefono">
+						<h:outputLabel value="#{labels['stakeholder.telefono']}:*"
+							for="inputDocumento" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputNroDocumento"
+								value="#{stakeholderController.stakeholder.telefono}" />
+						</div>
+					</div>
+
+					<div class="p-field p-grid" jsf:id="divTipo">
+						<h:outputLabel value="#{labels['stakeholder.tipo']}:*"
+							for="inputTipo" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="selectTipo"
+								value="#{stakeholderController.stakeholder.tipo}" />
+						</div>
+					</div>
+					<br />
+
+					<h:link outcome="stakeholders.xhtml" value="volver" />
+				</h:form>
+			</p:outputPanel>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>
+
