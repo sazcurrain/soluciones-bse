@@ -16,6 +16,6 @@
   <url-pattern>*.xhtml</url-pattern>
  </servlet-mapping>
  <welcome-file-list>
-  <welcome-file>home.xhtml</welcome-file>
+  <welcome-file>consultaSimple.xhtml</welcome-file>
  </welcome-file-list>
 </web-app>

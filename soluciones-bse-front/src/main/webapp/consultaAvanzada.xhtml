@@ -84,7 +84,7 @@
 									<p:selectOneMenu styleClass="custom-filter"
 										value="#{avanzadaController.filterClase}"
 										valueChangeListener="#{avanzadaController.onChangeFiltroClase}">
-										<f:selectItem itemLabel="All" itemValue="#{null}"
+										<f:selectItem itemLabel="--Todas--" itemValue="#{null}"
 											noSelectionOption="true" />
 										<f:selectItems value="#{avanzadaController.tipos}" var="clase"
 											itemValue="#{clase}" itemLabel="#{clase.toUpperCase()}" />
@@ -150,18 +150,18 @@
 							<h:outputText value="#{componente.clase.toUpperCase()}" />
 						</p:column>
 
-						<p:column headerText="#{labels['componente.version']}">
+						<p:column headerText="#{labels['componente.version']}" sortBy="#{componente.version}">
 							<h:outputText value="#{componente.version}" />
 						</p:column>
 
-						<p:column headerText="#{labels['componente.fechaVersion']}">
+						<p:column headerText="#{labels['componente.fechaVersion']}" sortBy="#{componente.fechaVersion}">
 							<h:outputText value="#{componente.fechaVersion}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
 
 						<p:column headerText="Tipo"
-							rendered='#{avanzadaController.filterClase eq "Interfaz"}'>
+							rendered='#{avanzadaController.filterClase eq "Interfaz"}' sortBy="#{componente.tipo}">
 							<h:outputText value="#{componente.tipo}" />
 						</p:column>
 					</p:dataTable>

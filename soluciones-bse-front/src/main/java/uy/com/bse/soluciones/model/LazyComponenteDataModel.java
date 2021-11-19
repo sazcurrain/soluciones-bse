@@ -17,47 +17,47 @@ import uy.com.bse.soluciones.domain.ComponenteSoftware;
 import uy.com.bse.soluciones.ejbs.ComponenteSoftwareService;
 
 @ViewScoped
-public class LazyComponenteDataModel extends LazyDataModel<ComponenteSoftware> implements Serializable{
+public class LazyComponenteDataModel extends LazyDataModel<ComponenteSoftware> implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private List<ComponenteSoftware> datasource;
-    
-    private List<Map<String,String>> globalFilters;
-    
-    @EJB
-    private ComponenteSoftwareService compService;
-    
+	private List<ComponenteSoftware> datasource;
+
+	private List<Map<String, String>> globalFilters;
+
+	@EJB
+	private ComponenteSoftwareService compService;
+
 //    public LazyComponenteDataModel(ComponenteSoftwareService compService) {
 //    	this.compService = compService;
 //    	this.setRowCount(0);
 //    }
-    
-    public LazyComponenteDataModel() {
-    	globalFilters = new ArrayList<Map<String,String>>();
-    }
-    
-    @Override
-    public ComponenteSoftware getRowData(String rowKey) {
-        for (ComponenteSoftware customer : datasource) {
-            if (customer.getId() == Integer.parseInt(rowKey)) {
-                return customer;
-            }
-        }
 
-        return null;
-    }
+	public LazyComponenteDataModel() {
+		globalFilters = new ArrayList<Map<String, String>>();
+	}
 
-    @Override
-    public String getRowKey(ComponenteSoftware customer) {
-        return String.valueOf(customer.getId());
-    }
-    
-    private Map<String,String> adaptFilter(FilterMeta filter) {
-    	Map<String,String> adapted = new HashMap<String,String>();
-    	adapted.put("field", filter.getField());
-    	adapted.put("value", filter.getFilterValue().toString());
-    	switch (filter.getMatchMode()) {
+	@Override
+	public ComponenteSoftware getRowData(String rowKey) {
+		for (ComponenteSoftware customer : datasource) {
+			if (customer.getId() == Integer.parseInt(rowKey)) {
+				return customer;
+			}
+		}
+
+		return null;
+	}
+
+	@Override
+	public String getRowKey(ComponenteSoftware customer) {
+		return String.valueOf(customer.getId());
+	}
+
+	private Map<String, String> adaptFilter(FilterMeta filter) {
+		Map<String, String> adapted = new HashMap<String, String>();
+		adapted.put("field", filter.getField());
+		adapted.put("value", filter.getFilterValue().toString());
+		switch (filter.getMatchMode()) {
 		case CONTAINS:
 			adapted.put("op", "contains");
 			break;
@@ -80,15 +80,13 @@ public class LazyComponenteDataModel extends LazyDataModel<ComponenteSoftware> i
 			adapted.put("op", "=");
 			break;
 		}
-    	return adapted;
-    }
-    
+		return adapted;
+	}
 
-    
-    private Map<String,String> adaptOrder(SortMeta sort) {
-    	Map<String,String> adapted = new HashMap<String,String>();
-    	adapted.put("field", sort.getField());
-    	switch (sort.getOrder()) {
+	private Map<String, String> adaptOrder(SortMeta sort) {
+		Map<String, String> adapted = new HashMap<String, String>();
+		adapted.put("field", sort.getField());
+		switch (sort.getOrder()) {
 		case ASCENDING:
 			adapted.put("order", "ASC");
 			break;
@@ -98,57 +96,61 @@ public class LazyComponenteDataModel extends LazyDataModel<ComponenteSoftware> i
 		default:
 			break;
 		}
-    	return adapted;
-    }
+		return adapted;
+	}
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@Override
-    public List<ComponenteSoftware> load(int offset, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
-    	List<Map<String,String>> filters = new ArrayList<Map<String,String>>();
-    	List<Map<String,String>> orders = new ArrayList<Map<String,String>>();
-    	
-    	for (SortMeta s : sortBy.values()) {
-    		Map<String,String> order = adaptOrder(s);
-    		orders.add(order);
+	public List<ComponenteSoftware> load(int offset, int pageSize, Map<String, SortMeta> sortBy,
+			Map<String, FilterMeta> filterBy) {
+		List<Map<String, String>> filters = new ArrayList<Map<String, String>>();
+		List<Map<String, String>> orders = new ArrayList<Map<String, String>>();
+
+		for (SortMeta s : sortBy.values()) {
+			Map<String, String> order = adaptOrder(s);
+			orders.add(order);
 		}
 
-    	
-    	Class<? extends ComponenteSoftware> clase = ComponenteSoftware.class;
-    	for (FilterMeta f : filterBy.values()) {
-    		if(f.getField().equals("clase")) {
-    			try {
-    				clase = (Class<? extends ComponenteSoftware>) Class.forName(ComponenteSoftware.class.getPackageName() +"."+f.getFilterValue());
-				} catch (ClassNotFoundException e) {
+		Class<? extends ComponenteSoftware> clase = ComponenteSoftware.class;
+		if (globalFilters.isEmpty()) {
+			for (FilterMeta f : filterBy.values()) {
+				if (f.getField().equals("clase")) {
+					try {
+						clase = (Class<? extends ComponenteSoftware>) Class
+								.forName(ComponenteSoftware.class.getPackageName() + "." + f.getFilterValue());
+					} catch (ClassNotFoundException e) {
+					}
+				} else {
+					Map<String, String> filter = adaptFilter(f);
+					filters.add(filter);
 				}
-    		} else {
-    			Map<String,String> filter = adaptFilter(f);
-        		filters.add(filter);
-    		}
+			}
+		} else {
+			for (Map<String, String> g : globalFilters) {
+				if (g.get("field").equals("clase")) {
+					try {
+						clase = (Class<? extends ComponenteSoftware>) Class
+								.forName(ComponenteSoftware.class.getPackageName() + "." + g.get("value"));
+					} catch (ClassNotFoundException e) {
+					}
+				} else {
+					filters.add(g);
+				}
+			}
 		}
-    	Map<String,String> classFilter = null;
-    	for(Map<String, String> g : globalFilters) {
-    		if(g.get("field").equals("clase")) {
-    			try {
-    				clase = (Class<? extends ComponenteSoftware>) Class.forName(ComponenteSoftware.class.getPackageName() +"."+g.get("value"));
-				} catch (ClassNotFoundException e) {
-				}
-    			classFilter = g;
-    		}
-    	}
-    	if( classFilter != null) globalFilters.remove(classFilter);
-    	
-    	this.datasource = (List<ComponenteSoftware>)compService.filterComponentes(clase, offset, pageSize, orders, globalFilters);
-    	this.setRowCount(compService.countFilteredComponentes(clase, globalFilters));
-    	
-    	if( classFilter != null) globalFilters.add(classFilter);
-        return this.datasource;
-    }
 
-	public List<Map<String,String>> getGlobalFilters() {
+		this.datasource = (List<ComponenteSoftware>) compService.filterComponentes(clase, offset, pageSize, orders,
+				filters);
+		this.setRowCount(compService.countFilteredComponentes(clase, filters));
+		
+		return this.datasource;
+	}
+
+	public List<Map<String, String>> getGlobalFilters() {
 		return globalFilters;
 	}
 
-	public void setGlobalFilters(List<Map<String,String>> globalFilters) {
+	public void setGlobalFilters(List<Map<String, String>> globalFilters) {
 		this.globalFilters = globalFilters;
 	}
 
