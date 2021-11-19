@@ -18,8 +18,4 @@
 			<default-locale>es</default-locale>
 		</locale-config>
 	</application>
-
-	<lifecycle>
-		<phase-listener>uy.com.bse.soluciones.interceptors.RequestInterceptor</phase-listener>
-	</lifecycle>
 </faces-config>

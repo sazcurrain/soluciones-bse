@@ -35,6 +35,24 @@ public class ComponenteSoftwareService extends AbstractService<ComponenteSoftwar
 		return em.createQuery(sql).getResultList();
 	}
 	
+	/**
+	 * A common method for all enums since they can't have another base class
+	 * @param <T> Enum type
+	 * @param c enum type. All enums must be all caps.
+	 * @param string case insensitive
+	 * @return corresponding enum, or null
+	 */
+	private <T extends Enum<T>> T getEnumFromString(Class<T> c, String string) {
+	    if( c != null && string != null ) {
+	        try {
+	            return Enum.valueOf(c, string.trim().toUpperCase());
+	        } catch(IllegalArgumentException ex) {
+	        }
+	    }
+	    return null;
+	}
+	
+	@SuppressWarnings("unchecked")
 	private <T extends ComponenteSoftware>  Predicate predicateFromFilter(CriteriaBuilder cb, Root<T> root,
 			Map<String, String> filter) {
 		if (!filter.containsKey("field") || !filter.containsKey("value") || !filter.containsKey("op"))
@@ -43,7 +61,9 @@ public class ComponenteSoftwareService extends AbstractService<ComponenteSoftwar
 		Predicate p = null;
 		switch (filter.get("op")) {
 		case "=":
-			p = cb.equal(root.get(filter.get("field")), filter.get("value"));
+			Class<?> colClass = root.get(filter.get("field")).getJavaType();
+			Object value = colClass.isEnum() ? getEnumFromString((Class<? extends Enum>)colClass, filter.get("value")) : filter.get("value");
+			p = cb.equal(root.get(filter.get("field")), value);
 			break;
 		case ">":
 			p = cb.lessThan(root.get(filter.get("field")), filter.get("value"));
