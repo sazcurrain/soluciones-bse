@@ -1,7 +1,12 @@
 package uy.com.bse.soluciones.ejbs;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.ejb.Stateless;
@@ -62,7 +67,20 @@ public class ComponenteSoftwareService extends AbstractService<ComponenteSoftwar
 		switch (filter.get("op")) {
 		case "=":
 			Class<?> colClass = root.get(filter.get("field")).getJavaType();
-			Object value = colClass.isEnum() ? getEnumFromString((Class<? extends Enum>)colClass, filter.get("value")) : filter.get("value");
+			Object value = filter.get("value");
+			if(colClass.isEnum()) {
+				value = getEnumFromString((Class<? extends Enum>)colClass, filter.get("value"));
+			} else if(colClass.equals(Date.class)) {
+				try {
+					SimpleDateFormat parser = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", new Locale("us"));
+					Date d = new Date();
+					System.out.println(parser.format(d));
+					value = parser.parse(filter.get("value"));
+					System.out.println(value.getClass());
+				} catch (ParseException e) {
+					System.out.println(e.getMessage());
+				}  
+			}
 			p = cb.equal(root.get(filter.get("field")), value);
 			break;
 		case ">":

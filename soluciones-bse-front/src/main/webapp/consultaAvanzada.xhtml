@@ -22,12 +22,111 @@
 				warnClass="warn" infoClass="info" />
 
 
-			<h:form>
+			<h:form id="formFilters">
+				<div class="card">
+					<p:fieldset id="filtros">
+						<div class="p-grid">
+							<p:fieldset styleClass="p-col">
+								<div class="p-field p-grid" jsf:id="divId">
+									<h:outputLabel value="#{labels['componente.id']}:*"
+										for="inputId" class="p-col-fixed" style="width: 150px" />
+									<div class="p-col">
+										<p:inputText id="inputId"
+											value="#{avanzadaController.filterId}" size="10">
+										</p:inputText>
+										<p:message id="msgId" for="inputId" errorClass="err"
+											warnClass="warn" infoClass="info" />
+									</div>
+								</div>
+
+								<div class="p-field p-grid" jsf:id="divNombre">
+									<h:outputLabel value="#{labels['componente.nombre']}:*"
+										for="inputNombre" class="p-col-fixed" style="width: 150px" />
+									<div class="p-col">
+										<p:inputText id="inputNombre"
+											value="#{avanzadaController.filterNombre}" size="40">
+										</p:inputText>
+										<p:message id="msgNombre" for="inputNombre" errorClass="err"
+											warnClass="warn" infoClass="info" />
+									</div>
+								</div>
+								<div class="p-field p-grid" jsf:id="divVersion">
+									<h:outputLabel value="#{labels['componente.version']}:*"
+										for="inputVersion" class="p-col-fixed" style="width: 150px" />
+									<div class="p-col">
+										<p:inputText id="inputVersion" size="30"
+											value="#{avanzadaController.filterVersion}">
+											<p:ajax event="blur" process="@this" update="msgVersion" />
+										</p:inputText>
+										<p:message id="msgVersion" for="inputVersion" errorClass="err"
+											warnClass="warn" infoClass="info" />
+									</div>
+								</div>
+
+								<div class="p-field p-grid" jsf:id="divFechaVersion">
+									<h:outputLabel value="#{labels['componente.fechaVersion']}:*"
+										for="inputFechaNac" class="p-col-fixed" style="width: 150px" />
+									<div class="p-col">
+										<p:datePicker id="inputFechaVersion" pattern="dd/MM/yyyy"
+											monthNavigator="true" yearNavigator="true"
+											value="#{avanzadaController.filterFechaVersion}">
+											<p:ajax event="blur" process="@this" update="msgfechaVersion" />
+										</p:datePicker>
+										<p:message id="msgfechaVersion" for="inputFechaVersion"
+											errorClass="err" warnClass="warn" infoClass="info" />
+									</div>
+								</div>
+							</p:fieldset>
+							<p:fieldset styleClass="p-col" id="filterTipos">
+								<div class="p-field p-grid" jsf:id="divClase">
+									<h:outputLabel value="#{labels['componente.clase']}:*"
+										for="inputClase" class="p-col-fixed" style="width: 150px" />
+									<p:selectOneMenu styleClass="custom-filter"
+										value="#{avanzadaController.filterClase}"
+										valueChangeListener="#{avanzadaController.onChangeFiltroClase}">
+										<f:selectItem itemLabel="All" itemValue="#{null}"
+											noSelectionOption="true" />
+										<f:selectItems value="#{avanzadaController.tipos}" var="clase"
+											itemValue="#{clase}" itemLabel="#{clase.toUpperCase()}" />
+										<p:ajax prcess="@this" update="filterTipos"></p:ajax>
+									</p:selectOneMenu>
+								</div>
+								<div class="p-field p-grid" jsf:id="divTipo"
+									jsf:rendered='#{avanzadaController.filterClase eq "Interfaz"}'>
+									<h:outputLabel value="#{labels['interfaz.tipo']}:*"
+										for="inputTipo" class="p-col-fixed" style="width: 150px" />
+									<div class="p-col">
+										<p:selectOneMenu id="inputTipo"
+											value="#{avanzadaController.filterTipo}">
+											<f:selectItem itemValue="#{null}" itemLabel="--Todos--" />
+											<f:selectItems value="#{avanzadaController.tiposInterfaz}"
+												var="tipo" itemValue="#{tipo}" itemLabel="#{tipo}"
+												noSelectionValue="Seleccionar" />
+											<p:ajax event="change" process="@this" update="msgTipo" />
+										</p:selectOneMenu>
+										<p:message id="msgTipo" for="inputTipo" errorClass="err"
+											warnClass="warn" infoClass="info" />
+									</div>
+								</div>
+
+							</p:fieldset>
+						</div>
+						<p:commandButton value="Buscar" icon="pi pi-search"
+							process="@form" update="@form"
+							action="#{avanzadaController.search}"
+							style="margin: 20px 20px 0 0;"></p:commandButton>
+						<p:commandButton value="Limpiar" icon="pi pi-refresh"
+							styleClass="ui-button-danger" title="Limpiar filtros de búsqueda"
+							process="@form" update="@form"
+							action="#{avanzadaController.clean}" style="margin: 20px 0 0 0;"></p:commandButton>
+					</p:fieldset>
+				</div>
 				<div class="card">
 					<p:dataTable var="componente" id="componentesTable"
 						value="#{avanzadaController.filteredComponentes}"
 						emptyMessage="No hay resultados" paginator="true" rows="5"
-						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} Resultados por página: {RowsPerPageDropdown}"
+						currentPageReportTemplate="Resultados {startRecord} al {endRecord} de {totalRecords}."
 						rowsPerPageTemplate="5,10,15" widgetVar="componenteTable">
 						<p:column headerText="">
 							<p:linkButton
@@ -36,24 +135,19 @@
 							</p:linkButton>
 						</p:column>
 
+						<p:column headerText="#{labels['componente.id']}"
+							sortBy="#{componente.id}">
+							<h:outputText value="#{componente.id}" />
+						</p:column>
+
 						<p:column headerText="#{labels['componente.nombre']}"
-							sortBy="#{componente.nombre}" filterBy="#{componente.nombre}"
-							filterMatchMode="contains">
+							sortBy="#{componente.nombre}" filterMatchMode="contains">
 							<h:outputText value="#{componente.nombre}" />
 						</p:column>
 
 						<p:column headerText="#{labels['componente.clase']}"
-							filterBy="#{componente.clase}" filterMatchMode="exact">
-							<f:facet name="filter">
-								<p:selectOneMenu onchange="PF('componenteTable').filter()"
-									styleClass="custom-filter" value="#{avanzadaController.clase}">
-									<f:selectItem itemLabel="All" itemValue="#{null}"
-										noSelectionOption="true" />
-									<f:selectItems value="#{avanzadaController.tipos}" />
-									<p:ajax update="componentesTable"></p:ajax>
-								</p:selectOneMenu>
-							</f:facet>
-							<h:outputText value="#{componente.clase}" />
+							filterMatchMode="exact">
+							<h:outputText value="#{componente.clase.toUpperCase()}" />
 						</p:column>
 
 						<p:column headerText="#{labels['componente.version']}">
@@ -67,16 +161,7 @@
 						</p:column>
 
 						<p:column headerText="Tipo"
-							rendered='#{avanzadaController.clase eq "Interfaz"}'
-							filterBy="#{componente.tipo}" filterMatchMode="exact">
-							<f:facet name="filter">
-								<p:selectOneMenu onchange="PF('componenteTable').filter()"
-									styleClass="custom-filter">
-									<f:selectItem itemLabel="All" itemValue="#{null}"
-										noSelectionOption="true" />
-									<f:selectItems value="#{avanzadaController.tiposInterfaz}" />
-								</p:selectOneMenu>
-							</f:facet>
+							rendered='#{avanzadaController.filterClase eq "Interfaz"}'>
 							<h:outputText value="#{componente.tipo}" />
 						</p:column>
 					</p:dataTable>

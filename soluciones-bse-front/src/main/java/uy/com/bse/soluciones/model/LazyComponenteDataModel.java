@@ -23,6 +23,8 @@ public class LazyComponenteDataModel extends LazyDataModel<ComponenteSoftware> i
 
     private List<ComponenteSoftware> datasource;
     
+    private List<Map<String,String>> globalFilters;
+    
     @EJB
     private ComponenteSoftwareService compService;
     
@@ -31,7 +33,9 @@ public class LazyComponenteDataModel extends LazyDataModel<ComponenteSoftware> i
 //    	this.setRowCount(0);
 //    }
     
-    public LazyComponenteDataModel() {}
+    public LazyComponenteDataModel() {
+    	globalFilters = new ArrayList<Map<String,String>>();
+    }
     
     @Override
     public ComponenteSoftware getRowData(String rowKey) {
@@ -121,9 +125,31 @@ public class LazyComponenteDataModel extends LazyDataModel<ComponenteSoftware> i
         		filters.add(filter);
     		}
 		}
-    	this.datasource = (List<ComponenteSoftware>)compService.filterComponentes(clase, offset, pageSize, orders, filters);
-    	this.setRowCount(compService.countFilteredComponentes(clase, filters));
+    	Map<String,String> classFilter = null;
+    	for(Map<String, String> g : globalFilters) {
+    		if(g.get("field").equals("clase")) {
+    			try {
+    				clase = (Class<? extends ComponenteSoftware>) Class.forName(ComponenteSoftware.class.getPackageName() +"."+g.get("value"));
+				} catch (ClassNotFoundException e) {
+				}
+    			classFilter = g;
+    		}
+    	}
+    	if( classFilter != null) globalFilters.remove(classFilter);
+    	
+    	this.datasource = (List<ComponenteSoftware>)compService.filterComponentes(clase, offset, pageSize, orders, globalFilters);
+    	this.setRowCount(compService.countFilteredComponentes(clase, globalFilters));
+    	
+    	if( classFilter != null) globalFilters.add(classFilter);
         return this.datasource;
     }
+
+	public List<Map<String,String>> getGlobalFilters() {
+		return globalFilters;
+	}
+
+	public void setGlobalFilters(List<Map<String,String>> globalFilters) {
+		this.globalFilters = globalFilters;
+	}
 
 }
