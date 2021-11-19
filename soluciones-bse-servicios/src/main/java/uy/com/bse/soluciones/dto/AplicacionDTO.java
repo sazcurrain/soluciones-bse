@@ -1,72 +1,42 @@
 package uy.com.bse.soluciones.dto;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import uy.com.bse.soluciones.adapter.DateAdapter;
 import uy.com.bse.soluciones.domain.Aplicacion;
+import uy.com.bse.soluciones.domain.Interfaz;
 
 @XmlRootElement(name = "aplicacion")
-public class AplicacionDTO {
-	private Long id;
-	private String nombre;
-	private String version;
-	private Date fechaVersion;
+public class AplicacionDTO extends ComponenteSoftwareDTO{
 	private List<InterfazDTO> provee = new ArrayList<InterfazDTO>();
 	private List<InterfazDTO> consume = new ArrayList<InterfazDTO>();
-
-	public static AplicacionDTO adaptEntity(Aplicacion app) {
-		List<InterfazDTO> provee = InterfazDTO.extracFromEntities(app.getProvee());
-		List<InterfazDTO> consume = InterfazDTO.extracFromEntities(app.getConsume());
-		AplicacionDTO dto = new AplicacionDTO();
-		dto.setId(app.getId());
-		dto.setNombre(app.getNombre());
-		dto.setVersion(app.getVersion());
-		dto.setFechaVersion(app.getFechaVersion());
-		dto.setProvee(provee);
-		dto.setConsume(consume);
-		return dto;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
-	@XmlJavaTypeAdapter(DateAdapter.class)
-	public Date getFechaVersion() {
-		return fechaVersion;
-	}
-
-	public void setFechaVersion(Date fechaVersion) {
-		this.fechaVersion = fechaVersion;
-	}
 	
+	public AplicacionDTO() {};
+	
+	private List<InterfazDTO> convertEntities(Set<Interfaz> interfaces) {
+		List<InterfazDTO> dtos = new ArrayList<InterfazDTO>();
+		for (Interfaz interfaz : interfaces) {
+			dtos.add(new InterfazDTO(interfaz));
+		}
+		return dtos;
+	}
+
+	public AplicacionDTO(Aplicacion app) {
+		List<InterfazDTO> provee = convertEntities(app.getProvee());
+		List<InterfazDTO> consume = convertEntities(app.getConsume());
+		this.setId(app.getId());
+		this.setNombre(app.getNombre());
+		this.setVersion(app.getVersion());
+		this.setFechaVersion(app.getFechaVersion());
+		this.setClase(app.getClase());
+		this.setProvee(provee);
+		this.setConsume(consume);
+	}
 
 	public List<InterfazDTO> getProvee() {
 		return provee;

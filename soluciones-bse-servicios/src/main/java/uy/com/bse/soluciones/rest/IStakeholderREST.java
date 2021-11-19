@@ -35,5 +35,9 @@ public interface IStakeholderREST {
 	
 	@POST
 	Response create(StakeholderDTO stakeholder);
+	
+	@GET
+	@Path("{documento}/desarrollos")
+	Response getDesarrollosByDocumento(@PathParam("documento") String documento);
 
 }

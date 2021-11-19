@@ -33,11 +33,11 @@ INSERT INTO Solucion_ComponenteSoftware (Solucion_id, componentes_id) values (11
 INSERT INTO Solucion_ComponenteSoftware (Solucion_id, componentes_id) values (11,7);
 
 /* hasta aca HIBERNATE_SEQUENCE=11*/
-INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'cacho@gmail.com', 'Cacho', '9999999', 1);
-INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'pepe@gmail.com', 'Pepe', '88888888', 0);
-INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'fulano@gmail.com', 'Fulano', '777777', 0);
-INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'toto@gmail.com', 'Toto', '66666666', 1);
-INSERT INTO Stakeholder (id, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 'mengano@gmail.com', 'Mengano', '5555555', 0);
+INSERT INTO Stakeholder (id, documento, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '9999999-9', 'cacho@gmail.com', 'Cacho', '9999999', 1);
+INSERT INTO Stakeholder (id, documento, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '8888888-8', 'pepe@gmail.com', 'Pepe', '88888888', 0);
+INSERT INTO Stakeholder (id, documento, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '7777777-7', 'fulano@gmail.com', 'Fulano', '777777', 0);
+INSERT INTO Stakeholder (id, documento, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '6666666-6', 'toto@gmail.com', 'Toto', '66666666', 1);
+INSERT INTO Stakeholder (id, documento, mail , nombre , telefono , tipo) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, '5555555-5', 'mengano@gmail.com', 'Mengano', '5555555', 0);
 
 /* hasta aca HIBERNATE_SEQUENCE=16*/
 INSERT INTO StakeholdersComponente (id, rol, componente_id, stakeholder_id) values (NEXT VALUE FOR HIBERNATE_SEQUENCE, 0, 11, 16);

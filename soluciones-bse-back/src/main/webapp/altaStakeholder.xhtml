@@ -34,6 +34,20 @@
 						</p:inputText>
 					</div>
 				</div>
+				
+				<div class="p-field p-grid" jsf:id="divDocumento">
+					<h:outputLabel value="#{labels['stakeholder.documento']}:*"
+						for="inputDocumento" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<p:inputText id="inputDocumento"
+							value="#{stakeholderController.stakeholder.documento}" required="true"
+							size="40">
+							<p:ajax event="blur" process="@this" update="msgDocumento" />
+						</p:inputText>
+						<h:message id="msgDocumento" for="inputDocumento" errorClass="err"
+							warnClass="warn" infoClass="info" />
+					</div>
+				</div>
 					
 				<div class="p-field p-grid" jsf:id="divNombre">
 					<h:outputLabel value="#{labels['stakeholder.nombre']}:*"

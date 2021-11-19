@@ -41,9 +41,19 @@
 								value="#{stakeholderController.stakeholder.nombre}" />
 						</div>
 					</div>
+					
+					<div class="p-field p-grid" jsf:id="divDocumento">
+						<h:outputLabel value="#{labels['stakeholder.documento']}:*"
+							for="inputDocumento" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputDocumento"
+								value="#{stakeholderController.stakeholder.documento}" />
+						</div>
+					</div>
+					
 					<div class="p-field p-grid" jsf:id="divMail">
 						<h:outputLabel value="#{labels['stakeholder.mail']}:*"
-							for="inputMail" class="p-col-fixed" style="width: 250px" />
+							for="inputMail" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputMail"
 								value="#{stakeholderController.stakeholder.mail}" />
