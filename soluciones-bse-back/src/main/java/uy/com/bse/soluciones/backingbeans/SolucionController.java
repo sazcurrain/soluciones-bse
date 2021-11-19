@@ -10,12 +10,15 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.swing.text.html.HTMLDocument.Iterator;
 import javax.transaction.Transactional;
 
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 
+import uy.com.bse.soluciones.domain.Aplicacion;
 import uy.com.bse.soluciones.domain.ComponenteSoftware;
+import uy.com.bse.soluciones.domain.Interfaz;
 import uy.com.bse.soluciones.domain.Solucion;
 import uy.com.bse.soluciones.domain.StakeholdersComponente;
 import uy.com.bse.soluciones.ejbs.SolucionService;
@@ -108,10 +111,44 @@ public class SolucionController implements Serializable {
         PrimeFaces.current().dialog().openDynamic("selectComponenteDialog", options, null);
 	}
 	
+	
+	public boolean isAplicacionEnSolucion (Aplicacion aplicacion) {
+		for (ComponenteSoftware componente :  solucion.getComponentes()) {
+			if (componente.equals(aplicacion)) {
+				return true;
+			} else if (componente.getClase()=="Solucion") {
+				if (isAplicacionEnSolucion(aplicacion)==true) {
+					return true;
+				}
+			}
+		}
+	    return false;
+	}
+	
+	
 	public void onAddComponente(SelectEvent<ComponenteSoftware> event) {
 		ComponenteSoftware nueva = event.getObject();
-		//nueva.setAplicacion(aplicacion);
-		solucion.addComponente(nueva);
+		switch (nueva.getClase()) {
+		case "Solucion":
+			solucion.addComponente(nueva);
+			break;
+		case "Aplicacion":
+			Aplicacion aplicacion = (Aplicacion) nueva;
+			for (Interfaz interfazC : aplicacion.getConsume()) {
+				if (isAplicacionEnSolucion(interfazC.getAplicacion())==true) {
+					solucion.addComponente(nueva);
+				}
+			}
+			// TODO Mostrar mensaje de error
+			break;
+		case "Interfaz" :
+			Interfaz interfaz = (Interfaz) nueva;
+			if (isAplicacionEnSolucion(interfaz.getAplicacion())==true) {
+				solucion.addComponente(nueva);
+			}
+			break;
+		}
+//		solucion.addComponente(nueva);
 	}
 	
 	public void eliminarComponente(ComponenteSoftware eliminar) {
