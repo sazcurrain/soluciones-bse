@@ -1,10 +1,12 @@
 package uy.com.bse.soluciones.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 
 import uy.com.bse.soluciones.domain.Usuario;

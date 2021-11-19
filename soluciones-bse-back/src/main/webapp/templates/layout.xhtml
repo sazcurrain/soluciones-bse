@@ -94,8 +94,18 @@ footer {
 				action="home.xhtml?faces-redirect=true" />
 
 			<f:facet name="options">
-				<p:commandButton value="Logout" icon="pi pi-fw pi-sign-out"
-					styleClass="ui-button-info" action="#{loginController.logout()}" />
+				<div class="p-field p-grid">
+					<h:outputLabel value="#{labels['usuario.loggedin.label']}:"
+						for="outputUsername" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="outputUsername"
+							value="#{loginController.currentUser}" />
+					</div>
+					<div class="p-col">
+						<p:commandButton value="Logout" icon="pi pi-fw pi-sign-out"
+							styleClass="ui-button-info" action="#{loginController.logout()}" />
+					</div>
+				</div>
 			</f:facet>
 		</p:menubar>
 	</h:form>

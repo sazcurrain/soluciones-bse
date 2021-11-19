@@ -2,6 +2,7 @@ package uy.com.bse.soluciones.backingbeans;
 
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -21,6 +22,18 @@ public class LoginController {
 	
 	@Inject
 	private UsuarioLogeado usuarioLogeado;
+	
+	public String checkLogedIn() {
+		if(usuarioLogeado.getUsername() != null) {
+			return "home.xhtml?faces-redirect=true";
+		} else {
+			return "";
+		}
+	}
+	
+	public String getCurrentUser() {
+		return usuarioLogeado.getUsername();
+	}
 	
 	
 	public String getUsername() {
