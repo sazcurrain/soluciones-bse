@@ -54,7 +54,7 @@ public class ComponenteSoftwareService extends AbstractService<ComponenteSoftwar
 	    return null;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private <T extends ComponenteSoftware>  Predicate predicateFromFilter(CriteriaBuilder cb, Root<T> root,
 			Map<String, String> filter) {
 		if (!filter.containsKey("field") || !filter.containsKey("value") || !filter.containsKey("op"))

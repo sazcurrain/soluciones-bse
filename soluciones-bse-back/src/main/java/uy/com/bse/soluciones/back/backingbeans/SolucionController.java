@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -111,13 +110,13 @@ public class SolucionController implements Serializable {
         PrimeFaces.current().dialog().openDynamic("selectComponenteDialog", options, null);
 	}
 	
-
-	public boolean isAplicacionEnSolucion (Aplicacion aplicacion) {
-		for (ComponenteSoftware componente :  solucion.getComponentes()) {
+	public boolean isAplicacionEnSolucion (Solucion solucion, Aplicacion aplicacion) {
+		Solucion sol = isManaged(solucion.getId()) ? solucionService.find(solucion.getId()) : solucion;
+		for (ComponenteSoftware componente :  sol.getComponentes()) {
 			if (componente.equals(aplicacion)) {
 				return true;
-			} else if (componente.getClase()=="Solucion") {
-				if (isAplicacionEnSolucion(aplicacion)==true) {
+			} else if (componente.getClase().equals("Solucion")) {
+				if (isAplicacionEnSolucion((Solucion)componente, aplicacion)==true) {
 					return true;
 				}
 			}
@@ -146,7 +145,7 @@ public class SolucionController implements Serializable {
 			break;
 		case "Interfaz" :
 			Interfaz interfaz = (Interfaz) nueva;
-			if (isAplicacionEnSolucion(interfaz.getAplicacion())==true) {
+			if (isAplicacionEnSolucion(solucion, interfaz.getAplicacion())==true) {
 				solucion.addComponente(nueva);
 			} else {
 				FacesContext.getCurrentInstance().addMessage(
