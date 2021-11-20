@@ -1,7 +1,11 @@
 package uy.com.bse.soluciones.ejbs;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.ejb.Stateless;
@@ -20,8 +24,6 @@ import uy.com.bse.soluciones.domain.StakeholdersComponente;
 @Stateless
 public class ComponenteSoftwareService extends AbstractService<ComponenteSoftware, Long> {
 	
-	private StakeholdersComponente stakeholderC = new StakeholdersComponente();
-	
 	@PersistenceContext(unitName = "soluciones_bse")
 	protected EntityManager em;
 
@@ -35,6 +37,24 @@ public class ComponenteSoftwareService extends AbstractService<ComponenteSoftwar
 		return em.createQuery(sql).getResultList();
 	}
 	
+	/**
+	 * A common method for all enums since they can't have another base class
+	 * @param <T> Enum type
+	 * @param c enum type. All enums must be all caps.
+	 * @param string case insensitive
+	 * @return corresponding enum, or null
+	 */
+	private <T extends Enum<T>> T getEnumFromString(Class<T> c, String string) {
+	    if( c != null && string != null ) {
+	        try {
+	            return Enum.valueOf(c, string.trim().toUpperCase());
+	        } catch(IllegalArgumentException ex) {
+	        }
+	    }
+	    return null;
+	}
+	
+	@SuppressWarnings("unchecked")
 	private <T extends ComponenteSoftware>  Predicate predicateFromFilter(CriteriaBuilder cb, Root<T> root,
 			Map<String, String> filter) {
 		if (!filter.containsKey("field") || !filter.containsKey("value") || !filter.containsKey("op"))
@@ -43,7 +63,22 @@ public class ComponenteSoftwareService extends AbstractService<ComponenteSoftwar
 		Predicate p = null;
 		switch (filter.get("op")) {
 		case "=":
-			p = cb.equal(root.get(filter.get("field")), filter.get("value"));
+			Class<?> colClass = root.get(filter.get("field")).getJavaType();
+			Object value = filter.get("value");
+			if(colClass.isEnum()) {
+				value = getEnumFromString((Class<? extends Enum>)colClass, filter.get("value"));
+			} else if(colClass.equals(Date.class)) {
+				try {
+					SimpleDateFormat parser = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", new Locale("us"));
+					Date d = new Date();
+					System.out.println(parser.format(d));
+					value = parser.parse(filter.get("value"));
+					System.out.println(value.getClass());
+				} catch (ParseException e) {
+					System.out.println(e.getMessage());
+				}  
+			}
+			p = cb.equal(root.get(filter.get("field")), value);
 			break;
 		case ">":
 			p = cb.lessThan(root.get(filter.get("field")), filter.get("value"));

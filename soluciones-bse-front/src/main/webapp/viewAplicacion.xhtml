@@ -21,6 +21,9 @@
 
 		<div class="card">
 			<p:outputPanel>
+				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+					warnClass="warn" infoClass="info" />
+
 				<h:form id="form" prependId="false">
 					<div class="p-field p-grid" jsf:id="divId">
 						<h:outputLabel value="#{labels['aplicacion.id']}:*" for="inputId"
@@ -129,7 +132,7 @@
 						id="ambientesTable"
 						emptyMessage="Esta aplicación no tiene ambientes asociados"
 						scrollable="true">
-												<p:column headerText="">
+						<p:column headerText="">
 							<p:linkButton
 								outcome="#{aplicacionController.getViewUrlAmbiente(ambiente)}"
 								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
@@ -186,7 +189,7 @@
 								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
 							</p:linkButton>
 						</p:column>
-						
+
 						<p:column headerText="#{labels['aplicacion.skateholder.rol']}">
 							<h:outputText value="#{skateholder.rol}" />
 						</p:column>
@@ -210,7 +213,7 @@
 						</p:column>
 					</p:dataTable>
 
-					<h:link outcome="consultaSimple.xhtml" value="volver" />
+					<h:link value="volver" onclick="window.history.back();" />
 				</h:form>
 			</p:outputPanel>
 		</div>

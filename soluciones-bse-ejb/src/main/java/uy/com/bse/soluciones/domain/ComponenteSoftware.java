@@ -1,6 +1,7 @@
 package uy.com.bse.soluciones.domain;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -30,7 +31,7 @@ public abstract class ComponenteSoftware extends BaseEntity<Long> {
 	private String nombre;
 	private String version;
 	private Date fechaVersion;
-	private Set<StakeholdersComponente> stakeholders;
+	private Set<StakeholdersComponente> stakeholders = new HashSet<StakeholdersComponente>();
 	
 	@Id @GeneratedValue @Override
 	public Long getId() {

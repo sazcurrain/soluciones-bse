@@ -12,19 +12,16 @@
 
 	<ui:define name="title">Lista de soluciones</ui:define>
 
-
 	<ui:define name="body">
-
 
 		<p:linkButton outcome="altaSolucion.xhtml" icon="pi pi-plus"
 			value="Nueva solucion" style="margin-right:20px;" />
 		<br />
 		<br />
 
-
 		<div jsf:id="divGlobal">
 
-			<h:messages id="globalMessage" globalOnly="true" errorClass="err"
+			<p:messages id="globalMessage" globalOnly="true" errorClass="err"
 				warnClass="warn" infoClass="info" />
 
 
@@ -35,12 +32,10 @@
 						value="#{solucionController.listaSoluciones}">
 
 						<p:column headerText="">
-							<p:linkButton
-								outcome="viewSolucion.xhtml?id=#{solucion.id}"
+							<p:linkButton outcome="viewSolucion.xhtml?id=#{solucion.id}"
 								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
 							</p:linkButton>
-							<p:linkButton
-								outcome="altaSolucion.xhtml?id=#{solucion.id}"
+							<p:linkButton outcome="altaSolucion.xhtml?id=#{solucion.id}"
 								icon="pi pi-pencil" style="margin-right:20px;" title="Editar">
 							</p:linkButton>
 

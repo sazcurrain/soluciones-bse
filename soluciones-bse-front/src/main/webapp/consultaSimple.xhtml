@@ -12,23 +12,24 @@
 
 	<ui:define name="title">Consulta simple</ui:define>
 
-
 	<ui:define name="body">
-
 
 		<div jsf:id="divGlobal">
 
-			<h:messages id="globalMessage" globalOnly="true" errorClass="err"
+			<p:messages id="globalMessage" globalOnly="true" errorClass="err"
 				warnClass="warn" infoClass="info" />
-
 
 			<h:form>
 				<div class="card">
 					<p:dataTable var="componente"
-						value="#{simpleController.listaSolInfra}"
+						value="#{simpleController.listaComponentes}"
 						emptyMessage="No hay resultados"
 						filteredValue="#{simpleController.filteredComponentes}"
-						globalFilterOnly="false" widgetVar="componenteTable">
+						globalFilterOnly="false" widgetVar="componenteTable"
+						paginator="true" rows="5"
+						rowsPerPageTemplate="5,10,15"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} Resultados por página: {RowsPerPageDropdown}"
+						currentPageReportTemplate="Resultados {startRecord} al {endRecord} de {totalRecords}.">
 
 						<p:column headerText="">
 							<p:linkButton
@@ -44,25 +45,25 @@
 						</p:column>
 
 						<p:column headerText="#{labels['componente.clase']}"
-							sortBy="#{componente.clase}" filterBy="#{componente.clase}"
+							filterBy="#{componente.clase}"
 							filterMatchMode="exact">
 							<f:facet name="filter">
 								<p:selectOneMenu onchange="PF('componenteTable').filter()"
 									styleClass="custom-filter">
 									<f:selectItem itemLabel="All" itemValue="#{null}"
 										noSelectionOption="true" />
-									<f:selectItems value="#{simpleController.tipos}" />
+									<f:selectItems value="#{simpleController.tipos}" var="clase" itemValue="#{clase}" itemLabel="#{clase.toUpperCase()}"/>
 								</p:selectOneMenu>
 							</f:facet>
-							<h:outputText value="#{componente.clase}" />
+							<h:outputText value="#{componente.clase.toUpperCase()}" />
 						</p:column>
 
-						<p:column headerText="#{labels['componente.version']}">
+						<p:column headerText="#{labels['componente.version']}" sortBy="#{componente.version}" filterBy="#{componente.version}"
+							filterMatchMode="contains">
 							<h:outputText value="#{componente.version}" />
 						</p:column>
 
-						<p:column
-							headerText="#{labels['componente.fechaVersion']}">
+						<p:column headerText="#{labels['componente.fechaVersion']}" sortBy="#{componente.fechaVersion}">
 							<h:outputText value="#{componente.fechaVersion}">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</h:outputText>

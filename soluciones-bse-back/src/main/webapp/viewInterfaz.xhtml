@@ -21,6 +21,9 @@
 
 		<div class="card">
 			<p:outputPanel>
+				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+					warnClass="warn" infoClass="info" />
+
 				<h:form id="form" prependId="false">
 
 					<div class="p-field p-grid" jsf:id="divId"
@@ -45,7 +48,7 @@
 								required="true" size="60">
 								<p:ajax event="blur" process="@this" update="msgAplicacion" />
 							</p:inputText>
-							<h:message id="msgAplicacion" for="inputAplicacion"
+							<p:message id="msgAplicacion" for="inputAplicacion"
 								errorClass="err" warnClass="warn" infoClass="info" />
 						</div>
 					</div>
@@ -59,7 +62,7 @@
 								size="60">
 								<p:ajax event="blur" process="@this" update="msgNombre" />
 							</p:inputText>
-							<h:message id="msgNombre" for="inputNombre" errorClass="err"
+							<p:message id="msgNombre" for="inputNombre" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
@@ -74,7 +77,7 @@
 								size="40">
 								<p:ajax event="blur" process="@this" update="msgVersion" />
 							</p:inputText>
-							<h:message id="msgVersion" for="inputVersion" errorClass="err"
+							<p:message id="msgVersion" for="inputVersion" errorClass="err"
 								warnClass="warn" infoClass="info" />
 
 						</div>
@@ -89,7 +92,7 @@
 								required="true" size="40">
 								<p:ajax event="blur" process="@this" update="msgFechaVersion" />
 							</p:inputText>
-							<h:message id="msgFechaVersion" for="inputFechaVersion"
+							<p:message id="msgFechaVersion" for="inputFechaVersion"
 								errorClass="err" warnClass="warn" infoClass="info" />
 
 						</div>
@@ -148,7 +151,7 @@
 					</p:dataTable>
 
 					<br />
-					<h:link outcome="interfaces.xhtml" value="volver" />
+					<h:link value="volver" onclick="window.history.back();" />
 				</h:form>
 			</p:outputPanel>
 		</div>

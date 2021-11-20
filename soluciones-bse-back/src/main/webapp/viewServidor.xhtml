@@ -21,124 +21,122 @@
 
 		<div class="card">
 			<p:outputPanel>
+				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+					warnClass="warn" infoClass="info" />
 
-					<div class="p-field p-grid" jsf:id="divId"
-						jsf:rendered="#{servidorController.isManaged(servidorController.servidor.id)}">
-						<h:outputLabel value="#{labels['servidor.id']}:*" for="id"
-							class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<h:outputText id="id" 
-								value="#{servidorController.servidor.id}">
-							</h:outputText>
-						</div>
+				<div class="p-field p-grid" jsf:id="divId"
+					jsf:rendered="#{servidorController.isManaged(servidorController.servidor.id)}">
+					<h:outputLabel value="#{labels['servidor.id']}:*" for="id"
+						class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="id" value="#{servidorController.servidor.id}">
+						</h:outputText>
 					</div>
+				</div>
 
-					<div class="p-field p-grid" jsf:id="divNombre">
-						<h:outputLabel value="#{labels['servidor.nombre']}:*"
-							for="nombre" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<h:outputText id="nombre"
-								value="#{servidorController.servidor.nombre}" >
-							</h:outputText>
-						</div>
+				<div class="p-field p-grid" jsf:id="divNombre">
+					<h:outputLabel value="#{labels['servidor.nombre']}:*" for="nombre"
+						class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="nombre"
+							value="#{servidorController.servidor.nombre}">
+						</h:outputText>
 					</div>
+				</div>
 
-					<div class="p-field p-grid" jsf:id="divIp">
-						<h:outputLabel value="#{labels['servidor.IP']}:*" for="ip"
-							class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<h:outputText id="ip"
-								value="#{servidorController.servidor.IP}" >
-							</h:outputText>
-						</div>
+				<div class="p-field p-grid" jsf:id="divIp">
+					<h:outputLabel value="#{labels['servidor.IP']}:*" for="ip"
+						class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="ip" value="#{servidorController.servidor.IP}">
+						</h:outputText>
 					</div>
+				</div>
 
-					<div class="p-field p-grid" jsf:id="divModeloCPU">
-						<h:outputLabel value="#{labels['servidor.modeloCPU']}:*"
-							for="modeloCPU" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<h:outputText id="modeloCPU"
-								value="#{servidorController.servidor.modeloCPU}">
-							</h:outputText>
-						</div>
+				<div class="p-field p-grid" jsf:id="divModeloCPU">
+					<h:outputLabel value="#{labels['servidor.modeloCPU']}:*"
+						for="modeloCPU" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="modeloCPU"
+							value="#{servidorController.servidor.modeloCPU}">
+						</h:outputText>
 					</div>
+				</div>
 
-					<div class="p-field p-grid" jsf:id="divVirtual">
-						<h:outputLabel value="#{labels['servidor.virtual']}:*"
-							for="virtual" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<h:outputText id="virtual"
-								value="#{servidorController.servidor.virtual}">
-							</h:outputText>
-						</div>
+				<div class="p-field p-grid" jsf:id="divVirtual">
+					<h:outputLabel value="#{labels['servidor.virtual']}:*"
+						for="virtual" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="virtual"
+							value="#{servidorController.servidor.virtual}">
+						</h:outputText>
 					</div>
+				</div>
 
-					<div class="p-field p-grid" jsf:id="divMemoriaRamGB">
-						<h:outputLabel value="#{labels['servidor.memoriaRamGB']}:*"
-							for="memoriaRamGB" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<h:outputText id="memoriaRamGB"
-								value="#{servidorController.servidor.memoriaRamGB}">
-							</h:outputText>
-						</div>
+				<div class="p-field p-grid" jsf:id="divMemoriaRamGB">
+					<h:outputLabel value="#{labels['servidor.memoriaRamGB']}:*"
+						for="memoriaRamGB" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="memoriaRamGB"
+							value="#{servidorController.servidor.memoriaRamGB}">
+						</h:outputText>
 					</div>
+				</div>
 
-					<div class="p-field p-grid" jsf:id="divAlmacenamientoGB">
-						<h:outputLabel value="#{labels['servidor.almacenamientoGB']}:*"
-							for="almacenamientoGB" class="p-col-fixed"
-							style="width: 150px" />
-						<div class="p-col">
-							<h:outputText id="almacenamientoGB"
-								value="#{servidorController.servidor.almacenamientoGB}">
-							</h:outputText>
-						</div>
+				<div class="p-field p-grid" jsf:id="divAlmacenamientoGB">
+					<h:outputLabel value="#{labels['servidor.almacenamientoGB']}:*"
+						for="almacenamientoGB" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="almacenamientoGB"
+							value="#{servidorController.servidor.almacenamientoGB}">
+						</h:outputText>
 					</div>
-					<div class="p-field p-grid" jsf:id="divNumeroCPU">
-						<h:outputLabel value="#{labels['servidor.numeroCPU']}:*"
-							for="numeroCPU" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<h:outputText id="numeroCPU"
-								value="#{servidorController.servidor.numeroCPU}">
-							</h:outputText>
-						</div>
+				</div>
+				<div class="p-field p-grid" jsf:id="divNumeroCPU">
+					<h:outputLabel value="#{labels['servidor.numeroCPU']}:*"
+						for="numeroCPU" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="numeroCPU"
+							value="#{servidorController.servidor.numeroCPU}">
+						</h:outputText>
 					</div>
+				</div>
 
-					<div class="p-field p-grid" jsf:id="divSistemaOperativo">
-						<h:outputLabel value="#{labels['servidor.sistema_operativo']}:*"
-							for="sistemaOperativo" class="p-col-fixed"
-							style="width: 150px" />
-						<div class="p-col">
-							<h:outputText id="sistemaOperativo"
-								value="#{servidorController.servidor.sistema_operativo}">
-							</h:outputText>
-						</div>
+				<div class="p-field p-grid" jsf:id="divSistemaOperativo">
+					<h:outputLabel value="#{labels['servidor.sistema_operativo']}:*"
+						for="sistemaOperativo" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="sistemaOperativo"
+							value="#{servidorController.servidor.sistema_operativo}">
+						</h:outputText>
 					</div>
+				</div>
 
-					<div class="p-field p-grid" jsf:id="divVersion">
-						<h:outputLabel value="#{labels['servidor.version']}:*"
-							for="version" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<h:outputText id="version"
-								value="#{servidorController.servidor.version}">
-							</h:outputText>
-						</div>
+				<div class="p-field p-grid" jsf:id="divVersion">
+					<h:outputLabel value="#{labels['servidor.version']}:*"
+						for="version" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="version"
+							value="#{servidorController.servidor.version}">
+						</h:outputText>
 					</div>
+				</div>
 
-					<div class="p-field p-grid" jsf:id="divEntorno">
-						<h:outputLabel value="#{labels['servidor.entorno']}:*"
-							for="entorno" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<h:outputText id="entorno"
-								value="#{servidorController.servidor.entorno}" >
-							</h:outputText>
-						</div>
+				<div class="p-field p-grid" jsf:id="divEntorno">
+					<h:outputLabel value="#{labels['servidor.entorno']}:*"
+						for="entorno" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="entorno"
+							value="#{servidorController.servidor.entorno}">
+						</h:outputText>
 					</div>
+				</div>
 
-					<br />
+				<br />
 
-					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
+				<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
 
-					<h:link outcome="solsInfra.xhtml" value="volver" />
+				<h:link value="volver" onclick="window.history.back();" />
 			</p:outputPanel>
 		</div>
 	</ui:define>

@@ -21,9 +21,11 @@
 
 		<div class="card">
 			<p:outputPanel>
+				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+					warnClass="warn" infoClass="info" />
+
 				<h:form id="form" prependId="false">
 
-					<p:growl globalOnly="true" id="mesnajesGlobales" />
 					<div class="p-field p-grid" jsf:id="divId"
 						jsf:rendered="#{servidorController.isManaged(servidorController.servidor.id)}">
 						<h:outputLabel value="#{labels['servidor.id']}:*" for="inputId"
@@ -46,7 +48,7 @@
 								size="60">
 								<p:ajax event="blur" process="@this" update="msgNombre" />
 							</p:inputText>
-							<h:message id="msgNombre" for="inputNombre" errorClass="err"
+							<p:message id="msgNombre" for="inputNombre" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
@@ -60,7 +62,7 @@
 								size="20">
 								<p:ajax event="blur" process="@this" update="msgIp" />
 							</p:inputText>
-							<h:message id="msgIp" for="inputIp" errorClass="err"
+							<p:message id="msgIp" for="inputIp" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
@@ -74,7 +76,7 @@
 								size="40">
 								<p:ajax event="blur" process="@this" update="msgModeloCPU" />
 							</p:inputText>
-							<h:message id="msgModeloCPU" for="inputModeloCPU"
+							<p:message id="msgModeloCPU" for="inputModeloCPU"
 								errorClass="err" warnClass="warn" infoClass="info" />
 
 						</div>
@@ -90,7 +92,7 @@
 								<f:selectItem itemLabel="True" itemValue="true" />
 								<f:selectItem itemLabel="False" itemValue="false" />
 							</p:selectOneMenu>
-							<h:message id="msgVirtual" for="selectVirtual" errorClass="err"
+							<p:message id="msgVirtual" for="selectVirtual" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
@@ -104,7 +106,7 @@
 								required="true" size="10">
 								<p:ajax event="blur" process="@this" update="msgMemoriaRamGB" />
 							</p:inputText>
-							<h:message id="msgMemoriaRamGB" for="inputMemoriaRamGB"
+							<p:message id="msgMemoriaRamGB" for="inputMemoriaRamGB"
 								errorClass="err" warnClass="warn" infoClass="info" />
 
 						</div>
@@ -121,7 +123,7 @@
 								<p:ajax event="blur" process="@this"
 									update="msgAlmacenamientoGB" />
 							</p:inputText>
-							<h:message id="msgAlmacenamientoGB" for="inputAlmacenamientoGB"
+							<p:message id="msgAlmacenamientoGB" for="inputAlmacenamientoGB"
 								errorClass="err" warnClass="warn" infoClass="info" />
 
 						</div>
@@ -135,7 +137,7 @@
 								size="10">
 								<p:ajax event="blur" process="@this" update="msgNumeroCPU" />
 							</p:inputText>
-							<h:message id="msgNumeroCPU" for="inputNumeroCPU"
+							<p:message id="msgNumeroCPU" for="inputNumeroCPU"
 								errorClass="err" warnClass="warn" infoClass="info" />
 						</div>
 					</div>
@@ -151,7 +153,7 @@
 								<p:ajax event="blur" process="@this"
 									update="msgSistemaOperativo" />
 							</p:inputText>
-							<h:message id="msgSistemaOperativo" for="inputSistemaOperativo"
+							<p:message id="msgSistemaOperativo" for="inputSistemaOperativo"
 								errorClass="err" warnClass="warn" infoClass="info" />
 
 						</div>
@@ -166,7 +168,7 @@
 								size="40">
 								<p:ajax event="blur" process="@this" update="msgVersion" />
 							</p:inputText>
-							<h:message id="msgVersion" for="inputVersion" errorClass="err"
+							<p:message id="msgVersion" for="inputVersion" errorClass="err"
 								warnClass="warn" infoClass="info" />
 
 						</div>
@@ -183,7 +185,7 @@
 									var="entorno" itemValue="#{entorno}" itemLabel="#{entorno}"
 									noSelectionValue="Seleccionar" />
 							</p:selectOneMenu>
-							<h:message id="msgEntorno" for="selectEntorno" errorClass="err"
+							<p:message id="msgEntorno" for="selectEntorno" errorClass="err"
 								warnClass="warn" infoClass="info" />
 						</div>
 					</div>
@@ -191,11 +193,11 @@
 					<br />
 
 					<p:commandButton action="#{servidorController.crearServidor}"
-						value="Confirmar" process=":form" update=":form"/>
+						value="Confirmar" process=":form" update=":form" />
 
 					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
 
-					<h:link outcome="solsInfra.xhtml" value="volver" />
+					<h:link value="volver" onclick="window.history.back();" />
 				</h:form>
 			</p:outputPanel>
 		</div>

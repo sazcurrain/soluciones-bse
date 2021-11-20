@@ -21,6 +21,9 @@
 
 		<div class="card">
 			<p:outputPanel>
+				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+					warnClass="warn" infoClass="info" />
+
 				<h:form id="form" prependId="false">
 					<div class="p-field p-grid" jsf:id="divId">
 						<h:outputLabel value="#{labels['solucion.id']}:*" for="inputId"
@@ -127,7 +130,7 @@
 						</p:column>
 					</p:dataTable>
 
-					<h:link outcome="consultaSimple.xhtml" value="volver" />
+					<p:commandLink value="volver" onclick="window.history.back();" />
 				</h:form>
 			</p:outputPanel>
 		</div>

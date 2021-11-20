@@ -21,12 +21,10 @@
 		<br />
 		<br />
 
-
 		<div jsf:id="divGlobal">
 
-			<h:messages id="globalMessage" globalOnly="true" errorClass="err"
+			<p:messages id="globalMessage" globalOnly="true" errorClass="err"
 				warnClass="warn" infoClass="info" />
-
 
 			<h:form>
 
@@ -36,6 +34,10 @@
 
 						<p:column headerText="">
 							<p:linkButton
+								outcome="viewStakeholder.xhtml?id=#{stakeholder.id}"
+								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+							</p:linkButton>
+							<p:linkButton
 								outcome="altaStakeholder.xhtml?id=#{stakeholder.id}"
 								icon="pi pi-pencil" style="margin-right:20px;" title="Editar">
 							</p:linkButton>
@@ -44,7 +46,7 @@
 								update="divGlobal" styleClass="ui-button-danger"
 								icon="pi pi-trash" title="Eliminar">
 								<p:confirm header="Atencion"
-									message="Esta seguro que quiere eliminar el interesado '#{aplicacion.nombre}'?"
+									message="Esta seguro que quiere eliminar el interesado '#{stakeholder.nombre}'?"
 									icon="pi pi-info-circle" />
 							</p:commandButton>
 

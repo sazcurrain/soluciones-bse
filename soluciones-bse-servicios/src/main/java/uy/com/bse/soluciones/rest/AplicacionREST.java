@@ -1,6 +1,5 @@
 package uy.com.bse.soluciones.rest;
 
-
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -32,7 +31,7 @@ public class AplicacionREST implements IAplicacionREST {
 	@Transactional
 	public Response getById(Long id) {
 		Aplicacion aux = buscarAplicacion(id);
-		return Response.ok(AplicacionDTO.adaptEntity(aux)).build();
+		return Response.ok(new AplicacionDTO(aux)).build();
 	}
 	
 	/**

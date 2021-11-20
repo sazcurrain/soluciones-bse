@@ -16,8 +16,10 @@
 
 		<div class="card">
 			<p:outputPanel>
+				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+					warnClass="warn" infoClass="info" />
+
 				<h:form id="form" prependId="false">
-					<p:messages globalOnly="true" id="mensajesGlobales" />
 
 					<div class="p-field p-grid" jsf:id="divEntorno">
 						<h:outputLabel value="#{labels['ambiente.entorno']}:*"
@@ -65,16 +67,16 @@
 					</div>
 
 					<div class="p-field p-grid" jsf:id="divDirectorio">
-						<h:outputLabel value="#{labels['ambiente.directorio']}:*" for="inputDirectorio"
-							class="p-col-fixed" style="width: 150px" />
+						<h:outputLabel value="#{labels['ambiente.directorio']}:*"
+							for="inputDirectorio" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputDirectorio"
-								value="#{ambienteController.ambiente.directorio}" required="true"
-								size="80">
+								value="#{ambienteController.ambiente.directorio}"
+								required="true" size="80">
 								<p:ajax event="blur" process="@this" update="msgUrl" />
 							</p:inputText>
-							<p:message id="msgDirectorio" for="inputDirectorio" errorClass="err"
-								warnClass="warn" infoClass="info" />
+							<p:message id="msgDirectorio" for="inputDirectorio"
+								errorClass="err" warnClass="warn" infoClass="info" />
 						</div>
 					</div>
 
@@ -99,7 +101,6 @@
 						</p:column>
 
 						<p:column>
-							<p:growl id="form" showDetail="true" />
 							<p:commandButton icon="pi pi-check" style="margin-right:20px;"
 								title="Seleccionar"
 								action="#{ambienteController.seleccionaAmbiente(solInfra)}">
