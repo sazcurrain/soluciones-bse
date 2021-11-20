@@ -68,7 +68,7 @@
 					</div>
 					<div class="p-field p-grid" jsf:id="divMail">
 						<h:outputLabel value="#{labels['stakeholder.mail']}:*"
-							for="inputMail" class="p-col-fixed" style="width: 250px" />
+							for="inputMail" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<p:inputText id="inputMail"
 								value="#{stakeholderController.stakeholder.mail}"
@@ -82,9 +82,9 @@
 
 					<div class="p-field p-grid" jsf:id="divTelefono">
 						<h:outputLabel value="#{labels['stakeholder.telefono']}:*"
-							for="inputDocumento" class="p-col-fixed" style="width: 150px" />
+							for="inputTelefono" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputNroDocumento"
+							<p:inputText id="inputTelefono"
 								value="#{stakeholderController.stakeholder.telefono}"
 								required="true" size="40">
 								<p:ajax event="blur" process="@this" update="msgTelefono" />
