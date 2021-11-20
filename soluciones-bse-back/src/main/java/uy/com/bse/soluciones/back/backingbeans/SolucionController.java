@@ -5,8 +5,10 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -109,7 +111,7 @@ public class SolucionController implements Serializable {
         PrimeFaces.current().dialog().openDynamic("selectComponenteDialog", options, null);
 	}
 	
-	
+
 	public boolean isAplicacionEnSolucion (Aplicacion aplicacion) {
 		for (ComponenteSoftware componente :  solucion.getComponentes()) {
 			if (componente.equals(aplicacion)) {
@@ -123,7 +125,7 @@ public class SolucionController implements Serializable {
 	    return false;
 	}
 	
-	
+	@Transactional
 	public void onAddComponente(SelectEvent<ComponenteSoftware> event) {
 		ComponenteSoftware nueva = event.getObject();
 		switch (nueva.getClase()) {
@@ -131,21 +133,30 @@ public class SolucionController implements Serializable {
 			solucion.addComponente(nueva);
 			break;
 		case "Aplicacion":
-			Aplicacion aplicacion = (Aplicacion) nueva;
+			/*Aplicacion aplicacion = (Aplicacion) nueva;
+			Set<Interfaz> consume = aplicacion.getConsume();
+			consume.size();
 			for (Interfaz interfazC : aplicacion.getConsume()) {
 				if (isAplicacionEnSolucion(interfazC.getAplicacion())==true) {
 					solucion.addComponente(nueva);
 				}
-			}
+			}*/
 			// TODO Mostrar mensaje de error
+			solucion.addComponente(nueva);
 			break;
 		case "Interfaz" :
 			Interfaz interfaz = (Interfaz) nueva;
 			if (isAplicacionEnSolucion(interfaz.getAplicacion())==true) {
 				solucion.addComponente(nueva);
+			} else {
+				FacesContext.getCurrentInstance().addMessage(
+		                "componenteTable",
+		                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+		                		"La interface no es provista por ninguna de las aplicaciones dentro de esta solución.", null));
 			}
 			break;
 		}
+	
 //		solucion.addComponente(nueva);
 	}
 	
