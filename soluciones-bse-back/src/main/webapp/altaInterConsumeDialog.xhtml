@@ -15,6 +15,10 @@
 	<ui:define name="body">
 
 		<div class="card">
+
+			<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+				warnClass="warn" infoClass="info" />
+
 			<h:form>
 
 				<p:dataTable var="interfazC"
@@ -42,9 +46,9 @@
 					<p:column headerText="#{labels['aplicacion.interfaz.nombreApp']}">
 						<h:outputText value="#{interfazC.aplicacion.nombre}" />
 					</p:column>
-					<p:column >
-						<p:growl id="form" showDetail="true" />
-						<p:commandButton  icon="pi pi-check" style="margin-right:20px;" title="Seleccionar"
+					<p:column>
+						<p:commandButton icon="pi pi-check" style="margin-right:20px;"
+							title="Seleccionar"
 							action="#{consumeController.seleccionaInterfaz(interfazC)}">
 						</p:commandButton>
 					</p:column>

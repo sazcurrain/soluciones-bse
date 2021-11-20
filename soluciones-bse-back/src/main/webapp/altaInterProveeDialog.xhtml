@@ -16,8 +16,11 @@
 
 		<div class="card">
 			<p:outputPanel>
+				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+					warnClass="warn" infoClass="info" />
+
 				<h:form id="form" prependId="false">
-					<p:messages globalOnly="true" id="mensajesGlobales" />
+
 					<div class="p-field p-grid" jsf:id="divId"
 						jsf:rendered="#{proveeController.isManaged(proveeController.interfaz.id)}">
 						<h:outputLabel value="#{labels['interfaz.id']}:*" for="inputId"
@@ -57,7 +60,7 @@
 						</div>
 					</div>
 
- 					<div class="p-field p-grid" jsf:id="divFechaVersion">
+					<div class="p-field p-grid" jsf:id="divFechaVersion">
 						<h:outputLabel value="#{labels['interfaz.fechaVersion']}:*"
 							for="inputFechaNac" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
@@ -82,8 +85,7 @@
 								<f:selectItems value="#{proveeController.tipoInterfazValues}"
 									var="tipo" itemValue="#{tipo}" itemLabel="#{tipo}"
 									noSelectionValue="Seleccionar" />
-								<p:ajax event="change" process="@this"
-									update="msgTipo" />
+								<p:ajax event="change" process="@this" update="msgTipo" />
 							</p:selectOneMenu>
 							<p:message id="msgTipo" for="inputTipo" errorClass="err"
 								warnClass="warn" infoClass="info" />

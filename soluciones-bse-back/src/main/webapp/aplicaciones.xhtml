@@ -24,9 +24,8 @@
 
 		<div jsf:id="divGlobal">
 
-			<h:messages id="globalMessage" globalOnly="true" errorClass="err"
+			<p:messages id="globalMessage" globalOnly="true" errorClass="err"
 				warnClass="warn" infoClass="info" />
-
 
 			<h:form>
 
@@ -35,12 +34,10 @@
 						value="#{aplicacionController.listaAplicacion}">
 
 						<p:column headerText="">
-							<p:linkButton
-								outcome="viewAplicacion.xhtml?id=#{aplicacion.id}"
+							<p:linkButton outcome="viewAplicacion.xhtml?id=#{aplicacion.id}"
 								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
 							</p:linkButton>
-							<p:linkButton
-								outcome="altaAplicacion.xhtml?id=#{aplicacion.id}"
+							<p:linkButton outcome="altaAplicacion.xhtml?id=#{aplicacion.id}"
 								icon="pi pi-pencil" style="margin-right:20px;" title="Editar">
 							</p:linkButton>
 							<p:commandButton

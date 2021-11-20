@@ -24,6 +24,8 @@
 		<div class="card">
 			<p:outputPanel>
 				<h:form id="form" prependId="false">
+					<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+						warnClass="warn" infoClass="info" />
 
 					<div class="p-field p-grid" jsf:id="divRol">
 						<h:outputLabel value="#{labels['interfaz.tipo']}:*" for="inputRol"

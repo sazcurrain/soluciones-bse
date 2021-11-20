@@ -6,8 +6,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:jsf="http://xmlns.jcp.org/jsf"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="templates/layout.xhtml">
 
@@ -21,105 +20,108 @@
 	<ui:define name="body">
 
 		<div class="card">
-		<p:outputPanel>
-			<h:form id="form" prependId="false">
+			<p:outputPanel>
+				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+					warnClass="warn" infoClass="info" />
 
-				<div class="p-field p-grid" jsf:id="divId" jsf:rendered="#{nubeController.isManaged(nubeController.nube.id)}">
-					<h:outputLabel value="#{labels['nube.id']}:*"
-						for="inputId" class="p-col-fixed" style="width: 150px" />
-					<div class="p-col">
-						<p:inputText id="inputId"
-							value="#{nubeController.nube.id}" required="true"
-							size="40" disabled="#{nubeController.isManaged(nubeController.nube.id)}">
-						</p:inputText>
+				<h:form id="form" prependId="false">
+
+					<div class="p-field p-grid" jsf:id="divId"
+						jsf:rendered="#{nubeController.isManaged(nubeController.nube.id)}">
+						<h:outputLabel value="#{labels['nube.id']}:*" for="inputId"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputId" value="#{nubeController.nube.id}"
+								required="true" size="40"
+								disabled="#{nubeController.isManaged(nubeController.nube.id)}">
+							</p:inputText>
+						</div>
 					</div>
-				</div>
-					
-				<div class="p-field p-grid" jsf:id="divNombre">
-					<h:outputLabel value="#{labels['nube.nombre']}:*"
-						for="inputNombre" class="p-col-fixed" style="width: 150px" />
-					<div class="p-col">
-						<p:inputText id="inputNombre"
-							value="#{nubeController.nube.nombre}" required="true"
-							size="60">
-							<p:ajax event="blur" process="@this" update="msgNombre" />
-						</p:inputText>
-						<h:message id="msgNombre" for="inputNombre" errorClass="err"
-							warnClass="warn" infoClass="info" />
+
+					<div class="p-field p-grid" jsf:id="divNombre">
+						<h:outputLabel value="#{labels['nube.nombre']}:*"
+							for="inputNombre" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputNombre"
+								value="#{nubeController.nube.nombre}" required="true" size="60">
+								<p:ajax event="blur" process="@this" update="msgNombre" />
+							</p:inputText>
+							<p:message id="msgNombre" for="inputNombre" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
 					</div>
-				</div>
-				
-				<div class="p-field p-grid" jsf:id="divUrl">
-					<h:outputLabel value="#{labels['nube.url']}:*"
-						for="inputURL" class="p-col-fixed" style="width: 150px" />
-					<div class="p-col">
-						<p:inputText id="inputUrl"
-							value="#{nubeController.nube.url}" required="true"
-							size="100">
-							<p:ajax event="blur" process="@this" update="msgUrl" />
-						</p:inputText>
-						<h:message id="msgUrl" for="inputUrl" errorClass="err"
-							warnClass="warn" infoClass="info" />
+
+					<div class="p-field p-grid" jsf:id="divUrl">
+						<h:outputLabel value="#{labels['nube.url']}:*" for="inputURL"
+							class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputUrl" value="#{nubeController.nube.url}"
+								required="true" size="100">
+								<p:ajax event="blur" process="@this" update="msgUrl" />
+							</p:inputText>
+							<p:message id="msgUrl" for="inputUrl" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
 					</div>
-				</div>
-				
-				<div class="p-field p-grid" jsf:id="divSistemaOperativo">
-					<h:outputLabel value="#{labels['nube.sistema_operativo']}:*"
-						for="inputSistemaOperativo" class="p-col-fixed" style="width: 150px" />
-					<div class="p-col">
-						<p:inputText id="inputSistemaOperativo"
-							value="#{nubeController.nube.sistema_operativo}" required="true"
-							size="40">
-							<p:ajax event="blur" process="@this" update="msgSistemaOperativo" />
-						</p:inputText>
-						<h:message id="msgSistemaOperativo" for="inputSistemaOperativo"
-							errorClass="err" warnClass="warn" infoClass="info" />
 
+					<div class="p-field p-grid" jsf:id="divSistemaOperativo">
+						<h:outputLabel value="#{labels['nube.sistema_operativo']}:*"
+							for="inputSistemaOperativo" class="p-col-fixed"
+							style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputSistemaOperativo"
+								value="#{nubeController.nube.sistema_operativo}" required="true"
+								size="40">
+								<p:ajax event="blur" process="@this"
+									update="msgSistemaOperativo" />
+							</p:inputText>
+							<p:message id="msgSistemaOperativo" for="inputSistemaOperativo"
+								errorClass="err" warnClass="warn" infoClass="info" />
+
+						</div>
 					</div>
-				</div>
-				
-				<div class="p-field p-grid" jsf:id="divVersion">
-					<h:outputLabel value="#{labels['nube.version']}:*"
-						for="inputVersion" class="p-col-fixed" style="width: 150px" />
-					<div class="p-col">
-						<p:inputText id="inputVersion"
-							value="#{nubeController.nube.version}" required="true"
-							size="40">
-							<p:ajax event="blur" process="@this" update="msgVersion" />
-						</p:inputText>
-						<h:message id="msgVersion" for="inputVersion"
-							errorClass="err" warnClass="warn" infoClass="info" />
 
+					<div class="p-field p-grid" jsf:id="divVersion">
+						<h:outputLabel value="#{labels['nube.version']}:*"
+							for="inputVersion" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:inputText id="inputVersion"
+								value="#{nubeController.nube.version}" required="true" size="40">
+								<p:ajax event="blur" process="@this" update="msgVersion" />
+							</p:inputText>
+							<p:message id="msgVersion" for="inputVersion" errorClass="err"
+								warnClass="warn" infoClass="info" />
+
+						</div>
 					</div>
-				</div>
 
-				<div class="p-field p-grid" jsf:id="divEntorno">
-					<h:outputLabel value="#{labels['nube.entorno']}:*" for="inputEntorno"
-						class="p-col-fixed" style="width: 150px" />
-					<div class="p-col">
-						<p:selectOneMenu id="selectEntorno"
-							value="#{nubeController.nube.entorno}" required="true">
-							<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
-							<f:selectItems value="#{nubeController.entornoValues}" var="entorno"
-								itemValue="#{entorno}" itemLabel="#{entorno}"
-								noSelectionValue="Seleccionar" />
-						</p:selectOneMenu>
-						<h:message id="msgEntorno" for="selectEntorno" errorClass="err"
-							warnClass="warn" infoClass="info" />
+					<div class="p-field p-grid" jsf:id="divEntorno">
+						<h:outputLabel value="#{labels['nube.entorno']}:*"
+							for="inputEntorno" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<p:selectOneMenu id="selectEntorno"
+								value="#{nubeController.nube.entorno}" required="true">
+								<f:selectItem itemValue="#{null}" itemLabel="--Seleccionar--" />
+								<f:selectItems value="#{nubeController.entornoValues}"
+									var="entorno" itemValue="#{entorno}" itemLabel="#{entorno}"
+									noSelectionValue="Seleccionar" />
+							</p:selectOneMenu>
+							<p:message id="msgEntorno" for="selectEntorno" errorClass="err"
+								warnClass="warn" infoClass="info" />
+						</div>
 					</div>
-				</div>
 
-				<br />
+					<br />
 
-				<p:commandButton action="#{nubeController.crearNube}"
-					value="Confirmar">
-					<f:ajax event="click" execute="@form" render="@form" />
-				</p:commandButton>
+					<p:commandButton action="#{nubeController.crearNube}"
+						value="Confirmar">
+						<f:ajax event="click" execute="@form" render="@form" />
+					</p:commandButton>
 
-				<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
+					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
 
-				<h:link value="volver" onclick="window.history.back();"/>
-			</h:form>
+					<h:link value="volver" onclick="window.history.back();" />
+				</h:form>
 			</p:outputPanel>
 		</div>
 	</ui:define>

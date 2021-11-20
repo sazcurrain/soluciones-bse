@@ -25,9 +25,10 @@
 
 		<div class="card">
 			<p:outputPanel>
-				<h:form id="form" prependId="false">
+				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+					warnClass="warn" infoClass="info" />
 
-					<p:messages globalOnly="true" id="mensajesGlobales" />
+				<h:form id="form" prependId="false">
 
 					<div class="p-field p-grid" jsf:id="divEntorno">
 						<h:outputLabel value="#{labels['ambiente.entorno']}:*"

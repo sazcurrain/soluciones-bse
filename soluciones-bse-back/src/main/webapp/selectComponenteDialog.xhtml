@@ -15,10 +15,14 @@
 	<ui:define name="body">
 
 		<div class="card">
+			<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+				warnClass="warn" infoClass="info" />
+
 			<h:form>
 
 				<p:dataTable var="componente"
-					value="#{componenteController.listaComponentes}" id="componenteTable"
+					value="#{componenteController.listaComponentes}"
+					id="componenteTable"
 					emptyMessage="Esta aplicación no se encontraron Componentes.">
 
 					<p:column headerText="#{labels['solucion.componente.nombre']}">
@@ -39,10 +43,10 @@
 					<p:column headerText="#{labels['solucion.componente.clase']}">
 						<h:outputText value="#{componente.clase}" />
 					</p:column>
-					
-					<p:column >
-						<p:growl id="form" showDetail="true" />
-						<p:commandButton  icon="pi pi-check" style="margin-right:20px;" title="Seleccionar"
+
+					<p:column>
+						<p:commandButton icon="pi pi-check" style="margin-right:20px;"
+							title="Seleccionar"
 							action="#{componenteController.seleccionaComponente(componente)}">
 						</p:commandButton>
 					</p:column>

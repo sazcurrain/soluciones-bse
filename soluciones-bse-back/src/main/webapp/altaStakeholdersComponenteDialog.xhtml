@@ -16,8 +16,10 @@
 
 		<div class="card">
 			<p:outputPanel>
+			<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+					warnClass="warn" infoClass="info" />
+					
 				<h:form id="form" prependId="false">
-					<p:messages globalOnly="true" id="mensajesGlobales" />
 
 					<div class="p-field p-grid" jsf:id="divRol">
 						<h:outputLabel value="#{labels['interfaz.tipo']}:*" for="inputRol"
@@ -62,7 +64,6 @@
 						</p:column>
 
 						<p:column>
-							<p:growl id="form" showDetail="true" />
 							<p:commandButton icon="pi pi-check" style="margin-right:20px;"
 								title="Seleccionar"
 								action="#{stakeholderCompController.seleccionaStakeholderC(stakeholder)}">

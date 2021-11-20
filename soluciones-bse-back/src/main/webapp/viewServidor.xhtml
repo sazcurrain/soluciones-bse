@@ -21,6 +21,8 @@
 
 		<div class="card">
 			<p:outputPanel>
+				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+					warnClass="warn" infoClass="info" />
 
 				<div class="p-field p-grid" jsf:id="divId"
 					jsf:rendered="#{servidorController.isManaged(servidorController.servidor.id)}">

@@ -24,9 +24,10 @@
 
 		<div class="card">
 			<p:outputPanel>
-				<h:form id="form" prependId="false">
+				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+					warnClass="warn" infoClass="info" />
 
-					<p:messages globalOnly="true" id="mensajesGlobales" />
+				<h:form id="form" prependId="false">
 
 					<div class="p-field p-grid" jsf:id="divEntorno">
 						<h:outputLabel value="#{labels['ambiente.entorno']}:*"
@@ -86,7 +87,8 @@
 						<h:outputLabel value="#{labels['nube.url']}:*" for="inputNuveURL"
 							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<h:outputText id="inputNuveUrl" value="#{nubeController.nube.url}" />
+							<h:outputText id="inputNuveUrl"
+								value="#{nubeController.nube.url}" />
 						</div>
 					</div>
 
@@ -121,7 +123,7 @@
 					</div>
 
 					<br />
-					<h:link value="volver" onclick="window.history.back();"/>
+					<h:link value="volver" onclick="window.history.back();" />
 				</h:form>
 			</p:outputPanel>
 		</div>

@@ -7,57 +7,58 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
-			<h:form>
-				<div class="card">
-					<p:dataTable var="componente"
-						value="#{avanzadaController.filteredComponentes}"
-						emptyMessage="No hay resultados"
-						paginator="true" rows="2"
-						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-						rowsPerPageTemplate="2,5,15"
-						widgetVar="componenteTable">
+	
+<h:form>
+	<div class="card">
+		<p:messages id="globalMessage" globalOnly="true" errorClass="err"
+			warnClass="warn" infoClass="info" />
 
-						<p:column headerText="">
-							<p:linkButton
-								outcome="#{avanzadaController.getViewUrl(componente)}"
-								icon="pi pi-eye" style="margin-right:20px;" title="Ver">
-							</p:linkButton>
-						</p:column>
+		<p:dataTable var="componente"
+			value="#{avanzadaController.filteredComponentes}"
+			emptyMessage="No hay resultados" paginator="true" rows="2"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+			rowsPerPageTemplate="2,5,15" widgetVar="componenteTable">
 
-						<p:column headerText="#{labels['componente.nombre']}"
-							sortBy="#{componente.nombre}" filterBy="#{componente.nombre}"
-							filterMatchMode="contains">
-							<h:outputText value="#{componente.nombre}" />
-						</p:column>
+			<p:column headerText="">
+				<p:linkButton outcome="#{avanzadaController.getViewUrl(componente)}"
+					icon="pi pi-eye" style="margin-right:20px;" title="Ver">
+				</p:linkButton>
+			</p:column>
 
-						<p:column headerText="#{labels['componente.clase']}" filterBy="#{componente.clase}"
-							filterMatchMode="exact">
-							<f:facet name="filter">
-								<p:selectOneMenu onchange="PF('componenteTable').filter()"
-									styleClass="custom-filter">
-									<f:selectItem itemLabel="All" itemValue="#{null}"
-										noSelectionOption="true" />
-									<f:selectItems value="#{simpleController.tipos}" />
-								</p:selectOneMenu>
-							</f:facet>
-							<h:outputText value="#{componente.clase}" />
-						</p:column>
+			<p:column headerText="#{labels['componente.nombre']}"
+				sortBy="#{componente.nombre}" filterBy="#{componente.nombre}"
+				filterMatchMode="contains">
+				<h:outputText value="#{componente.nombre}" />
+			</p:column>
 
-						<p:column headerText="#{labels['componente.version']}">
-							<h:outputText value="#{componente.version}" />
-						</p:column>
-						
-						<p:column headerText="#{labels['interfaz.tipo']}">
-							<h:outputText value="#{componente.tipo}" />
-						</p:column>
+			<p:column headerText="#{labels['componente.clase']}"
+				filterBy="#{componente.clase}" filterMatchMode="exact">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('componenteTable').filter()"
+						styleClass="custom-filter">
+						<f:selectItem itemLabel="All" itemValue="#{null}"
+							noSelectionOption="true" />
+						<f:selectItems value="#{simpleController.tipos}" />
+					</p:selectOneMenu>
+				</f:facet>
+				<h:outputText value="#{componente.clase}" />
+			</p:column>
 
-						<p:column headerText="#{labels['componente.fechaVersion']}">
-							<h:outputText value="#{componente.fechaVersion}">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:outputText>
-						</p:column>
-					</p:dataTable>
-				</div>
-			</h:form>
+			<p:column headerText="#{labels['componente.version']}">
+				<h:outputText value="#{componente.version}" />
+			</p:column>
+
+			<p:column headerText="#{labels['interfaz.tipo']}">
+				<h:outputText value="#{componente.tipo}" />
+			</p:column>
+
+			<p:column headerText="#{labels['componente.fechaVersion']}">
+				<h:outputText value="#{componente.fechaVersion}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+		</p:dataTable>
+	</div>
+</h:form>
 </html>
 
