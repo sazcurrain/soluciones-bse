@@ -2,7 +2,6 @@ package uy.com.bse.soluciones.backingbeans;
 
 import java.util.Date;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

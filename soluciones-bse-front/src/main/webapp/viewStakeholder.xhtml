@@ -11,8 +11,10 @@
 <ui:composition template="templates/layout.xhtml">
 
 	<f:metadata>
-		<f:viewParam name="id" value="#{stakeholderCompController.stakeholderC.id}" />
-		<f:viewAction action="#{stakeholderCompController.findSolucionCompById}" />
+		<f:viewParam name="id"
+			value="#{stakeholderCompController.stakeholderC.id}" />
+		<f:viewAction
+			action="#{stakeholderCompController.findSolucionCompById}" />
 	</f:metadata>
 
 	<ui:define name="title">#{labels['stakeholder.alta.title']}</ui:define>
@@ -78,7 +80,7 @@
 					</div>
 					<br />
 
-					<h:link outcome="consultaSimple.xhtml" value="volver" />
+					<h:link value="volver" onclick="window.history.back();" />
 				</h:form>
 			</p:outputPanel>
 		</div>

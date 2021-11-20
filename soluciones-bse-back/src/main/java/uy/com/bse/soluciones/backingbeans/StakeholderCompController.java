@@ -49,7 +49,7 @@ public class StakeholderCompController implements Serializable {
 		this.stakeholderC = stakeholderC;
 	}
 
-	public void seleccionaInterfaz(Stakeholder stakeholder) {
+	public void seleccionaStakeholderC(Stakeholder stakeholder) {
 		this.stakeholderC.setStakeholder(stakeholder);
 		PrimeFaces.current().dialog().closeDynamic(stakeholderC);
 	}

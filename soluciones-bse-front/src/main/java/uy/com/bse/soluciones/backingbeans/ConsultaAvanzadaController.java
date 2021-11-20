@@ -1,8 +1,6 @@
 package uy.com.bse.soluciones.backingbeans;
 
 import java.io.Serializable;
-import java.lang.reflect.Constructor;
-import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,22 +10,13 @@ import java.util.Map.Entry;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.event.FacesEvent;
 import javax.faces.event.ValueChangeEvent;
-import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.swing.event.ChangeEvent;
-
-import org.primefaces.model.LazyDataModel;
-
-import uy.com.bse.soluciones.domain.Aplicacion;
 import uy.com.bse.soluciones.domain.ComponenteSoftware;
-import uy.com.bse.soluciones.domain.Interfaz;
 import uy.com.bse.soluciones.domain.Enumeradores.TipoInterfaz;
 import uy.com.bse.soluciones.ejbs.ComponenteSoftwareService;
-import uy.com.bse.soluciones.ejbs.InterfazService;
 import uy.com.bse.soluciones.model.LazyComponenteDataModel;
 
 /**

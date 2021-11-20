@@ -4,7 +4,6 @@ import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -24,8 +23,6 @@ import uy.com.bse.soluciones.domain.StakeholdersComponente;
 
 @Stateless
 public class ComponenteSoftwareService extends AbstractService<ComponenteSoftware, Long> {
-	
-	private StakeholdersComponente stakeholderC = new StakeholdersComponente();
 	
 	@PersistenceContext(unitName = "soluciones_bse")
 	protected EntityManager em;

@@ -10,7 +10,6 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.swing.text.html.HTMLDocument.Iterator;
 import javax.transaction.Transactional;
 
 import org.primefaces.PrimeFaces;
@@ -107,7 +106,6 @@ public class SolucionController implements Serializable {
         options.put("contentWidth", "100%");
         options.put("contentHeight", "100%");
         options.put("headerElement", "customheader");
-     // TODO REVISAR CON SERGIO ESTOS 3 RENGLONES
         PrimeFaces.current().dialog().openDynamic("selectComponenteDialog", options, null);
 	}
 	

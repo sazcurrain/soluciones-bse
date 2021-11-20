@@ -147,14 +147,13 @@
 							<h:outputText value="#{skateholder.stakeholder.mail}" />
 						</p:column>
 
-						<p:column
-							headerText="#{labels['solucion.skateholder.telefono']}">
+						<p:column headerText="#{labels['solucion.skateholder.telefono']}">
 							<h:outputText value="#{skateholder.stakeholder.telefono}" />
 						</p:column>
 					</p:dataTable>
-					
+
 					<br />
-					<h:link outcome="soluciones.xhtml" value="volver" />
+					<h:link value="volver" onclick="window.history.back();" />
 				</h:form>
 			</p:outputPanel>
 		</div>

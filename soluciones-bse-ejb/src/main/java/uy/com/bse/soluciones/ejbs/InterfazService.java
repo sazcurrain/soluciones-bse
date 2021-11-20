@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import uy.com.bse.soluciones.domain.Interfaz;
-import uy.com.bse.soluciones.domain.Enumeradores.TipoInterfaz;
 
 /**
  * Servicio EJB para la entity Interfaz
