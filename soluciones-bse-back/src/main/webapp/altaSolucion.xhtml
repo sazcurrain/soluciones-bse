@@ -113,7 +113,10 @@
 						value="#{solucionController.solucion.componentes}"
 						id="componenteTable"
 						emptyMessage="Esta solución no tiene SW que la compone.">
-
+						<f:facet name="header" id="msgComponentes" >
+							<p:message for="componenteTable"
+								errorClass="err" warnClass="warn" infoClass="info" />
+						</f:facet>
 						<p:column headerText="">
 
 							<p:commandButton
@@ -221,7 +224,7 @@
 
 					<h:outputText value="&amp;nbsp;&amp;nbsp;&amp;nbsp;" escape="false" />
 
-					<h:link value="volver" onclick="window.history.back();" />
+					<p:commandLink value="volver" onclick="window.history.back();" />
 				</h:form>
 			</p:outputPanel>
 		</div>
