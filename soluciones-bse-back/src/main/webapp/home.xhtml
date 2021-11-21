@@ -3,19 +3,30 @@
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition template="templates/layout.xhtml">
-	
-		<ui:define name = "title">Bienvenido al sistema App Index</ui:define>
-			
-	
-		<ui:define name="body">
-			
-		</ui:define>
-	
-	</ui:composition>
+<ui:composition template="templates/layout.xhtml">
+
+	<ui:define name="title">Sistema App Index</ui:define>
+
+
+	<ui:define name="body">
+		<p:card style="margin-bottom: 2em">
+			<f:facet name="title">
+		        Bienvenido al sistema App Index
+		    </f:facet>
+			<p>Aqui puede administrar toda la informacón referente al
+				catálogo de las Soluciones de Software desarrolladas y utilizadas en
+				el BSE.</p>
+			<p>Para comenzar, seleccione alguna opción del menú "Soluciones".
+			</p>
+
+		</p:card>
+	</ui:define>
+
+</ui:composition>
 </html>
 

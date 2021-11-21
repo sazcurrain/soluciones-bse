@@ -20,6 +20,7 @@
 					warnClass="warn" infoClass="info" />
 					
 				<h:form id="form" prependId="false">
+				<p:focus/>
 
 					<div class="p-field p-grid" jsf:id="divRol">
 						<h:outputLabel value="#{labels['interfaz.tipo']}:*" for="inputRol"
@@ -45,6 +46,10 @@
 						value="#{stakeholderController.listaStakeholder}"
 						id="stakeholderTable"
 						emptyMessage="Esta aplicación no tiene interesados relacionados.">
+						
+						<p:column headerText="#{labels['stakeholder.documento']}">
+							<h:outputText value="#{stakeholder.documento}" />
+						</p:column>
 
 						<p:column headerText="#{labels['aplicacion.stakeholder.nombre']}">
 							<h:outputText value="#{stakeholder.nombre}" />

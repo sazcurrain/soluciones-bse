@@ -46,6 +46,15 @@
 						</div>
 					</div>
 
+					<div class="p-field p-grid" jsf:id="divDocumento">
+						<h:outputLabel value="#{labels['stakeholder.documento']}:"
+							for="inputDocumento" class="p-col-fixed" style="width: 150px" />
+						<div class="p-col">
+							<h:outputText id="inputDocumento"
+								value="#{stakeholderCompController.stakeholderC.stakeholder.documento}" />
+						</div>
+					</div>
+
 					<div class="p-field p-grid" jsf:id="divNombre">
 						<h:outputLabel value="#{labels['stakeholder.nombre']}:*"
 							for="inputNombre" class="p-col-fixed" style="width: 150px" />
@@ -56,7 +65,7 @@
 					</div>
 					<div class="p-field p-grid" jsf:id="divMail">
 						<h:outputLabel value="#{labels['stakeholder.mail']}:*"
-							for="inputMail" class="p-col-fixed" style="width: 250px" />
+							for="inputMail" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
 							<h:outputText id="inputMail"
 								value="#{stakeholderCompController.stakeholderC.stakeholder.mail}" />
@@ -67,7 +76,7 @@
 						<h:outputLabel value="#{labels['stakeholder.telefono']}:*"
 							for="inputDocumento" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<h:outputText id="inputNroDocumento"
+							<h:outputText id="inputTelefono"
 								value="#{stakeholderCompController.stakeholderC.stakeholder.telefono}" />
 						</div>
 					</div>
