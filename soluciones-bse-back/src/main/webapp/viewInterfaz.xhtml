@@ -24,135 +24,113 @@
 				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
 					warnClass="warn" infoClass="info" />
 
-				<h:form id="form" prependId="false">
-
-					<div class="p-field p-grid" jsf:id="divId"
-						jsf:rendered="#{interfazController.isManaged(interfazController.interfaz.id)}">
-						<h:outputLabel value="#{labels['interfaz.id']}:*" for="inputId"
-							class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<p:inputText id="inputId"
-								value="#{interfazController.interfaz.id}" required="true"
-								size="40"
-								disabled="#{interfazController.isManaged(interfazController.interfaz.id)}">
-							</p:inputText>
-						</div>
+				<div class="p-field p-grid" jsf:id="divId">
+					<h:outputLabel value="#{labels['interfaz.id']}:*" for="inputId"
+						class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="inputId"
+							value="#{interfazController.interfaz.id}" />
 					</div>
+				</div>
 
-					<div class="p-field p-grid" jsf:id="divAplicacion">
-						<h:outputLabel value="#{labels['interfaz.aplicacion']}:*"
-							for="inputAplicacion" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<p:inputText id="inputAplicacion"
-								value="#{interfazController.interfaz.aplicacion.nombre}"
-								required="true" size="60">
-								<p:ajax event="blur" process="@this" update="msgAplicacion" />
-							</p:inputText>
-							<p:message id="msgAplicacion" for="inputAplicacion"
-								errorClass="err" warnClass="warn" infoClass="info" />
-						</div>
+				<div class="p-field p-grid" jsf:id="divAplicacion">
+					<h:outputLabel value="#{labels['interfaz.aplicacion']}:*"
+						for="inputAplicacion" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="inputAplicacion"
+							value="#{interfazController.interfaz.aplicacion.nombre}" />
 					</div>
+				</div>
 
-					<div class="p-field p-grid" jsf:id="divNombre">
-						<h:outputLabel value="#{labels['interfaz.nombre']}:*"
-							for="inputNombre" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<p:inputText id="inputNombre"
-								value="#{interfazController.interfaz.nombre}" required="true"
-								size="60">
-								<p:ajax event="blur" process="@this" update="msgNombre" />
-							</p:inputText>
-							<p:message id="msgNombre" for="inputNombre" errorClass="err"
-								warnClass="warn" infoClass="info" />
-						</div>
+				<div class="p-field p-grid" jsf:id="divNombre">
+					<h:outputLabel value="#{labels['interfaz.nombre']}:*"
+						for="inputNombre" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="inputNombre"
+							value="#{interfazController.interfaz.nombre}" />
 					</div>
+				</div>
 
 
-					<div class="p-field p-grid" jsf:id="divVersion">
-						<h:outputLabel value="#{labels['interfaz.version']}:*"
-							for="inputVersion" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<p:inputText id="inputVersion"
-								value="#{interfazController.interfaz.version}" required="true"
-								size="40">
-								<p:ajax event="blur" process="@this" update="msgVersion" />
-							</p:inputText>
-							<p:message id="msgVersion" for="inputVersion" errorClass="err"
-								warnClass="warn" infoClass="info" />
+				<div class="p-field p-grid" jsf:id="divVersion">
+					<h:outputLabel value="#{labels['interfaz.version']}:*"
+						for="inputVersion" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="inputVersion"
+							value="#{interfazController.interfaz.version}" />
 
-						</div>
 					</div>
+				</div>
 
-					<div class="p-field p-grid" jsf:id="divFechaVersion">
-						<h:outputLabel value="#{labels['interfaz.fechaVersion']}:*"
-							for="inputFechaVersion" class="p-col-fixed" style="width: 150px" />
-						<div class="p-col">
-							<p:inputText id="inputFechaVersion"
-								value="#{interfazController.interfaz.fechaVersion}"
-								required="true" size="40">
-								<p:ajax event="blur" process="@this" update="msgFechaVersion" />
-							</p:inputText>
-							<p:message id="msgFechaVersion" for="inputFechaVersion"
-								errorClass="err" warnClass="warn" infoClass="info" />
+				<div class="p-field p-grid" jsf:id="divFechaVersion">
+					<h:outputLabel value="#{labels['interfaz.fechaVersion']}:*"
+						for="inputFechaVersion" class="p-col-fixed" style="width: 150px" />
+					<div class="p-col">
+						<h:outputText id="inputFechaVersion"
+							value="#{interfazController.interfaz.fechaVersion}" />
 
-						</div>
 					</div>
+				</div>
 
-					<br />
-					<h2>Aplicaciones que la consumen</h2>
+				<br />
+				<h2>Aplicaciones que la consumen</h2>
 
-					<p:dataTable var="aplicacion"
-						value="#{interfazController.interfaz.consumidaPor}"
-						emptyMessage="Esta interfaz no tiene aplicaciones que la consuman"
-						scrollable="true">
-						<p:column headerText="#{labels['aplicacion.nombre']}">
-							<h:outputText value="#{aplicacion.nombre}" />
-						</p:column>
+				<p:dataTable var="aplicacion"
+					value="#{interfazController.interfaz.consumidaPor}"
+					emptyMessage="Esta interfaz no tiene aplicaciones que la consuman"
+					scrollable="true">
+					<p:column headerText="#{labels['aplicacion.nombre']}">
+						<h:outputText value="#{aplicacion.nombre}" />
+					</p:column>
 
-						<p:column headerText="#{labels['aplicacion.version']}">
-							<h:outputText value="#{aplicacion.version}" />
-						</p:column>
+					<p:column headerText="#{labels['aplicacion.version']}">
+						<h:outputText value="#{aplicacion.version}" />
+					</p:column>
 
-						<p:column headerText="#{labels['aplicacion.fechaVersion']}">
-							<h:outputText value="#{aplicacion.fechaVersion}">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</h:outputText>
-						</p:column>
-					</p:dataTable>
+					<p:column headerText="#{labels['aplicacion.fechaVersion']}">
+						<h:outputText value="#{aplicacion.fechaVersion}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+				</p:dataTable>
 
-					<br />
-					<h2>Interesados</h2>
-					<p:dataTable var="skateholder"
-						value="#{interfazController.interfaz.stakeholders}"
-						id="skateholderTable"
-						emptyMessage="Esta interfaz no tiene skateholders asociados"
-						scrollable="true">
+				<br />
+				<h2>Interesados</h2>
+				<p:dataTable var="skateholder"
+					value="#{interfazController.interfaz.stakeholders}"
+					id="skateholderTable"
+					emptyMessage="Esta interfaz no tiene skateholders asociados"
+					scrollable="true">
 
-						<p:column headerText="#{labels['interfaz.skateholder.rol']}">
-							<h:outputText value="#{skateholder.rol}" />
-						</p:column>
+					<p:column headerText="#{labels['interfaz.skateholder.rol']}">
+						<h:outputText value="#{skateholder.rol}" />
+					</p:column>
 
-						<p:column headerText="#{labels['interfaz.skateholder.tipo']}">
-							<h:outputText value="#{skateholder.stakeholder.tipo}" />
-						</p:column>
+					<p:column headerText="#{labels['interfaz.skateholder.tipo']}">
+						<h:outputText value="#{skateholder.stakeholder.tipo}" />
+					</p:column>
 
-						<p:column headerText="#{labels['interfaz.skateholder.nombre']}">
-							<h:outputText value="#{skateholder.stakeholder.nombre}">
-							</h:outputText>
-						</p:column>
+					<p:column headerText="#{labels['stakeholder.documento']}">
+						<h:outputText value="#{skateholder.stakeholder.documento}">
+						</h:outputText>
+					</p:column>
 
-						<p:column headerText="#{labels['interfaz.skateholder.mail']}">
-							<h:outputText value="#{skateholder.stakeholder.mail}" />
-						</p:column>
+					<p:column headerText="#{labels['interfaz.skateholder.nombre']}">
+						<h:outputText value="#{skateholder.stakeholder.nombre}">
+						</h:outputText>
+					</p:column>
 
-						<p:column headerText="#{labels['interfaz.skateholder.telefono']}">
-							<h:outputText value="#{skateholder.stakeholder.telefono}" />
-						</p:column>
-					</p:dataTable>
+					<p:column headerText="#{labels['interfaz.skateholder.mail']}">
+						<h:outputText value="#{skateholder.stakeholder.mail}" />
+					</p:column>
 
-					<br />
-					<p:commandLink value="volver" onclick="window.history.back();" />
-				</h:form>
+					<p:column headerText="#{labels['interfaz.skateholder.telefono']}">
+						<h:outputText value="#{skateholder.stakeholder.telefono}" />
+					</p:column>
+				</p:dataTable>
+
+				<br />
+				<p:commandLink value="volver" onclick="window.history.back();" />
 			</p:outputPanel>
 		</div>
 	</ui:define>

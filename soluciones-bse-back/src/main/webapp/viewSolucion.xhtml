@@ -23,19 +23,15 @@
 			<p:outputPanel>
 				<p:messages id="globalMessage" globalOnly="true" errorClass="err"
 					warnClass="warn" infoClass="info" />
-					
+
 				<h:form id="form" prependId="false">
 
-					<div class="p-field p-grid" jsf:id="divId"
-						jsf:rendered="#{solucionController.isManaged(solucionController.solucion.id)}">
+					<div class="p-field p-grid" jsf:id="divId">
 						<h:outputLabel value="#{labels['solucion.id']}:*" for="inputId"
 							class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputId"
-								value="#{solucionController.solucion.id}" required="true"
-								size="40"
-								disabled="#{solucionController.isManaged(solucionController.solucion.id)}">
-							</p:inputText>
+							<h:outputText id="inputId"
+								value="#{solucionController.solucion.id}" />
 						</div>
 					</div>
 
@@ -44,13 +40,8 @@
 						<h:outputLabel value="#{labels['solucion.nombre']}:*"
 							for="inputNombre" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputNombre"
-								value="#{solucionController.solucion.nombre}" required="true"
-								size="60">
-								<p:ajax event="blur" process="@this" update="msgNombre" />
-							</p:inputText>
-							<p:message id="msgNombre" for="inputNombre" errorClass="err"
-								warnClass="warn" infoClass="info" />
+							<h:outputText id="inputNombre"
+								value="#{solucionController.solucion.nombre}" />
 						</div>
 					</div>
 
@@ -59,13 +50,8 @@
 						<h:outputLabel value="#{labels['solucion.descripcion']}:*"
 							for="inputDescripcion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputDescripcion"
-								value="#{solucionController.solucion.descripcion}"
-								required="true" size="40">
-								<p:ajax event="blur" process="@this" update="msgDescripcion" />
-							</p:inputText>
-							<p:message id="msgDescripcion" for="inputDescripcion"
-								errorClass="err" warnClass="warn" infoClass="info" />
+							<h:outputText id="inputDescripcion"
+								value="#{solucionController.solucion.descripcion}" />
 
 						</div>
 					</div>
@@ -74,13 +60,8 @@
 						<h:outputLabel value="#{labels['solucion.version']}:*"
 							for="inputVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:inputText id="inputVersion"
-								value="#{solucionController.solucion.version}" required="true"
-								size="40">
-								<p:ajax event="blur" process="@this" update="msgVersion" />
-							</p:inputText>
-							<p:message id="msgVersion" for="inputVersion" errorClass="err"
-								warnClass="warn" infoClass="info" />
+							<h:outputText id="inputVersion"
+								value="#{solucionController.solucion.version}" />
 
 						</div>
 					</div>
@@ -89,14 +70,8 @@
 						<h:outputLabel value="#{labels['solucion.fechaVersion']}:*"
 							for="inputFechaVersion" class="p-col-fixed" style="width: 150px" />
 						<div class="p-col">
-							<p:datePicker id="inputFecVer"
-								value="#{solucionController.solucion.fechaVersion}"
-								required="true" pattern="dd/MM/yyyy" monthNavigator="true"
-								yearNavigator="true">
-								<p:ajax event="blur" process="@this" update="msgFVersion" />
-							</p:datePicker>
-							<p:message id="msgFVersion" for="inputFecVer" errorClass="err"
-								warnClass="warn" infoClass="info" />
+							<h:outputText id="inputFecVer"
+								value="#{solucionController.solucion.fechaVersion}" />
 						</div>
 					</div>
 
@@ -141,6 +116,11 @@
 							<h:outputText value="#{skateholder.stakeholder.tipo}" />
 						</p:column>
 
+						<p:column headerText="#{labels['stakeholder.documento']}">
+							<h:outputText value="#{skateholder.stakeholder.documento}">
+							</h:outputText>
+						</p:column>
+
 						<p:column headerText="#{labels['solucion.skateholder.nombre']}">
 							<h:outputText value="#{skateholder.stakeholder.nombre}">
 							</h:outputText>
@@ -156,7 +136,8 @@
 					</p:dataTable>
 
 					<br />
-					<p:commandLink value="volver" onclick="window.history.back();" />
+					<p:commandLink value="volver" onclick="window.history.back();"
+						immediate="true" />
 				</h:form>
 			</p:outputPanel>
 		</div>

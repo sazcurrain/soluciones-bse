@@ -94,10 +94,10 @@
 									styleClass="custom-filter">
 									<f:selectItem itemLabel="All" itemValue="#{null}"
 										noSelectionOption="true" />
-									<f:selectItems value="#{solInfraController.tipos}" />
+									<f:selectItems value="#{solInfraController.tipos}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.toUpperCase()}"/>
 								</p:selectOneMenu>
 							</f:facet>
-							<h:outputText value="#{solInfra.tipo}" />
+							<h:outputText value="#{solInfra.tipo.toUpperCase()}" />
 						</p:column>
 
 						<p:column headerText="#{labels['solInfra.sistema_operativo']}">

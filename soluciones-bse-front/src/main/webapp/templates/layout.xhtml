@@ -70,19 +70,19 @@ footer {
 	<h:form id="form_menu">
 		<p:menubar>
 			<p:submenu label="Consultas" icon="pi pi-fw pi-file">
-				<p:menuitem value="Simple" icon="pi pi-fw pi-external-link"
-					action="consultaSimple.xhtml" />
-				<p:menuitem value="Avanzada" icon="pi pi-fw pi-external-link"
-					action="consultaAvanzada.xhtml" />
+				<p:menuitem value="Simple" icon="pi pi-fw pi-list"
+					action="consultaSimple.xhtml?faces-redirect=true" />
+				<p:menuitem value="Avanzada" icon="pi pi-fw pi-search"
+					action="consultaAvanzada.xhtml?faces-redirect=true" />
 			</p:submenu>
 			
-			<p:submenu label="Admin" icon="pi pi-fw pi-file">
+			<p:submenu label="Admin" icon="pi pi-fw pi-cog">
 				<p:menuitem value="Opciones Admin" icon="pi pi-fw pi-external-link"
-					url="admin/login.xhtml" ajax="false"/>
+					url="admin/login.xhtml?faces-redirect=true" ajax="false"/>
 			</p:submenu>
 	
-			<p:menuitem value="Home" icon="pi pi-fw pi-power-off"
-				action="home.xhtml?faces-redirect=true" />
+			<p:menuitem value="Home" icon="pi pi-fw pi-home"
+				action="consultaSimple.xhtml?faces-redirect=true" />
 		</p:menubar>
 	</h:form>
 

@@ -48,6 +48,11 @@ footer {
 	height: 60px;
 	color: white;
 }
+
+.p-field label {
+	font-weight: bold;
+	color: #333;
+}
 </style>
 
 	<h:outputStylesheet library="webjars"
@@ -72,40 +77,36 @@ footer {
 			<p:submenu label="Consultas" icon="pi pi-fw pi-file">
 
 				<p:menuitem value="Ir a Consultas" icon="pi pi-fw pi-external-link"
-					url="/soluciones/home.xhtml" ajax="false" />
+					url="/soluciones/consultaSimple.xhtml" ajax="false" />
 			</p:submenu>
 
-			<p:submenu label="Soluciones" icon="pi pi-fw pi-file">
-				<p:menuitem value="Ver Soluciones" icon="pi pi-fw pi-external-link"
-					action="soluciones.xhtml" />
-				<p:menuitem value="Ver Aplicaciones"
-					icon="pi pi-fw pi-external-link" action="aplicaciones.xhtml" />
-				<p:menuitem value="Ver Interfaces" icon="pi pi-fw pi-external-link"
-					action="interfaces.xhtml" />
-				<p:menuitem value="Ver Infraestructura"
-					icon="pi pi-fw pi-external-link" action="solsInfra.xhtml" />
-				<p:menuitem value="Ver Interesados" icon="pi pi-fw pi-external-link"
-					action="stakeholders.xhtml" />
+			<p:submenu label="Soluciones" icon="pi pi-fw pi-cog">
+				<p:menuitem value="Ver Soluciones" icon="pi pi-fw pi-sitemap"
+					action="soluciones.xhtml?faces-redirect=true" />
+				<p:menuitem value="Ver Aplicaciones" icon="pi pi-fw pi-th-large"
+					action="aplicaciones.xhtml?faces-redirect=true" />
+				<p:menuitem value="Ver Interfaces" icon="pi pi-fw pi-sort-alt"
+					action="interfaces.xhtml?faces-redirect=true" />
+				<p:menuitem value="Ver Infraestructura" icon="pi pi-fw pi-desktop"
+					action="solsInfra.xhtml?faces-redirect=true" />
+				<p:menuitem value="Ver Interesados" icon="pi pi-fw pi-users"
+					action="stakeholders.xhtml?faces-redirect=true" />
 			</p:submenu>
 
 			<p:divider layout="vertical" />
 
-			<p:menuitem value="Home" icon="pi pi-fw pi-power-off"
+			<p:menuitem value="Home" icon="pi pi-fw pi-home"
 				action="home.xhtml?faces-redirect=true" />
 
+
+
+
 			<f:facet name="options">
-				<div class="p-field p-grid">
-					<h:outputLabel value="#{labels['usuario.loggedin.label']}:"
-						for="outputUsername" class="p-col-fixed" style="width: 150px" />
-					<div class="p-col">
-						<h:outputText id="outputUsername"
-							value="#{loginController.currentUser}" />
-					</div>
-					<div class="p-col">
-						<p:commandButton value="Logout" icon="pi pi-fw pi-sign-out"
-							styleClass="ui-button-info" action="#{loginController.logout()}" />
-					</div>
-				</div>
+				<p:menuButton value="#{loginController.currentUser}"
+					icon="pi pi-fw pi-user">
+					<p:menuitem value="Logout" icon="pi pi-fw pi-sign-out"
+						action="#{loginController.logout()}" />
+				</p:menuButton>
 			</f:facet>
 		</p:menubar>
 	</h:form>
