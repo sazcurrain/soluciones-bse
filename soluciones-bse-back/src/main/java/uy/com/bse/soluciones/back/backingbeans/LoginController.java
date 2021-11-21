@@ -8,7 +8,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import uy.com.bse.soluciones.model.UsuarioLogeado;
-import uy.com.bse.soluciones.model.UsuarioModel;
+import uy.com.bse.soluciones.qualifiers.LoginService;
+import uy.com.bse.soluciones.security.ILoginService;
 
 @Model
 public class LoginController {
@@ -16,8 +17,8 @@ public class LoginController {
 	private String username;
 	private String password;
 	
-	@Inject
-	private UsuarioModel usuarioModel;
+	@Inject @LoginService
+	private ILoginService usuarioModel;
 	
 	@Inject
 	private UsuarioLogeado usuarioLogeado;

@@ -6,11 +6,17 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Alternative;
+import javax.validation.OverridesAttribute;
 
 import uy.com.bse.soluciones.domain.Usuario;
+import uy.com.bse.soluciones.qualifiers.LoginService;
+import uy.com.bse.soluciones.security.ILoginService;
 
 @SessionScoped
-public class UsuarioModel implements Serializable {
+@LoginService
+@Alternative
+public class MockLoginService implements Serializable, ILoginService {
 	private static final long serialVersionUID = 1L;
 	private Set<Usuario> usuarios = new HashSet<Usuario>();
 
@@ -43,6 +49,7 @@ public class UsuarioModel implements Serializable {
 				  .orElse(null);
 	}
 	
+	@Override
 	public boolean autenticar(String username, String password) {
 		boolean autenticar = false;
 		

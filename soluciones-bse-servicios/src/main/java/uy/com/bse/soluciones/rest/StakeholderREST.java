@@ -91,17 +91,40 @@ public class StakeholderREST implements IStakeholderREST {
 		stakeholderService.delete(aux);
 		return Response.noContent().build();
 	}
+	
 
+	/*
+	 * Pongo que se ejecute sin transacción, porque si no se propaga al update del
+	 * service y las excepciones de atributos unique duplicados no saltan hasta
+	 * despues que finaliza la transacción. La operación sigue siendo segura porque
+	 * el update tiene su propia transacción.
+	 */
+	@SuppressWarnings("rawtypes")
 	@Override
+	@TransactionAttribute(TransactionAttributeType.NEVER)
 	public Response create(StakeholderDTO dto) {
 
 		if (dto == null) {
 			throw new BadRequestException();
 		}
-
-		Stakeholder entity = stakeholderService.update(dto.createEntity());
-		URI facturaUri = uriInfo.getAbsolutePathBuilder().path(entity.getId().toString()).build();
-		return Response.created(facturaUri).build();
+		
+		try {
+			Stakeholder entity = stakeholderService.update(dto.createEntity());
+			URI facturaUri = uriInfo.getAbsolutePathBuilder().path(entity.getId().toString()).build();
+			return Response.created(facturaUri).build();
+		} catch (EJBTransactionRolledbackException e) {
+			String message = "";
+			for (Throwable t = e.getCausedByException(); t != null; t = t.getCause()) {
+				if (PersistenceException.class.isInstance(t)) {
+					message = "Ya existe un usuario con ese documento";
+				} else if (ConstraintViolationException.class.isInstance(t)) {
+					for (ConstraintViolation cv : ((ConstraintViolationException) t).getConstraintViolations()) {
+						message += cv.getPropertyPath() + ": " + cv.getMessage() + "\n";
+					}
+				}
+			}
+			return Response.status(Response.Status.BAD_REQUEST).entity(message).type(MediaType.TEXT_PLAIN).build();
+		}
 	}
 
 	private Stakeholder buscarStakeholder(Long id) {

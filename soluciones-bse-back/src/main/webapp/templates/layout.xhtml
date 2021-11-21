@@ -41,17 +41,38 @@ body {
 	margin-bottom: 40px;
 }
 
-footer {
+.header {
+	height: 85px;
+	padding: 10px;
+	boz-sizing: border-box;
+	margin-bottom: 20px;
+	width: 100%;
+	background-color: #f6f6f6;
+}
+
+.header h1 {
+	line-height: 65px;
+	color: #009ee0;
+}
+
+.footer {
 	position: absolute;
-	bottom: 10px;
+	bottom: 0;
 	width: 100%;
 	height: 60px;
+	padding: 20px;
+	box-sizing: border-box;
 	color: white;
+	background: #999;
 }
 
 .p-field label {
 	font-weight: bold;
 	color: #333;
+}
+
+body .ui-datatable thead th{
+	background: #e8e9ea;
 }
 </style>
 
@@ -61,16 +82,14 @@ footer {
 </h:head>
 
 <h:body>
+<div class="header">
 	<h1 style="display: inline;">
 		<ui:insert name="title">Cambiar titulo de la pagina</ui:insert>
 	</h1>
 	<h:panelGroup style="display:block; float: right">
 		<h:graphicImage value="/resources/images/bse-logo.png" />
 	</h:panelGroup>
-
-	<br />
-	<br />
-	<br />
+</div>
 
 	<h:form id="form_menu">
 		<p:menubar>
@@ -111,7 +130,6 @@ footer {
 		</p:menubar>
 	</h:form>
 
-	<hr />
 	<br />
 
 	<div style="margin-left: 40px; margin-right: 40px;">
@@ -121,9 +139,8 @@ footer {
 
 
 	<div class="footer">
-		<hr />
 		<h:outputText value="Soluciones de Software - BSE   "
-			style="font-style: italic; float: right; color: #3090C7; padding-right:20px;" />
+			style="font-style: italic; float: right; padding-right:20px;" />
 	</div>
 </h:body>
 
