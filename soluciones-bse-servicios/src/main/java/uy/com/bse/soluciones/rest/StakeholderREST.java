@@ -66,6 +66,7 @@ public class StakeholderREST implements IStakeholderREST {
 	@TransactionAttribute(TransactionAttributeType.NEVER)
 	public Response update(Long id, StakeholderDTO dto) {
 		Stakeholder aux = dto.createEntity();
+		aux.setId(id);
 
 		try {
 			stakeholderService.update(aux);
